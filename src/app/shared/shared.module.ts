@@ -4,8 +4,8 @@ import { SharedRoutingModule } from './shared-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
-	declarations: [NavbarComponent],
-	imports: [CommonModule, SharedRoutingModule],
+	declarations: [],
+	imports: [NavbarComponent,CommonModule, SharedRoutingModule],
 	exports: [NavbarComponent],
 })
 export class SharedModule {}
