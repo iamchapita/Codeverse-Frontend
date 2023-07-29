@@ -5,37 +5,33 @@ import { CreatorComponent } from './pages/creator/creator.component';
 import { FilesComponent } from './pages/files/files.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {
-        path: 'create',
-        component: CreatorComponent
-      },
-      {
-        path: 'files',
-        component: FilesComponent
-      },
-      {
-        path: 'home',
-        component: HomeComponent,
-      },
-      {
-        path: '**',
-        redirectTo: 'home',
-        // pathMatch: 'full'
-      }
-    ]
-  }
-]
+	{
+		path: '',
+		children: [
+			{
+				path: 'create',
+				component: CreatorComponent,
+			},
+			{
+				path: 'files',
+				component: FilesComponent,
+			},
+			{
+				path: 'home',
+				component: HomeComponent,
+			},
+			{
+				path: '**',
+				redirectTo: 'home',
+				// pathMatch: 'full'
+			},
+		],
+	},
+];
 
 @NgModule({
-  declarations: [],
-  imports: [
-    RouterModule.forChild( routes )
-  ],
-  exports: [
-    RouterModule
-  ]
+	declarations: [],
+	imports: [RouterModule.forChild(routes)],
+	exports: [RouterModule],
 })
-export class CodeverseRoutingModule { }
+export class CodeverseRoutingModule {}
