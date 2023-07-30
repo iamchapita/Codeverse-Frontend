@@ -1,4 +1,4 @@
-app-navbar {
+nav {
 	position: fixed;
 	width: 100%;
 	top: 0;
@@ -6,16 +6,16 @@ app-navbar {
 	flex: 0
 }
 
-.main {
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+nav>img {
+	width: 130px;
+}
 
-	overflow-y: auto;
-	margin-top: 3.5em;
-	padding: 2.5em;
-	width: 100%;
-	top: 10%;
+.scrollspy {
+	height: 100%;
+}
+
+.main>div {
+	margin-top: 1rem;
 }
 
 .spinner {
@@ -23,7 +23,7 @@ app-navbar {
 }
 
 img {
-	max-width: 100%;
+	max-width: 90%;
 	animation: rotate 20s infinite linear;
 }
 
@@ -50,9 +50,9 @@ img {
 	margin: 4rem;
 }
 
-.buttons {
+/* .buttons {
 	margin: 4rem;
-}
+} */
 
 .buttons>button {
 	margin: 1rem;
