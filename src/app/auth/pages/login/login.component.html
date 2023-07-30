@@ -1,1 +1,74 @@
-<p>login works!</p>
+<app-navbar></app-navbar>
+
+<div class="scrollspy rounded-2" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px 0px 0px"
+	data-bs-smooth-scroll="true" tabindex="0">
+
+	<div class="main h-100">
+
+		<div class="row align-items-center h-100 ps-5 pe-5">
+			<div class="col-sm-12 col-md-6 col-lg-6 spinner d-flex justify-content-center">
+				<img src="assets/Spinner.png">
+			</div>
+
+			<div class="col-sm-12 col-md-6 col-lg-6">
+
+				<div class="row d-flex align-items-center">
+
+					<div class="col-sm-12 col-md-12 col-lg-6">
+						<p class="bigText textCenter">Bienvenido de vuelta</p>
+						<p>Inicia sesión y empieza a crear</p>
+					</div>
+
+					<div class="col-sm-12 col-md-12 col-lg-6">
+
+						<div class="customCard">
+							<div class="body">
+								<form>
+									<div class="mb-4">
+										<label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+										<input type="email" class="form-control" id="exampleInputEmail1"
+											aria-describedby="emailHelp" placeholder="correo@servicio.com">
+										<!-- <div id="emailHelp" class="form-text">
+										</div> -->
+									</div>
+									<div class="mb-4">
+										<label for="exampleInputPassword1" class="form-label">Contraseña</label>
+										<input type="password" class="form-control" id="exampleInputPassword1"
+											placeholder="Min 4, Max 35 carácteres">
+									</div>
+									<!-- <div class="mb-3 form-check">
+										<input type="checkbox" class="form-check-input" id="exampleCheck1">
+										<label class="form-check-label" for="exampleCheck1">Check me out</label>
+									</div> -->
+									<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+								</form>
+							</div>
+
+							<div class="row">
+								<div class="col-sm-12 col-md-12 col-lg-6">
+									<button type="button" class="btn btn-principal" routerLink="/auth/login">Inicia
+										Sesión</button>
+
+									<!-- <div>¿No tienes cuenta?</div>
+									<button type="button" class="btn btn-principal" routerLink="/auth/register">Registrate</button> -->
+								</div>
+
+								<div class="col-sm-12 col-md-12 col-lg-6">
+									<button type="button" class="btn btn-facebook" routerLink="/auth/login">
+										<fa-icon [icon]="faFacebook"></fa-icon>Inicia Sesión
+									</button>
+								</div>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+</div>
