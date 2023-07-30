@@ -1,23 +1,11 @@
-nav {
-	position: fixed;
-	width: 100%;
-	top: 0;
-	left: 0;
-	flex: 0
-}
-
-nav>img {
-	width: 130px;
-}
-
 .scrollspy {
 	height: 100%;
 }
 
-.main>div {
+/* .main>div {
 	margin-top: 1rem;
 	padding: 1rem;
-}
+} */
 
 .spinner {
 	padding: 0.5rem;
@@ -43,6 +31,10 @@ img {
 	font-size: 2.5em;
 }
 
+.bigIcons {
+	font-size: 4.5em;
+}
+
 .btn-principal {
 	background-color: #0B132B;
 	color: white;
@@ -52,10 +44,58 @@ img {
 	margin: 4rem;
 }
 
-/* .buttons {
-	margin: 4rem;
-} */
-
 .buttons>button {
 	margin: 1rem;
+}
+
+#secondSection {
+
+	background-color: f1f1f1;
+}
+
+.whiteText {
+	color: white;
+}
+
+.customCard {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	height: 30%;
+	padding: 1rem;
+	height: 40vh;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
+	border-color: #0B132B;
+	background-color: #f1f1f1;
+	font-size: 1rem;
+}
+
+.tittle{
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+.icon {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 10rem;
+	height: 10rem;
+	border-radius: 50%;
+	background-color: #3A506B;
+	color: #f1f1f1;
+}
+
+hr {
+	width: 100%;
+	background-color+: #0B132B;
+}
+
+.text {
+	width: 100%;
+	height: 50%;
 }

@@ -3,21 +3,31 @@
 <div class="scrollspy p-3 rounded-2 vh-100" data-bs-spy="scroll" data-bs-target="#navbar"
 	data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
 
-
 	<div class="main">
-		<div class="row align-items-center h-100">
-			<div class="col-sm-12 col-md-6 col-lg-4 pb-3 spinner d-flex justify-content-center">
+		<div class="row align-items-center vh-100">
+			<div class="col-sm-12 col-md-6 col-lg-4 pb-4 spinner d-flex justify-content-center">
 				<img src="assets/Spinner.png">
 			</div>
-			<div class="col-sm-12 col-md-6 col-lg-3 pb-3 bigText text-center">
-				<fa-icon [icon]="faChevronRight"></fa-icon> Codeverse
+			<div class="col-sm-12 col-md-6 col-lg-3 pb-4">
+				<div class="bigText">
+					<fa-icon [icon]="faChevronRight"></fa-icon> Codeverse
+				</div>
+				<div>
+					<p>Codeverse es una nueva plataforma donde podrás realizar proyectos de desarrollo web completamente
+						gratis.</p>
+					<p>Crea tu paǵina web con las tecnologías puntero del desarrollo web:</p>
+					<ul>
+						<li>Realiza la codificación en HTML para el esqueleto de tu página.</li>
+						<li>Dale vida a tú página con Javascript.</li>
+						<li>Agrega animaciones hojas de estilo.</li>
+					</ul>
+				</div>
 			</div>
-			<div class="col-sm-12 col-md-12 col-lg-5 pb-3 text-center">
-
+			<div class="col-sm-12 col-md-12 col-lg-5 pb-4 text-center">
 				<div class="column">
 					<div class="description bigText">
+						<p>Imagina</p>
 						<p>Desarrolla</p>
-						<p>Colabora</p>
 						<p>Comparte</p>
 					</div>
 					<hr>
@@ -30,30 +40,106 @@
 			</div>
 		</div>
 
-		<!-- <div class="row align-items-center h-100" id="secondSection">
-			<div class="col-sm-12 col-md-6 col-lg-4 pb-3 spinner d-flex justify-content-center">
-				<img src="assets/Spinner.png">
-			</div>
-			<div class="col-sm-12 col-md-6 col-lg-3 pb-3 bigText text-center">
-				<fa-icon [icon]="faChevronRight"></fa-icon> Codeverse
-			</div>
-			<div class="col-sm-12 col-md-12 col-lg-5 pb-3 text-center">
+		<div class="row align-items-center vh-100" id="secondSection">
+			<p class="bigText text-center">Descubre Codeverse</p>
+			<!-- <div class="row">
 
-				<div class="column">
-					<div class="description bigText">
-						<p>Desarrolla</p>
-						<p>Colabora</p>
-						<p>Comparte</p>
+					<div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+						<div class="customCard">
+							<div class="icon bigIcons">
+								<fa-icon [icon]="faUser"></fa-icon>
+							</div>
+							<hr>
+							<div class="text">
+								Codifíca y guarda tus proyectos para continuarlos cuando quieras.
+								Trabaja sin conexión y guarda cuando te conectes de nuevo.
+							</div>
+						</div>
 					</div>
-					<hr>
-					<div class="buttons">
-						<button type="button" class="btn btn-principal">Inicia Sesión</button>
-						<div>¿No tienes cuenta?</div>
-						<button type="button" class="btn btn-principal">Registrate</button>
+
+					<div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+						<div class="customCard">
+							<div class="icon bigIcons">
+								<fa-icon [icon]="faUserPlus"></fa-icon>
+							</div>
+							<hr>
+							<div class="text">
+								Comparte tus proyectos con otras personas.
+							</div>
+						</div>
+					</div>
+
+					<div class="col-sm-12 col-md-12 col-lg-6 pb-4">
+						<div class="customCard">
+							<div class="icon bigIcons">
+								<fa-icon [icon]="faUsers"></fa-icon>
+							</div>
+							<hr>
+							<div class="text">
+								Comparte tus proyectos con la comunidad y crea aplicaciones sorprendentes.
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+			</div> -->
+
+			<div class="col-sm-12 col-md-4 col-lg-4">
+				<div class="customCard">
+					<div class="tittle">
+						Free Plan
+					</div>
+					<div class="text">
+						<ul>
+							<li>Almacena hasta 5 proyectos.</li>
+							<li>Organiza con libertad tus proyectos.</li>
+						</ul>
+					</div>
+					<div class="footer">
+						<button class="btn btn-principal">Registrate</button>
 					</div>
 				</div>
 			</div>
-		</div> -->
+
+			<div class="col-sm-12 col-md-4 col-lg-4">
+				<div class="customCard">
+					<div class="tittle">
+						Plus Plan
+					</div>
+					<div class="text">
+						<ul>
+							<li>Puedes crear hasta 15 proyectos.</li>
+							<li>Sigue trabajando mientras no tienes conexión.</li>
+							<li>Descarga tus archivos.</li>
+						</ul>
+					</div>
+					<div class="footer">
+						<button class="btn btn-principal">Actualizate</button>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-sm-12 col-md-4 col-lg-4">
+				<div class="customCard">
+					<div class="tittle">
+						Premium Plan
+					</div>
+					<div class="text">
+						<ul>
+							<li>Crea todos los proyectos que quieras.</li>
+							<li>Crea tus propios fragmentos de código.</li>
+							<li>Comparte el código con tus amigos, trabaja de forma colaborativa.</li>
+						</ul>
+					</div>
+					<div class="footer">
+						<button class="btn btn-principal">Actualizate</button>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
 
 	</div>
 

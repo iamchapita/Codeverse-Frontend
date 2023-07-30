@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { faICursor } from '@fortawesome/free-solid-svg-icons';
+import {
+	faICursor,
+	faUser,
+	faUserPlus,
+	faUsers,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-landing',
@@ -10,4 +15,7 @@ import { faICursor } from '@fortawesome/free-solid-svg-icons';
 export class LandingComponent {
 	faChevronRight = faChevronRight;
 	faICursor = faICursor;
+	faUser = faUser;
+	faUsers = faUsers;
+	faUserPlus = faUserPlus;
 }
