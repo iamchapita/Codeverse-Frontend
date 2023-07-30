@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
+import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-project-explorer',
-  templateUrl: './project-explorer.component.html',
-  styleUrls: ['./project-explorer.component.css']
+	selector: 'app-project-explorer',
+	templateUrl: './project-explorer.component.html',
+	styleUrls: ['./project-explorer.component.css'],
 })
 export class ProjectExplorerComponent {
-
+	faFolderPlus = faFolderPlus;
 }

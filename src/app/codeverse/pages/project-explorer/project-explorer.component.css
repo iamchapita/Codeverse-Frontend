@@ -1,0 +1,26 @@
+.main {
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+	background-color: #0B132B;
+	height: 94vh;
+}
+
+.main>.row {
+	height: 100%;
+}
+
+.sideBar {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	justify-content: center;
+}
+
+.folderContent {
+	display: flex;
+	flex-direction: column;
+	color: white;
+	background-color: #1C2541;
+}
