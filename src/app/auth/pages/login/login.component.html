@@ -1,9 +1,9 @@
 <app-navbar></app-navbar>
 
-<div class="scrollspy rounded-2" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px 0px 0px"
+<div class="scrollspy rounded-2 vh-100" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px 0px 0px"
 	data-bs-smooth-scroll="true" tabindex="0">
 
-	<div class="main h-100">
+	<div class="main">
 
 		<div class="row align-items-center h-100 ps-5 pe-5">
 			<div class="col-sm-12 col-md-6 col-lg-6 spinner d-flex justify-content-center">
@@ -15,7 +15,7 @@
 				<div class="row d-flex align-items-center">
 
 					<div class="col-sm-12 col-md-12 col-lg-6">
-						<p class="bigText textCenter">Bienvenido de vuelta</p>
+						<p class="bigText textCenter">¡Bienvenido de vuelta!</p>
 						<p>Inicia sesión y empieza a crear</p>
 					</div>
 
@@ -46,17 +46,20 @@
 
 							<div class="row">
 								<div class="col-sm-12 col-md-12 col-lg-6">
-									<button type="button" class="btn btn-principal" routerLink="/auth/login">Inicia
-										Sesión</button>
-
-									<!-- <div>¿No tienes cuenta?</div>
-									<button type="button" class="btn btn-principal" routerLink="/auth/register">Registrate</button> -->
+									<button type="button" class="btn btn-principal" routerLink="/app/home">Inicia Sesión</button>
 								</div>
 
 								<div class="col-sm-12 col-md-12 col-lg-6">
 									<button type="button" class="btn btn-facebook" routerLink="/auth/login">
 										<fa-icon [icon]="faFacebook"></fa-icon>Inicia Sesión
 									</button>
+								</div>
+
+								<div class="col-sm-12 col-md-12 col-lg-12">
+									<hr>
+									<p class="fw-light">¿No tienes cuenta?</p>
+									<button type="button" class="btn btn-principal"
+										routerLink="/auth/register">Registrate</button>
 								</div>
 
 							</div>
