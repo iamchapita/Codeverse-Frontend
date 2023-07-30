@@ -6,7 +6,7 @@ import { CreatorComponent } from './pages/creator/creator.component';
 import { FilesComponent } from './pages/files/files.component';
 
 @NgModule({
-	declarations: [HomeComponent, CreatorComponent, FilesComponent],
+	// declarations: [HomeComponent, CreatorComponent, FilesComponent],
 	imports: [CommonModule, CodeverseRoutingModule],
 })
 export class CodeverseModule {}
