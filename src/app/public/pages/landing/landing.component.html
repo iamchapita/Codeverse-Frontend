@@ -1,14 +1,15 @@
 <app-navbar></app-navbar>
 
-<div class="scrollspy p-3 rounded-2 vh-100" data-bs-spy="scroll" data-bs-target="#navbar"
-	data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" tabindex="0">
+<div class="scrollspy rounded-2 vh-100" data-bs-spy="scroll" data-bs-target="#navbar"
+	data-bs-root-margin="0px 0px 0px 0px" data-bs-smooth-scroll="true" tabindex="0">
 
 	<div class="main">
-		<div class="row align-items-center vh-100">
-			<div class="col-sm-12 col-md-6 col-lg-4 pb-4 spinner d-flex justify-content-center">
+
+		<div class="row align-items-center">
+			<div class="col-sm-12 col-md-6 col-lg-4 spinner d-flex justify-content-center">
 				<img src="assets/Spinner.png">
 			</div>
-			<div class="col-sm-12 col-md-6 col-lg-3 pb-4">
+			<div class="col-sm-12 col-md-6 col-lg-3">
 				<div class="bigText">
 					<fa-icon [icon]="faChevronRight"></fa-icon> Codeverse
 				</div>
@@ -23,69 +24,29 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-sm-12 col-md-12 col-lg-5 pb-4 text-center">
-				<div class="column">
-					<div class="description bigText">
-						<p>Imagina</p>
-						<p>Desarrolla</p>
-						<p>Comparte</p>
-					</div>
-					<hr>
-					<div class="buttons">
-						<button type="button" class="btn btn-principal">Inicia Sesión</button>
-						<div>¿No tienes cuenta?</div>
-						<button type="button" class="btn btn-principal">Registrate</button>
-					</div>
+			<div class="col-sm-12 col-md-12 col-lg-5 text-center">
+				<div class="description bigText">
+					<p>Imagina</p>
+					<p>Desarrolla</p>
+					<p>Comparte</p>
+				</div>
+				<hr>
+				<div class="buttons">
+					<button type="button" class="btn btn-principal">Inicia Sesión</button>
+					<div>¿No tienes cuenta?</div>
+					<button type="button" class="btn btn-principal">Registrate</button>
 				</div>
 			</div>
+
 		</div>
 
-		<div class="row align-items-center vh-100" id="secondSection">
-			<p class="bigText text-center">Descubre Codeverse</p>
-			<!-- <div class="row">
+		<div class="row align-items-center" id="secondSection">
 
-					<div class="col-sm-12 col-md-12 col-lg-6 pb-4">
-						<div class="customCard">
-							<div class="icon bigIcons">
-								<fa-icon [icon]="faUser"></fa-icon>
-							</div>
-							<hr>
-							<div class="text">
-								Codifíca y guarda tus proyectos para continuarlos cuando quieras.
-								Trabaja sin conexión y guarda cuando te conectes de nuevo.
-							</div>
-						</div>
-					</div>
+			<div class="col-sm-12 col-md-12 col-lg-12 pb-3">
+				<p class="bigText text-center">Descubre Codeverse</p>
+			</div>
 
-					<div class="col-sm-12 col-md-12 col-lg-6 pb-4">
-						<div class="customCard">
-							<div class="icon bigIcons">
-								<fa-icon [icon]="faUserPlus"></fa-icon>
-							</div>
-							<hr>
-							<div class="text">
-								Comparte tus proyectos con otras personas.
-							</div>
-						</div>
-					</div>
-
-					<div class="col-sm-12 col-md-12 col-lg-6 pb-4">
-						<div class="customCard">
-							<div class="icon bigIcons">
-								<fa-icon [icon]="faUsers"></fa-icon>
-							</div>
-							<hr>
-							<div class="text">
-								Comparte tus proyectos con la comunidad y crea aplicaciones sorprendentes.
-							</div>
-						</div>
-					</div>
-
-				</div>
-
-			</div> -->
-
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-sm-12 col-md-4 col-lg-4 pb-3">
 				<div class="customCard">
 					<div class="tittle">
 						Free Plan
@@ -102,7 +63,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-sm-12 col-md-4 col-lg-4 pb-3">
 				<div class="customCard">
 					<div class="tittle">
 						Plus Plan
@@ -120,7 +81,7 @@
 				</div>
 			</div>
 
-			<div class="col-sm-12 col-md-4 col-lg-4">
+			<div class="col-sm-12 col-md-4 col-lg-4 pb-3">
 				<div class="customCard">
 					<div class="tittle">
 						Premium Plan
@@ -142,5 +103,4 @@
 		</div>
 
 	</div>
-
 </div>
