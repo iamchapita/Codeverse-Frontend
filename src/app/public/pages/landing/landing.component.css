@@ -16,6 +16,7 @@ nav>img {
 
 .main>div {
 	margin-top: 1rem;
+	padding: 1rem;
 }
 
 .spinner {
@@ -23,6 +24,7 @@ nav>img {
 }
 
 img {
+	overflow: hidden;
 	max-width: 90%;
 	animation: rotate 20s infinite linear;
 }
