@@ -1,28 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { CreatorComponent } from './pages/creator/creator.component';
-import { FilesComponent } from './pages/files/files.component';
+import { ProjectExplorerComponent } from './pages/project-explorer/project-explorer.component';
 
 const routes: Routes = [
 	{
 		path: '',
 		children: [
 			{
-				path: 'create',
-				component: CreatorComponent,
-			},
-			{
-				path: 'files',
-				component: FilesComponent,
-			},
-			{
-				path: 'home',
-				component: HomeComponent,
+				path: 'projectExplorer',
+				component: ProjectExplorerComponent,
 			},
 			{
 				path: '**',
-				redirectTo: 'home',
+				redirectTo: 'projectExplorer',
 				// pathMatch: 'full'
 			},
 		],
