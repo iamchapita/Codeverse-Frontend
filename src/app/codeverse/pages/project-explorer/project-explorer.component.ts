@@ -6,6 +6,8 @@ import {
 	faShareNodes,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { ProjectExplorerRow } from 'src/models/projectExplorerRow.model';
+
 @Component({
 	selector: 'app-project-explorer',
 	templateUrl: './project-explorer.component.html',
@@ -17,11 +19,11 @@ export class ProjectExplorerComponent {
 	faStar = faStar;
 	faShareNodes = faShareNodes;
 
-	data: any = [
+	data: Array<ProjectExplorerRow> = [
 		{
 			id: 1,
 			name: 'Proyecto 1',
-			description: "No provided",
+			description: 'No provided',
 			type: 'Proyecto',
 			createdAt: '2023-07-20',
 			modifiedAt: '2023-07-30',
@@ -29,7 +31,7 @@ export class ProjectExplorerComponent {
 		{
 			id: 2,
 			name: 'Proyecto 3',
-			description: "No provided",
+			description: 'No provided',
 			type: 'Proyecto',
 			createdAt: '2023-07-20',
 			modifiedAt: '2023-07-30',
@@ -37,7 +39,7 @@ export class ProjectExplorerComponent {
 		{
 			id: 3,
 			name: 'Proyecto 3',
-			description: "No provided",
+			description: 'No provided',
 			type: 'Proyecto',
 			createdAt: '2023-07-20',
 			modifiedAt: '2023-07-30',
@@ -45,7 +47,7 @@ export class ProjectExplorerComponent {
 		{
 			id: 4,
 			name: 'Carpeta',
-			description: "No provided",
+			description: 'No provided',
 			type: 'Carpeta',
 			createdAt: '2023-07-20',
 			modifiedAt: '2023-07-30',
