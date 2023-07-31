@@ -1,70 +1,68 @@
 <app-navbar></app-navbar>
 
-<div class="main">
+<div class="container-fluid">
 
-	<div class="col-sm-12 col-md-4 col-lg-3 bg-custom2 d-flex align-items-center pe-3 ps-3">
+	<div class="row h-100">
 
-		<div class="sideBar">
+		<div class="col-sm-12 col-md-4 col-lg-3 p-4 bg-custom2">
 
-			<button class="btn">
-				<fa-icon [icon]="faFolderPlus"></fa-icon>Proyecto Nuevo
-			</button>
-			<button class="btn">
-				<fa-icon [icon]="faFolderTree"></fa-icon>Carpetas
-			</button>
-			<button class="btn">
-				<fa-icon [icon]="faStar"></fa-icon>Favoritos
-			</button>
-			<button class="btn">
-				<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
-			</button>
+			<div class="options">
+				<button class="btn">
+					<fa-icon [icon]="faFolderPlus"></fa-icon>Proyecto Nuevo
+				</button>
+				<button class="btn">
+					<fa-icon [icon]="faFolderTree"></fa-icon>Carpetas
+				</button>
+				<button class="btn">
+					<fa-icon [icon]="faStar"></fa-icon>Favoritos
+				</button>
+				<button class="btn">
+					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
+				</button>
+			</div>
 
+		</div>
+
+		<div class="col-sm-12 col-md-8 col-lg-9 p-4 bg-custom">
+
+			<div class="header" role="search">
+				<h1>Título de carpeta</h1>
+
+				<div class="search">
+					<input class="btn" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn">Buscar</button>
+				</div>
+
+			</div>
+			<hr>
+
+			<div class="table-responsive">
+				<table class="table table-bordered table-light table-hover table-stripped">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+							<th>Tipo</th>
+							<th>Creado</th>
+							<th>Modificado</th>
+						</tr>
+					</thead>
+					<tbody>
+
+						<tr *ngFor="let d of data">
+							<td>{{ d.id }}</td>
+							<td>{{ d.name }}</td>
+							<td>{{ d.description }}</td>
+							<td>{{ d.type }}</td>
+							<td>{{ d.createdAt }}</td>
+							<td>{{ d.modifiedAt }}</td>
+						</tr>
+
+					</tbody>
+				</table>
+			</div>
 		</div>
 
 	</div>
-
-	<div class="col-sm-12 col-md-8 col-lg-9 bg-custom1 pe-3 ps-3">
-
-		<div class="header">
-			<h1>Explorador de Archivos</h1>
-		</div>
-		<hr>
-		<div class="folderContent">
-
-			<table class="table table-light table-bordered table-striped table-hover">
-				<thead>
-					<tr>
-						<th>#</th>
-						<th>Nombre</th>
-						<th>Detalles</th>
-						<th>Tipo</th>
-						<th>Creado</th>
-						<th>Modificado</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<th>1</th>
-						<th>Angular</th>
-						<th>1 carpeta, 2 proyectos</th>
-						<th>Carpeta</th>
-						<th>28/7/23 12:00 pm</th>
-						<th>30/7/23 7:00 pm</th>
-					</tr>
-					<tr>
-						<th>2</th>
-						<th>Angular</th>
-						<th>1 carpeta, 2 proyectos</th>
-						<th>Carpeta</th>
-						<th>28/7/23 12:00 pm</th>
-						<th>30/7/23 7:00 pm</th>
-					</tr>
-				</tbody>
-
-			</table>
-
-		</div>
-
-	</div>
-
 </div>

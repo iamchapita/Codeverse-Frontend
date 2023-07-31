@@ -16,4 +16,39 @@ export class ProjectExplorerComponent {
 	faFolderTree = faFolderTree;
 	faStar = faStar;
 	faShareNodes = faShareNodes;
+
+	data: any = [
+		{
+			id: 1,
+			name: 'Proyecto 1',
+			description: "No provided",
+			type: 'Proyecto',
+			createdAt: '2023-07-20',
+			modifiedAt: '2023-07-30',
+		},
+		{
+			id: 2,
+			name: 'Proyecto 3',
+			description: "No provided",
+			type: 'Proyecto',
+			createdAt: '2023-07-20',
+			modifiedAt: '2023-07-30',
+		},
+		{
+			id: 3,
+			name: 'Proyecto 3',
+			description: "No provided",
+			type: 'Proyecto',
+			createdAt: '2023-07-20',
+			modifiedAt: '2023-07-30',
+		},
+		{
+			id: 4,
+			name: 'Carpeta',
+			description: "No provided",
+			type: 'Carpeta',
+			createdAt: '2023-07-20',
+			modifiedAt: '2023-07-30',
+		},
+	];
 }
