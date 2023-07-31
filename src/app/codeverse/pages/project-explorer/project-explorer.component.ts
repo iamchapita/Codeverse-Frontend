@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
+import {
+	faFolderPlus,
+	faFolderTree,
+	faStar,
+	faShareNodes,
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
 	selector: 'app-project-explorer',
@@ -8,4 +13,7 @@ import { faFolderPlus } from '@fortawesome/free-solid-svg-icons';
 })
 export class ProjectExplorerComponent {
 	faFolderPlus = faFolderPlus;
+	faFolderTree = faFolderTree;
+	faStar = faStar;
+	faShareNodes = faShareNodes;
 }

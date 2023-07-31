@@ -1,26 +1,88 @@
-.main {
+/* .main {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
 	padding-top: 5%;
 	padding-bottom: 5%;
-	padding-left: 5%;
-	padding-right: 5%;
+	padding-left: 1%;
+	padding-right: 1%;
 	background-color: #0B132B;
 	height: 94vh;
+} */
+
+h1 {
+	color: white;
 }
 
-.main>.row {
+/* .main>.row {
 	height: 100%;
+} */
+
+.bg-custom1 {
+	background-color: #1C2541;
+}
+
+.bg-custom2 {
+	background-color: #0B132B;
 }
 
 .sideBar {
 	display: flex;
 	flex-direction: column;
+	/* justify-content: space-around; */
+	align-items: center;
+
+	background-color: #0B132B;
+	/* height: 60%; */
+	width: 100%;
 	color: white;
-	justify-content: center;
 }
+
+.sideBar>button {
+	margin-bottom: 2rem;
+}
+
+.main {
+
+	display: flex;
+	flex-direction: row;
+	background-color: #0B132B;
+	height: 94vh;
+}
+
+/* .main>.row {
+	height: 100%;
+} */
+
+.bg-custom {
+	background-color: #1C2541;
+}
+
+/* .sideBar>button {
+	margin-bottom: 1rem;
+} */
 
 .folderContent {
 	display: flex;
 	flex-direction: column;
+	background-color: white;
+	color: black;
+
+}
+
+hr {
 	color: white;
-	background-color: #1C2541;
+}
+
+.btn {
+	text-align: left;
+	font-size: 0.9rem;
+	width: 100%;
+	background-color: white;
+	color: #0B132B;
+}
+
+.btn>fa-icon {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
 }
