@@ -26,7 +26,7 @@
 		<div class="col-sm-12 col-md-8 col-lg-9 p-4 bg-custom">
 
 			<div class="header" role="search">
-				<h1>Prueba</h1>
+				<h1>Título de carpeta</h1>
 
 				<div class="search">
 					<input class="btn" type="search" placeholder="Search" aria-label="Search">
@@ -41,38 +41,24 @@
 					<thead>
 						<tr>
 							<th>#</th>
-							<th>Name</th>
-							<th>Description</th>
-							<th>Type</th>
-							<th>Created</th>
-							<th>Modified</th>
+							<th>Nombre</th>
+							<th>Descripción</th>
+							<th>Tipo</th>
+							<th>Creado</th>
+							<th>Modificado</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>1</td>
-							<td>Project 1</td>
-							<td>This is the description for project 1.</td>
-							<td>Type 1</td>
-							<td>2023-03-08</td>
-							<td>2023-03-08</td>
+
+						<tr *ngFor="let d of data">
+							<td>{{ d.id }}</td>
+							<td>{{ d.name }}</td>
+							<td>{{ d.description }}</td>
+							<td>{{ d.type }}</td>
+							<td>{{ d.createdAt }}</td>
+							<td>{{ d.modifiedAt }}</td>
 						</tr>
-						<tr>
-							<td>2</td>
-							<td>Project 2</td>
-							<td>This is the description for project 2.</td>
-							<td>Type 2</td>
-							<td>2023-03-09</td>
-							<td>2023-03-09</td>
-						</tr>
-						<tr>
-							<td>3</td>
-							<td>Project 3</td>
-							<td>This is the description for project 3.</td>
-							<td>Type 3</td>
-							<td>2023-03-10</td>
-							<td>2023-03-10</td>
-						</tr>
+
 					</tbody>
 				</table>
 			</div>
