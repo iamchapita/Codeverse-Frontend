@@ -7,6 +7,7 @@ import {
 	faCode,
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorComponent } from '../../components/editor/editor.component';
+import { ProjectDetails } from 'src/models/ProjectDetail.model';
 
 @Component({
 	selector: 'app-project-workspace',
@@ -21,4 +22,5 @@ export class ProjectWorkspaceComponent {
 	faCode = faCode;
 
 	workspace: boolean = true;
+	// project: ProjectDetails = {}
 }
