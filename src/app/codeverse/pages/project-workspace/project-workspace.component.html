@@ -1,48 +1,21 @@
-<app-navbar></app-navbar>
+<app-navbar [isWorkspace]="workspace"></app-navbar>
 
 <div class="container-fluid">
 
 	<div class="row h-100">
 
-		<div class="col-sm-12 col-md-2 col-lg-2 p-4 bg-custom2">
+		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
 
-			<div class="options">
-				<button class="btn">
-					<fa-icon [icon]="faFolderPlus"></fa-icon>Proyecto Nuevo
-				</button>
-				<button class="btn">
-					<fa-icon [icon]="faFolderTree"></fa-icon>Carpetas
-				</button>
-				<button class="btn">
-					<fa-icon [icon]="faStar"></fa-icon>Favoritos
-				</button>
-				<button class="btn">
-					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
-				</button>
+			<div class="editors">
+				<app-editor></app-editor>
+				<app-editor></app-editor>
+				<app-editor></app-editor>
 			</div>
 
 		</div>
 
-		<div class="col-sm-12 col-md-10 col-lg-10 bg-custom">
-
-			<div class="row h-100">
-
-				<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
-
-					<div class="editors">
-						<app-editor></app-editor>
-						<app-editor></app-editor>
-						<app-editor></app-editor>
-					</div>
-
-				</div>
-
-				<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
-					asdf
-				</div>
-
-			</div>
-
+		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
+			asdf
 		</div>
 
 	</div>

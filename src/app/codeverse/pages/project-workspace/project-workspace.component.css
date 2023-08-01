@@ -22,13 +22,6 @@ hr {
 	background-color: #0B132B;
 }
 
-.bg-custom2 > .options {
-	/* display: flex;
-	flex-direction: column;
-	justify-content: space-evenly; */
-	/* height: 30%; */
-}
-
 .btn {
 	text-align: left;
 	font-size: 1rem;
