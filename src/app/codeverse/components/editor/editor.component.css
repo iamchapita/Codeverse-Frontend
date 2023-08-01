@@ -1,8 +1,7 @@
 .window {
 	display: flex;
 	flex-direction: column;
-	/* height: 80%; */
-	width: 100%;
+	height: 100%;
 	background-color: #1C2541;
 	padding: 0.5rem;
 	border-width: 1px;
@@ -57,9 +56,8 @@
 .actions {
 	display: flex;
 	justify-content: space-between;
-	/* width: 10%; */
-	/* max-width: 50%; */
 }
+
 .actions > button {
 	margin-left: 0.5rem;
 }
@@ -72,24 +70,3 @@ textarea {
 	color: white;
 	border: 1px #3A506B;
 }
-/* .accordion-header {
-	height: 2rem;
-}
-
-.header-button {
-	height: 2rem !important;
-}
-
-
-
-.body-color {
-	background-color: #0B132B;
-}
-
-.white-text {
-	color: white;
-}
-
-.black-text {
-	color: black;
-} */

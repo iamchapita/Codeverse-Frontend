@@ -1,80 +1,50 @@
 <app-navbar></app-navbar>
 
-<div class="main">
+<div class="container-fluid">
 
-<div class="col-sm-12 col-md-3 col-lg-1 d-flex pt-5 pe-1 ps-1">
+	<div class="row h-100">
 
-    <div class="sideBar">
-        <div class="header">
-            <h3>Proyecto Area 51</h3>
-        </div>
+		<div class="col-sm-12 col-md-2 col-lg-2 p-4 bg-custom2">
 
-        <button class="btn">
-            <fa-icon [icon]="faShareNodes"></fa-icon>
-            <p>
-                Compartir
-            </p>
-        </button>
-        <button class="btn">
-            <fa-icon [icon]="faCode"></fa-icon>
-            <p>Snippets</p>
-        </button>
+			<div class="options">
+				<button class="btn">
+					<fa-icon [icon]="faFolderPlus"></fa-icon>Proyecto Nuevo
+				</button>
+				<button class="btn">
+					<fa-icon [icon]="faFolderTree"></fa-icon>Carpetas
+				</button>
+				<button class="btn">
+					<fa-icon [icon]="faStar"></fa-icon>Favoritos
+				</button>
+				<button class="btn">
+					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
+				</button>
+			</div>
 
-    </div>
+		</div>
 
-</div>
+		<div class="col-sm-12 col-md-10 col-lg-10 bg-custom">
 
-<div class="col-sm-12 col-md-8 rounded col-lg-6 pe-3 ps-3 pt-3">
+			<div class="row h-100">
 
-        <div class="code-window">
-            <div class="code-header">
-                <div class="tab">
-                    index.html
-                </div>
-            </div>
-            <div class="code-area">
+				<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
 
-            </div>
-        </div>
-        <div class="code-window">
-            <div class="code-header">
-                <div class="tab">
-                    style.css
-                </div>
-            </div>
-            <div class="code-area">
+					<div class="editors">
+						<app-editor></app-editor>
+						<app-editor></app-editor>
+						<app-editor></app-editor>
+					</div>
 
-            </div>
-        </div>
-        <div class="code-window">
-            <div class="code-header">
-                <div class="tab">
-                    controller.js
-                </div>
-            </div>
-            <div class="code-area">
+				</div>
 
-            </div>
-        </div>
-    
-    
+				<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
+					asdf
+				</div>
 
-</div>
+			</div>
 
-<div class="col-sm-12 col-md-8 col-lg-5 pt-3  ps-3">
+		</div>
 
-    <div class="nav-window" >
-        
-        <div>
-            <input class="nav-direction" type="text" value="http://localhost:4200/">
-        </div>
-
-        <div class="navweb rounded bg-light">
-
-        </div>
-
-    </div>
-
-</div>
+	</div>
 
 </div>
