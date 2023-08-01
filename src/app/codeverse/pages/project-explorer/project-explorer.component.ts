@@ -6,7 +6,7 @@ import {
 	faShareNodes,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { ProjectExplorerRow } from 'src/models/projectExplorerRow.model';
+import { ProjectExplorerRow } from 'src/models/ProjectExplorerRow.model';
 
 @Component({
 	selector: 'app-project-explorer',
