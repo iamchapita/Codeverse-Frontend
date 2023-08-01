@@ -5,9 +5,14 @@ import { CodeverseRoutingModule } from './codeverse-routing.module';
 import { ProjectExplorerComponent } from './pages/project-explorer/project-explorer.component';
 import { ProjectWorkspaceComponent } from './pages/project-workspace/project-workspace.component';
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
+import { EditorComponent } from './components/editor/editor.component';
 
 @NgModule({
-	declarations: [ProjectExplorerComponent, ProjectWorkspaceComponent],
+	declarations: [
+		ProjectExplorerComponent,
+		ProjectWorkspaceComponent,
+		EditorComponent,
+	],
 	imports: [
 		CommonModule,
 		CodeverseRoutingModule,
