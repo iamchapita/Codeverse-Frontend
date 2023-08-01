@@ -19,6 +19,8 @@ export class ProjectExplorerComponent {
 	faStar = faStar;
 	faShareNodes = faShareNodes;
 
+	isExplorer: boolean = true;
+
 	data: Array<ProjectExplorerRow> = [
 		{
 			id: 1,

@@ -19,4 +19,6 @@ export class ProjectWorkspaceComponent {
 	faStar = faStar;
 	faShareNodes = faShareNodes;
 	faCode = faCode;
+
+	workspace: boolean = true;
 }

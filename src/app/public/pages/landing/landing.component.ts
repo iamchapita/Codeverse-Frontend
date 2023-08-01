@@ -18,4 +18,6 @@ export class LandingComponent {
 	faUser = faUser;
 	faUsers = faUsers;
 	faUserPlus = faUserPlus;
+
+	isLanding: boolean = true;
 }

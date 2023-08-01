@@ -9,17 +9,40 @@
 		</button>
 
 		<div [ngbCollapse]="isCollapsed" class="collapse navbar-collapse">
-			<ul class="navbar-nav nav-pills">
+
+			<ul class="navbar-nav nav-pills" *ngIf="isWorkspace === true">
+
+				<li class="nav-item">
+					<a class="nav-link" (click)="isCollapsed = true">Compartir</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" (click)="isCollapsed = true">Snippets</a>
+				</li>
+
+			</ul>
+
+			<ul class="navbar-nav nav-pills" *ngIf="isLanding === true">
+
 				<li class="nav-item">
 					<a class="nav-link" href="#secondSection" (click)="isCollapsed = true">Planes</a>
 				</li>
-				<!-- <li class="nav-item">
-					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Examples</a>
-				</li> -->
 				<li class="nav-item">
 					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Acerca de nosotros</a>
 				</li>
+
 			</ul>
+
+			<ul class="navbar-nav nav-pills" *ngIf="isExplorer === true">
+
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Proyecto Nuevo</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Prueba</a>
+				</li>
+
+			</ul>
+
 		</div>
 	</div>
 </nav>
