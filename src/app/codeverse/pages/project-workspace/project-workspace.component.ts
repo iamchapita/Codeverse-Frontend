@@ -5,6 +5,7 @@ import {
 	faStar,
 	faShareNodes,
 	faCode,
+	faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
 import { EditorComponent } from '../../components/editor/editor.component';
 import { ProjectDetails } from 'src/models/ProjectDetail.model';
@@ -20,6 +21,7 @@ export class ProjectWorkspaceComponent {
 	faStar = faStar;
 	faShareNodes = faShareNodes;
 	faCode = faCode;
+	faChevronUp = faChevronUp;
 
 	workspace: boolean = true;
 	// project: ProjectDetails = {}
