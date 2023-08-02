@@ -9,4 +9,5 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 export class EditorComponent {
 	faChevronUp = faChevronUp;
 	@Input() file: string = 'projectWorkspace.html';
+	isHide: boolean = false;
 }
