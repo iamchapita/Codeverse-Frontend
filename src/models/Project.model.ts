@@ -1,10 +1,10 @@
-export type Type = 'Proyecto' | 'Carpeta';
+import { File } from './File.model';
 
-export interface ProjectExplorerRow {
+export interface Project {
 	id: number;
 	name: string;
 	description: string;
-	type: Type;
 	createdAt: string;
 	modifiedAt: string;
+	files: Array<File>;
 }
