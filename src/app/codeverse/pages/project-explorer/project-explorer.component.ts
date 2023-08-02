@@ -6,7 +6,7 @@ import {
 	faShareNodes,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { ProjectExplorerRow } from 'src/models/ProjectExplorerRow.model';
+import { Folder } from 'src/models/Folder.model';
 
 @Component({
 	selector: 'app-project-explorer',
@@ -21,36 +21,54 @@ export class ProjectExplorerComponent {
 
 	isExplorer: boolean = true;
 
-	data: Array<ProjectExplorerRow> = [
+	data: Array<Folder> = [
 		{
 			id: 1,
-			name: 'Proyecto 1',
-			description: 'No provided',
-			type: 'Proyecto',
-			createdAt: '2023-07-20',
-			modifiedAt: '2023-07-30',
-		},
-		{
-			id: 2,
-			name: 'Proyecto 3',
-			description: 'No provided',
-			type: 'Proyecto',
-			createdAt: '2023-07-20',
-			modifiedAt: '2023-07-30',
-		},
-		{
-			id: 3,
-			name: 'Proyecto 3',
-			description: 'No provided',
-			type: 'Proyecto',
-			createdAt: '2023-07-20',
-			modifiedAt: '2023-07-30',
-		},
-		{
-			id: 4,
-			name: 'Carpeta',
-			description: 'No provided',
-			type: 'Carpeta',
+			name: 'Raíz',
+			description: '',
+			folders: [
+				{
+					id: 1,
+					name: 'Carpeta 1 en 1',
+					description: 'Prueba de Carpeta',
+					createdAt: '2023-07-20',
+					modifiedAt: '2023-07-30',
+					folders: [],
+					projects: [],
+				},
+			],
+			projects: [
+				{
+					id: 1,
+					name: 'Proyecto 1',
+					description: 'Proyecto 1 en  Web',
+					createdAt: '2023-07-20',
+					modifiedAt: '2023-07-30',
+					files: [
+						{
+							id: 1,
+							type: 'html',
+							content: '',
+							createdAt: '2023-07-20',
+							modifiedAt: '2023-07-30',
+						},
+						{
+							id: 2,
+							type: 'css',
+							content: '',
+							createdAt: '2023-07-20',
+							modifiedAt: '2023-07-30',
+						},
+						{
+							id: 3,
+							type: 'js',
+							content: '',
+							createdAt: '2023-07-20',
+							modifiedAt: '2023-07-30',
+						},
+					],
+				},
+			],
 			createdAt: '2023-07-20',
 			modifiedAt: '2023-07-30',
 		},

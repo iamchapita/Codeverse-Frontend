@@ -6,5 +6,5 @@ export interface Project {
 	description: string;
 	createdAt: string;
 	modifiedAt: string;
-	files: Array<File>;
+	files?: Array<File>;
 }

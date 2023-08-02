@@ -6,6 +6,6 @@ export interface Folder {
 	description: string;
 	createdAt: string;
 	modifiedAt: string;
-	folders: Array<Folder>;
-	projects: Array<Project>;
+	folders?: Array<Folder>;
+	projects?: Array<Project>;
 }
