@@ -1,4 +1,4 @@
-export type Type = 'html' | 'css' | 'js';
+export type Type = 'HTML' | 'CSS' | 'JS';
 
 export interface File {
 	id: number;
