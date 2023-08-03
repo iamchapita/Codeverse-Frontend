@@ -2,9 +2,9 @@
 
 <div class="container-fluid">
 
-	<div class="row h-100">
+	<div [ngClass]="{'row': true, 'row1': areEditorsHidden, 'h-100': !areEditorsHidden}">
 
-		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
+		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 bg-custom1">
 
 			<div class="editors">
 
@@ -19,7 +19,7 @@
 
 		</div>
 
-		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
+		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 bg-custom1">
 
 			<div class="renderZone bg-custom1">
 
@@ -28,7 +28,7 @@
 					<div class="header  whiteText">
 
 						<div class="btn-header">
-							Aqui va la pestaña
+							{{ projectDetail.name }}
 						</div>
 
 						<button class="btn-header"><fa-icon [icon]="faChevronUp"></fa-icon></button>
@@ -51,18 +51,26 @@
 
 	</div>
 
-	<div class="row">
+	<div class="row row2 bg-custom1 pt-3 pb-3" *ngIf="areEditorsHidden === true">
 
-		<div class="windowMinimizedContainer">
+		<div class="window-minimized-container">
 
-			<div class="header">
+			<div class="html bg-custom" *ngIf="htmlHidden">
 
-				<!-- <button class="btn-header file">{{file}}</button> -->
+				<div class="minimazed-header">
+					<button class="btn-header file" (click)="foldEditor('HTML')">HTML</button>
+				</div>
 
-				<!-- <div class="actions">
-					<button class="btn-header" (click)="foldEvent.emit()"><fa-icon [icon]="faChevronUp"></fa-icon></button>
-				</div> -->
+			</div>
 
+			<div class="css bg-custom" *ngIf="cssHidden">
+				<div class="minimazed-header">
+					<button class="btn-header file" (click)="foldEditor('CSS')">CSS</button>
+				</div>
+			</div>
+
+			<div class="js bg-custom" *ngIf="jsHidden">
+				<button class="btn-header file" (click)="foldEditor('JS')">JS</button>
 			</div>
 
 		</div>

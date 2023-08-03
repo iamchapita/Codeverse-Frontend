@@ -31,6 +31,8 @@ export class ProjectWorkspaceComponent {
 	cssHidden: boolean = false;
 	jsHidden: boolean = false;
 
+	areEditorsHidden: boolean = false;
+
 	foldEditor(type: string): void {
 		if (
 			type == 'HTML' &&
@@ -39,15 +41,24 @@ export class ProjectWorkspaceComponent {
 			this.htmlHidden = !this.htmlHidden;
 		}
 		if (
-			type == 'CSS' && (this.htmlHidden === false || this.jsHidden === false)
+			type == 'CSS' &&
+			(this.htmlHidden === false || this.jsHidden === false)
 		) {
 			this.cssHidden = !this.cssHidden;
 		}
 		if (
-			type == 'JS' && (this.htmlHidden === false || this.cssHidden === false)
+			type == 'JS' &&
+			(this.htmlHidden === false || this.cssHidden === false)
 		) {
 			this.jsHidden = !this.jsHidden;
 		}
+
+		this.areEditorsHidden =
+			this.htmlHidden === true ||
+			this.jsHidden === true ||
+			this.cssHidden === true
+				? true
+				: false;
 	}
 
 	projectDetail: Project = {

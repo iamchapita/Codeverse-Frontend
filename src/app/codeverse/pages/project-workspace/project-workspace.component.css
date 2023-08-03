@@ -2,6 +2,10 @@
 	height: 94.2vh;
 }
 
+.row1 {
+	height: 92%;
+}
+
 h1 {
 	color: white;
 }
@@ -86,13 +90,12 @@ hr {
 }
 
 .btn-header {
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
+	padding-left: 0.8rem;
+	padding-right: 0.8rem;
 	border-width: 1px;
 	border-style: solid;
 	border-color: #3A506B;
 	border-radius: 15px 15px 0px 0px;
-
 	text-align: left;
 	font-size: 1rem;
 	color: white;
@@ -108,3 +111,18 @@ iframe {
 	width: 100%;
 	height: 100%;
 }
+
+.window-minimized-container {
+	display: flex;
+	justify-content: flex-end;
+	height: 100%;
+}
+
+.window-minimized-container > div{
+	border-width: 1px;
+	border-style: solid;
+	border-color: #3A506B;
+	border-radius: 15px 15px 0px 0px;
+	padding: 0.5rem;
+}
+
