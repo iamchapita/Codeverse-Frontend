@@ -47,21 +47,21 @@ export class ProjectExplorerComponent {
 					files: [
 						{
 							id: 1,
-							type: 'html',
+							type: 'HTML',
 							content: '',
 							createdAt: '2023-07-20',
 							modifiedAt: '2023-07-30',
 						},
 						{
 							id: 2,
-							type: 'css',
+							type: 'CSS',
 							content: '',
 							createdAt: '2023-07-20',
 							modifiedAt: '2023-07-30',
 						},
 						{
 							id: 3,
-							type: 'js',
+							type: 'JS',
 							content: '',
 							createdAt: '2023-07-20',
 							modifiedAt: '2023-07-30',

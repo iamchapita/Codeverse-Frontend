@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,5 +9,6 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 export class EditorComponent {
 	faChevronUp = faChevronUp;
 	@Input() file: string = 'projectWorkspace.html';
-	isHide: boolean = false;
+
+	@Output() foldEvent: EventEmitter<void> = new EventEmitter<void>();
 }

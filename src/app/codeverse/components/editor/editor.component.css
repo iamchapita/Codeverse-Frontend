@@ -8,6 +8,7 @@
 	border-style: solid;
 	border-color: #1C2541;
 	border-radius: 15px 15px 0px 0px;
+	transition: all 0.5s ease;
 }
 
 .header {
