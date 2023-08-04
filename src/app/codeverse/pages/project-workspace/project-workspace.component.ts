@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
 	faFolderPlus,
 	faFolderTree,
@@ -15,13 +15,48 @@ import { Project } from 'src/models/Project.model';
 	templateUrl: './project-workspace.component.html',
 	styleUrls: ['./project-workspace.component.css'],
 })
-export class ProjectWorkspaceComponent {
+export class ProjectWorkspaceComponent implements OnInit {
 	faFolderPlus = faFolderPlus;
 	faFolderTree = faFolderTree;
 	faStar = faStar;
 	faShareNodes = faShareNodes;
 	faCode = faCode;
 	faChevronUp = faChevronUp;
+
+	projectDetail: Project = {
+		id: 1,
+		name: 'Prueba',
+		description: 'Descripción',
+		createdAt: '2023/08/02',
+		modifiedAt: '2023/08/02',
+		files: [
+			{
+				id: 1,
+				type: 'HTML',
+				content: 'Esto es HTML',
+				createdAt: '2023-07-20',
+				modifiedAt: '2023-07-30',
+			},
+			{
+				id: 2,
+				type: 'CSS',
+				content: 'Esto es CSS',
+				createdAt: '2023-07-20',
+				modifiedAt: '2023-07-30',
+			},
+			{
+				id: 3,
+				type: 'JS',
+				content: 'Esto es JS',
+				createdAt: '2023-07-20',
+				modifiedAt: '2023-07-30',
+			},
+		],
+	};
+
+	htmlCode: string = '';
+	cssCode: string = '';
+	jsCode: string = '';
 
 	// Controla los navlink
 	workspace: boolean = true;
@@ -31,7 +66,38 @@ export class ProjectWorkspaceComponent {
 	cssHidden: boolean = false;
 	jsHidden: boolean = false;
 
+	// Controla si las ventanas están plegadas y desplegadas
 	areEditorsHidden: boolean = false;
+
+	ngOnInit(): void {
+		this.setCodeValues();
+	}
+
+	setCodeValues(): void {
+		this.projectDetail.files?.map((file) => {
+			if (file.type === 'HTML') {
+				this.htmlCode = file.content;
+			}
+			if (file.type === 'CSS') {
+				this.cssCode = file.content;
+			}
+			if (file.type === 'JS') {
+				this.jsCode = file.content;
+			}
+		});
+	}
+
+	htmlCodeChange(value: string) {
+		this.htmlCode = value;
+	}
+
+	cssCodeChange(value: string) {
+		this.cssCode = value;
+	}
+
+	jsCodeChange(value: string) {
+		this.jsCode = value;
+	}
 
 	foldEditor(type: string): void {
 		if (
@@ -60,35 +126,4 @@ export class ProjectWorkspaceComponent {
 				? true
 				: false;
 	}
-
-	projectDetail: Project = {
-		id: 1,
-		name: 'Prueba',
-		description: 'Descripción',
-		createdAt: '2023/08/02',
-		modifiedAt: '2023/08/02',
-		files: [
-			{
-				id: 1,
-				type: 'HTML',
-				content: '',
-				createdAt: '2023-07-20',
-				modifiedAt: '2023-07-30',
-			},
-			{
-				id: 2,
-				type: 'CSS',
-				content: '',
-				createdAt: '2023-07-20',
-				modifiedAt: '2023-07-30',
-			},
-			{
-				id: 3,
-				type: 'JS',
-				content: '',
-				createdAt: '2023-07-20',
-				modifiedAt: '2023-07-30',
-			},
-		],
-	};
 }

@@ -9,6 +9,12 @@ import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 export class EditorComponent {
 	faChevronUp = faChevronUp;
 	@Input() file: string = 'projectWorkspace.html';
-
+	@Input() code: string = '';
 	@Output() foldEvent: EventEmitter<void> = new EventEmitter<void>();
+	@Output() codeValueChange: EventEmitter<string> =
+		new EventEmitter<string>();
+
+	textareaValueChange(): void {
+		this.codeValueChange.emit(this.code);
+	}
 }

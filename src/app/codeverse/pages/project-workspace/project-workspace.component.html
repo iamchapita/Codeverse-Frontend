@@ -8,11 +8,14 @@
 
 			<div class="editors">
 
-				<app-editor file="HTML" (foldEvent)="foldEditor('HTML')" *ngIf="!htmlHidden">
+				<app-editor [code]="htmlCode" (codeValueChange)="htmlCodeChange($event)" file="HTML"
+					(foldEvent)="foldEditor('HTML')" *ngIf="!htmlHidden">
 				</app-editor>
-				<app-editor file="CSS" (foldEvent)="foldEditor('CSS')" *ngIf="!cssHidden">
+				<app-editor [code]="cssCode" (codeValueChange)="cssCodeChange($event)" file="CSS"
+					(foldEvent)="foldEditor('CSS')" *ngIf="!cssHidden">
 				</app-editor>
-				<app-editor file="JS" (foldEvent)="foldEditor('JS')" *ngIf="!jsHidden">
+				<app-editor [code]="jsCode" (codeValueChange)="jsCodeChange($event)" file="JS"
+					(foldEvent)="foldEditor('JS')" *ngIf="!jsHidden">
 				</app-editor>
 
 			</div>
