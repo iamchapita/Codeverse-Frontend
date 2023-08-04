@@ -7,12 +7,14 @@ import { ProjectWorkspaceComponent } from './pages/project-workspace/project-wor
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { FormsModule } from '@angular/forms';
+import { IframeComponent } from './components/iframe/iframe.component';
 
 @NgModule({
 	declarations: [
 		ProjectExplorerComponent,
 		ProjectWorkspaceComponent,
 		EditorComponent,
+  IframeComponent,
 	],
 	imports: [
 		CommonModule,

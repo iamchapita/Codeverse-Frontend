@@ -24,31 +24,7 @@
 
 		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
 
-			<div class="renderZone bg-custom1">
-
-				<div class="window bg-custom">
-
-					<div class="header  whiteText">
-
-						<div class="btn-header">
-							{{ projectDetail.name }}
-						</div>
-
-						<div class="btn-header"><fa-icon [icon]="faChevronUp"></fa-icon></div>
-
-					</div>
-
-					<div class="iframeZone">
-
-						<iframe class="bg-light">
-
-						</iframe>
-
-					</div>
-
-				</div>
-
-			</div>
+			<app-iframe [title]="projectTitle"></app-iframe>
 
 		</div>
 

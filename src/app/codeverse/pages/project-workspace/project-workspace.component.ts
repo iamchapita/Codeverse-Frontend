@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	faFolderPlus,
-	faFolderTree,
-	faStar,
-	faShareNodes,
-	faCode,
-	faChevronUp,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { EditorComponent } from '../../components/editor/editor.component';
+import { IframeComponent } from '../../components/iframe/iframe.component';
 import { Project } from 'src/models/Project.model';
 
 @Component({
@@ -16,11 +10,6 @@ import { Project } from 'src/models/Project.model';
 	styleUrls: ['./project-workspace.component.css'],
 })
 export class ProjectWorkspaceComponent implements OnInit {
-	faFolderPlus = faFolderPlus;
-	faFolderTree = faFolderTree;
-	faStar = faStar;
-	faShareNodes = faShareNodes;
-	faCode = faCode;
 	faChevronUp = faChevronUp;
 
 	projectDetail: Project = {
@@ -54,6 +43,7 @@ export class ProjectWorkspaceComponent implements OnInit {
 		],
 	};
 
+	projectTitle: string = '';
 	htmlCode: string = '';
 	cssCode: string = '';
 	jsCode: string = '';
@@ -74,6 +64,8 @@ export class ProjectWorkspaceComponent implements OnInit {
 	}
 
 	setCodeValues(): void {
+		this.projectTitle = this.projectDetail.name;
+
 		this.projectDetail.files?.map((file) => {
 			if (file.type === 'HTML') {
 				this.htmlCode = file.content;
