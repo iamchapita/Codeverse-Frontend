@@ -103,7 +103,6 @@ hr {
 }
 
 .iframeZone {
-	margin-top: 1%;
 	height: 100%;
 }
 
@@ -118,11 +117,10 @@ iframe {
 	height: 100%;
 }
 
-.window-minimized-container > div{
+.window-minimized-container>div {
 	border-width: 1px;
 	border-style: solid;
 	border-color: #3A506B;
 	border-radius: 15px 15px 0px 0px;
 	padding: 0.5rem;
 }
-
