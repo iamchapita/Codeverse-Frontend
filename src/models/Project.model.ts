@@ -7,4 +7,5 @@ export interface Project {
 	createdAt: string;
 	modifiedAt: string;
 	files?: Array<File>;
+	snippets?: Array<Snippet>;
 }
