@@ -4,6 +4,9 @@ import {
 	faFolderTree,
 	faStar,
 	faShareNodes,
+	faCode,
+	faFileCode,
+	faArrowUp,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { Folder } from 'src/models/Folder.model';
@@ -18,6 +21,9 @@ export class ProjectExplorerComponent {
 	faFolderTree = faFolderTree;
 	faStar = faStar;
 	faShareNodes = faShareNodes;
+	faCode = faCode;
+	faFileCode = faFileCode;
+	faArrowUp = faArrowUp;
 
 	isExplorer: boolean = true;
 
