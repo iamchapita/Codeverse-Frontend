@@ -1,4 +1,5 @@
 import { File } from './File.model';
+import { Snippet } from './Snippet.model';
 
 export interface Project {
 	id: number;
