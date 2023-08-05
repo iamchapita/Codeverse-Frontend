@@ -22,21 +22,21 @@ export class ProjectWorkspaceComponent implements OnInit {
 			{
 				id: 1,
 				type: 'HTML',
-				content: 'Esto es HTML',
+				content: '<h1>Esto es HTML</h1>',
 				createdAt: '2023-07-20',
 				modifiedAt: '2023-07-30',
 			},
 			{
 				id: 2,
 				type: 'CSS',
-				content: 'Esto es CSS',
+				content: 'h1 { background-color:red; }',
 				createdAt: '2023-07-20',
 				modifiedAt: '2023-07-30',
 			},
 			{
 				id: 3,
 				type: 'JS',
-				content: 'Esto es JS',
+				content: '',
 				createdAt: '2023-07-20',
 				modifiedAt: '2023-07-30',
 			},
@@ -47,8 +47,9 @@ export class ProjectWorkspaceComponent implements OnInit {
 	htmlCode: string = '';
 	cssCode: string = '';
 	jsCode: string = '';
+	iframeCode: string = '';
 
-	// Controla los navlink
+	// Controla los navlinkm
 	workspace: boolean = true;
 
 	// Controla las ventanas plegadas/desplegadas
@@ -77,18 +78,82 @@ export class ProjectWorkspaceComponent implements OnInit {
 				this.jsCode = file.content;
 			}
 		});
+
+		this.iframeCode = `
+		<html>
+		<head>
+			<style>
+				${this.cssCode}
+			</style>
+		</head>
+		<body>
+			${this.htmlCode}
+			<script>
+				${this.jsCode}
+			</script>
+		</body>
+		</html>
+		`;
 	}
 
 	htmlCodeChange(value: string) {
 		this.htmlCode = value;
+
+		this.iframeCode = `
+			<html>
+			<head>
+				<style>
+					${this.cssCode}
+				</style>
+			</head>
+			<body>
+				${this.htmlCode}
+				<script>
+					${this.jsCode}
+				</script>
+			</body>
+			</html>
+		`;
 	}
 
 	cssCodeChange(value: string) {
 		this.cssCode = value;
+
+		this.iframeCode = `
+			<html>
+			<head>
+				<style>
+					${this.cssCode}
+				</style>
+			</head>
+			<body>
+				${this.htmlCode}
+				<script>
+					${this.jsCode}
+				</script>
+			</body>
+			</html>
+		`;
 	}
 
 	jsCodeChange(value: string) {
 		this.jsCode = value;
+
+		this.iframeCode = `
+			<html>
+			<head>
+				<style>
+					${this.cssCode}
+				</style>
+			</head>
+			<body>
+				${this.htmlCode}
+				<script>
+					${this.jsCode}
+				</script>
+			</body>
+			</html>
+		`;
 	}
 
 	foldEditor(type: string): void {
