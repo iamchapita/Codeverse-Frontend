@@ -1,4 +1,5 @@
 import { Project } from './Project.model';
+import { Snippet } from './Snippet.model';
 
 export interface Folder {
 	id: number;
@@ -8,4 +9,5 @@ export interface Folder {
 	modifiedAt: string;
 	folders?: Array<Folder>;
 	projects?: Array<Project>;
+	snippets?: Array<Snippet>;
 }
