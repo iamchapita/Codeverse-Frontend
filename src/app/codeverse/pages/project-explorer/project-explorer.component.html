@@ -34,7 +34,7 @@
 
 			<div class="header" role="search">
 
-				<h1>{{ data[0].name }}</h1>
+				<h1>{{ rootFolder.name }}</h1>
 
 				<div class="search">
 					<input class="btn" type="search" placeholder="Search" aria-label="Search">
@@ -57,29 +57,25 @@
 					</thead>
 					<tbody>
 
-						<ng-container *ngFor="let d of data">
+						<tr *ngFor="let folder of rootFolder.folders">
 
-							<tr *ngFor="let folder of d.folders" routerLink="/">
+							<td class="text-center"> <input type="checkbox"> </td>
+							<td routerLink="/">{{ folder.name }}</td>
+							<td>{{ folder.description }}</td>
+							<td>{{ folder.createdAt }}</td>
+							<td>{{ folder.modifiedAt }}</td>
 
-								<td class="text-center"> <input type="checkbox"> </td>
-								<td>{{ folder.name }}</td>
-								<td>{{ folder.description }}</td>
-								<td>{{ folder.createdAt }}</td>
-								<td>{{ folder.modifiedAt }}</td>
+						</tr>
 
-							</tr>
+						<tr *ngFor="let project of rootFolder.projects">
 
-							<tr *ngFor="let project of d.projects" routerLink="/">
+							<td class="text-center"> <input type="checkbox"></td>
+							<td routerLink="/">{{ project.name }}</td>
+							<td>{{ project.description }}</td>
+							<td>{{ project.createdAt }}</td>
+							<td>{{ project.modifiedAt }}</td>
 
-								<td class="text-center"> <input type="checkbox"></td>
-								<td>{{ project.name }}</td>
-								<td>{{ project.description }}</td>
-								<td>{{ project.createdAt }}</td>
-								<td>{{ project.modifiedAt }}</td>
-
-							</tr>
-
-						</ng-container>
+						</tr>
 
 					</tbody>
 				</table>
