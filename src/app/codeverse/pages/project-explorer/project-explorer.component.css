@@ -35,7 +35,17 @@ hr {
 	padding-right: 0.5rem;
 }
 
-.options>button {
+.btn:hover {
+	background-color: #1C2541;
+	color: white;
+}
+
+.marked {
+	background-color: #3A506B;
+	color: white;
+}
+
+.options>.btn {
 	margin-bottom: 2rem;
 }
 

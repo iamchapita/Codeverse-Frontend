@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
 	faFolderPlus,
 	faFolderTree,
@@ -17,7 +17,7 @@ import { FetchService } from 'src/app/services/fetch.service';
 	templateUrl: './project-explorer.component.html',
 	styleUrls: ['./project-explorer.component.css'],
 })
-export class ProjectExplorerComponent {
+export class ProjectExplorerComponent implements OnInit {
 	faFolderPlus = faFolderPlus;
 	faFolderTree = faFolderTree;
 	faStar = faStar;
@@ -27,8 +27,29 @@ export class ProjectExplorerComponent {
 	faArrowUp = faArrowUp;
 
 	isExplorer: boolean = true;
+	onlyFolders: boolean = false;
+	onlyProjects: boolean = false;
+	onlySharedProject: boolean = false;
+	isUpDisabled: boolean;
+
+	rootFolder: Folder = {
+		_id: '',
+		name: '',
+		description: '',
+		folders: [],
+		projects: [],
+		createdAt: '',
+		modifiedAt: '',
+	};
 
 	constructor(private fetchService: FetchService) {}
 
-	rootFolder: Folder = this.fetchService.rootFolder;
+	ngOnInit(): void {
+		this.rootFolder = this.fetchService.rootFolder;
+		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
+	}
+
+	// disableUp: boolean = Object.keys(this.fetchService.rootFolder).find(
+	// 	(k) => k === 'parentFolder'
+	// );
 }

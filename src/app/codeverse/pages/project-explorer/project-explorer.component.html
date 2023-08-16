@@ -8,7 +8,7 @@
 
 			<div class="options">
 
-				<button class="btn">
+				<button class="btn" [disabled]="isUpDisabled">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
 				<button class="btn">
@@ -17,13 +17,14 @@
 				<button class="btn">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn">
+				<button [ngClass]="{'btn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders">
 					<fa-icon [icon]="faFolderTree"></fa-icon>Solo Carpetas
 				</button>
-				<button class="btn">
+				<button [ngClass]="{'btn': true, 'marked':onlyProjects}" (click)="onlyProjects = !onlyProjects">
 					<fa-icon [icon]="faCode"></fa-icon>Solo Proyectos
 				</button>
-				<button class="btn">
+				<button [ngClass]="{'btn': true, 'marked':onlySharedProject}"
+					(click)="onlySharedProject = !onlySharedProject">
 					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
 				</button>
 			</div>
