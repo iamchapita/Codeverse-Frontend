@@ -13,28 +13,28 @@ export class ProjectWorkspaceComponent implements OnInit {
 	faChevronUp = faChevronUp;
 
 	projectDetail: Project = {
-		id: 1,
+		_id: '1',
 		name: 'Prueba',
 		description: 'Descripción',
 		createdAt: '2023/08/02',
 		modifiedAt: '2023/08/02',
 		files: [
 			{
-				id: 1,
+				_id: '1',
 				type: 'HTML',
 				content: '<h1>Esto es HTML</h1>',
 				createdAt: '2023-07-20',
 				modifiedAt: '2023-07-30',
 			},
 			{
-				id: 2,
+				_id: '2',
 				type: 'CSS',
 				content: 'h1 { background-color:red; }',
 				createdAt: '2023-07-20',
 				modifiedAt: '2023-07-30',
 			},
 			{
-				id: 3,
+				_id: '3',
 				type: 'JS',
 				content: '',
 				createdAt: '2023-07-20',
