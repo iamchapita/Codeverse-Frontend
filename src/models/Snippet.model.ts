@@ -1,7 +1,7 @@
 import { Type } from './File.model';
 
 export interface Snippet {
-	id: number;
+	_id?: string;
 	type: Type;
 	code: string;
 	createdAt: string;

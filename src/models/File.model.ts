@@ -1,7 +1,7 @@
 export type Type = 'HTML' | 'CSS' | 'JS';
 
 export interface File {
-	id: number;
+	_id?: string;
 	type: Type;
 	content: string;
 	createdAt: string;
