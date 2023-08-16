@@ -7,7 +7,7 @@ export interface Folder {
 	description: string;
 	createdAt: string;
 	modifiedAt: string;
-	parentFolder?: Folder;
+	parentFolder?: string;
 	folders?: Array<Folder>;
 	projects?: Array<Project>;
 	snippets?: Array<Snippet>;

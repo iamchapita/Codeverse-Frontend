@@ -8,7 +8,7 @@ export interface Project {
 	description: string;
 	createdAt: string;
 	modifiedAt: string;
-	parentFolder?: Folder;
+	parentFolder?: string;
 	files?: Array<File>;
 	snippets?: Array<Snippet>;
 }
