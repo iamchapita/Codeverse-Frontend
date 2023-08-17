@@ -32,7 +32,7 @@ export class ProjectExplorerComponent implements OnInit {
 	onlySharedProject: boolean = false;
 	isUpDisabled: boolean;
 
-	rootFolder: Folder = {
+	folder: Folder = {
 		_id: '',
 		name: '',
 		description: '',
@@ -45,11 +45,11 @@ export class ProjectExplorerComponent implements OnInit {
 	constructor(private fetchService: FetchService) {}
 
 	ngOnInit(): void {
-		this.rootFolder = this.fetchService.rootFolder;
-		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
+		this.folder = this.fetchService.folder;
+		this.isUpDisabled = !this.folder.hasOwnProperty('parentFolder');
 	}
 
-	// disableUp: boolean = Object.keys(this.fetchService.rootFolder).find(
+	// disableUp: boolean = Object.keys(this.fetchService.folder).find(
 	// 	(k) => k === 'parentFolder'
 	// );
 }

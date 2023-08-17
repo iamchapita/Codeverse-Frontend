@@ -11,7 +11,7 @@ import { File } from 'src/models/File.model';
 export class FetchService {
 	constructor(private router: Router) {}
 
-	rootFolder: Folder = {
+	folder: Folder = {
 		_id: '1',
 		name: 'Raíz',
 		description: '',
