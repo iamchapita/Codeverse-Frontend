@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/guards/auth.guard';
 
 const routes: Routes = [
 	{
@@ -13,18 +14,14 @@ const routes: Routes = [
 			import('./codeverse/codeverse.module').then(
 				(m) => m.CodeverseModule
 			),
+		canActivate: [AuthGuard],
 	},
 	{
 		path: '',
 		loadChildren: () =>
-			import('./public/public.module').then(
-				(m) => m.PublicModule
-			),
+			import('./public/public.module').then((m) => m.PublicModule),
+		// canActivate: [AuthGuard],
 	},
-	// {
-	// 	path: '',
-	// 	component: LandingComponent,
-	// },
 	{
 		path: '**',
 		redirectTo: '',
