@@ -7,7 +7,7 @@ import {
 	AbstractControl,
 } from '@angular/forms';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { User } from 'src/models/User.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
 	selector: 'app-register',
@@ -18,12 +18,12 @@ export class RegisterComponent implements OnInit {
 	faFacebook = faFacebook;
 	registerForm: FormGroup;
 
-	constructor(private fb: FormBuilder) {}
+	constructor(private fb: FormBuilder, public authService: AuthService) {}
 
 	ngOnInit(): void {
 		this.registerForm = this.fb.group(
 			{
-				firtsNameInput: new FormControl('', [
+				firstNameInput: new FormControl('', [
 					Validators.required,
 					Validators.pattern(
 						/^(?:[a-zA-Z]{2,15} [a-zA-Z]{2,15}|[a-zA-Z]{2,15})$/
@@ -77,9 +77,15 @@ export class RegisterComponent implements OnInit {
 
 	handleSubmit() {
 		if (this.registerForm.valid) {
-			console.log(this.registerForm.value);
+			this.authService.SignUp(
+				`${this.registerForm.get('firstNameInput')?.value} ${
+					this.registerForm.get('lastNameInput')?.value
+				}`,
+				this.registerForm.get('emailInput')?.value,
+				this.registerForm.get('passwordInput')?.value
+			);
 		} else {
-			console.log('registerForm is invalid');
+			return;
 		}
 	}
 }
