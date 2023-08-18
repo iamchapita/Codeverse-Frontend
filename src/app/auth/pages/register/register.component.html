@@ -26,17 +26,16 @@
 							<div class="customCard">
 								<div class="body">
 
-
 									<div class="mb-4 has-validation">
 										<div class="is-invalid">
-											<label for="firtsNameInput" class="form-label">Nombres</label>
-											<input type="text" class="form-control" id="firtsNameInput"
+											<label for="firstNameInput" class="form-label">Nombres</label>
+											<input type="text" class="form-control" id="firstNameInput"
 												aria-describedby="nameHelp" placeholder="Juan Antonio"
-												formControlName="firtsNameInput">
+												formControlName="firstNameInput">
 
 										</div>
 										<div class="invalid-feedback"
-											*ngIf="registerForm.get('firtsNameInput')?.touched && registerForm.get('firtsNameInput')?.invalid">
+											*ngIf="registerForm.get('firstNameInput')?.touched && registerForm.get('firstNameInput')?.invalid">
 											Nombres no válidos
 										</div>
 									</div>
@@ -113,6 +112,13 @@
 									<div class="col-sm-12 col-md-12 col-lg-6">
 										<button type="button" class="btn btn-facebook">
 											<fa-icon [icon]="faFacebook"></fa-icon>Registrarme</button>
+									</div>
+
+
+									<div  style="color:#dc3545" *ngIf="authService.registerFailed.length > 0">
+
+										{{ authService.registerFailed }}
+
 									</div>
 
 									<div class="col-sm-12 col-md-12 col-lg-12">
