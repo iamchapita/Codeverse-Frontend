@@ -58,7 +58,7 @@
 									<div class="mb-4 has-validation">
 										<div class="is-invalid">
 											<label for="emailInput" class="form-label">Correo Electrónico</label>
-											<input type="text" class="form-control" id="emailInput"
+											<input type="email" class="form-control" id="emailInput"
 												aria-describedby="nameHelp" placeholder="correo@proveedor.com"
 												formControlName="emailInput">
 
@@ -72,16 +72,17 @@
 									<div class="mb-4 has-validation">
 										<div class="is-invalid">
 											<label for="passwordInput" class="form-label">Contraseña</label>
-											<input type="text" class="form-control" id="passwordInput"
+											<input type="password" class="form-control" id="passwordInput"
 												aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
 												formControlName="passwordInput">
 
 										</div>
 										<div class="invalid-feedback"
 											*ngIf="registerForm.get('passwordInput')?.touched && registerForm.get('passwordInput')?.invalid">
-											La contraseña debe tener de 4 a 35 caracteres, puede contener letras,
-											números.
-											No debe contener espacios en blanco, emojis y símbolos.
+											Este campo debe contener al menos una letra minúscula, una letra mayúscula,
+											un número y un carácter especial. Debe tener entre 8 y 64 caracteres en
+											total. Puede contener letras, números y caracteres especiales. No debe
+											contener espacios en blanco ni emojis.
 										</div>
 									</div>
 
@@ -89,7 +90,7 @@
 										<div class="is-invalid">
 											<label for="passwordConfirmInput" class="form-label">Confirme su
 												Contraseña</label>
-											<input type="text" class="form-control" id="passwordConfirmInput"
+											<input type="password" class="form-control" id="passwordConfirmInput"
 												aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
 												formControlName="passwordConfirmInput">
 
