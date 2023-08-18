@@ -11,6 +11,8 @@ import { File } from 'src/models/File.model';
 export class FetchService {
 	constructor(private router: Router) {}
 
+	urlBase = 'http://localhost:3000';
+
 	folder: Folder = {
 		_id: '1',
 		name: 'Raíz',
@@ -85,5 +87,21 @@ export class FetchService {
 		snippets: [],
 		createdAt: '2023-07-20',
 		modifiedAt: '2023-07-30',
+	};
+
+	createUser = (uid: string, name: string, email: string): void => {
+		fetch(`${this.urlBase}/users/`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({ uid: uid, name: name, email: email }),
+		})
+			.then((response) => {
+				console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
 	};
 }

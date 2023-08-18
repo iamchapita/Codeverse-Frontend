@@ -6,8 +6,10 @@ import {
 	Validators,
 	AbstractControl,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
+import { FetchService } from 'src/app/services/fetch.service';
 
 @Component({
 	selector: 'app-register',
@@ -18,7 +20,12 @@ export class RegisterComponent implements OnInit {
 	faFacebook = faFacebook;
 	registerForm: FormGroup;
 
-	constructor(private fb: FormBuilder, public authService: AuthService) {}
+	constructor(
+		private fb: FormBuilder,
+		public authService: AuthService,
+		private fetchService: FetchService,
+		private router: Router
+	) {}
 
 	ngOnInit(): void {
 		this.registerForm = this.fb.group(
@@ -75,15 +82,25 @@ export class RegisterComponent implements OnInit {
 		return null;
 	}
 
-	handleSubmit() {
+	async handleSubmit() {
 		if (this.registerForm.valid) {
-			this.authService.SignUp(
-				`${this.registerForm.get('firstNameInput')?.value} ${
-					this.registerForm.get('lastNameInput')?.value
-				}`,
+			const displayName = `${
+				this.registerForm.get('firstNameInput')?.value
+			} ${this.registerForm.get('lastNameInput')?.value}`;
+
+			await this.authService.signUp(
+				displayName,
 				this.registerForm.get('emailInput')?.value,
 				this.registerForm.get('passwordInput')?.value
 			);
+
+			this.fetchService.createUser(
+				this.authService.uid,
+				displayName,
+				this.registerForm.get('emailInput')?.value
+			);
+
+			this.router.navigate(['app/projectExplorer']);
 		} else {
 			return;
 		}

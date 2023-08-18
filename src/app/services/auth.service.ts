@@ -9,6 +9,7 @@ import * as auth from 'firebase/auth';
 export class AuthService {
 	userData: any;
 	registerFailed: string = '';
+	uid: string = '';
 
 	constructor(public afAuth: AngularFireAuth, public router: Router) {
 		this.afAuth.authState.subscribe((user) => {
@@ -21,7 +22,7 @@ export class AuthService {
 		});
 	}
 
-	SetUserData(user: any) {
+	setUserData(user: any) {
 		this.userData = {
 			uid: user.uid,
 			email: user.email,
@@ -31,7 +32,7 @@ export class AuthService {
 		localStorage.setItem('user', JSON.stringify(this.userData));
 	}
 
-	async SignIn(email: string, password: string) {
+	async signIn(email: string, password: string) {
 		try {
 			const result = await this.afAuth.signInWithEmailAndPassword(
 				email,
@@ -39,7 +40,7 @@ export class AuthService {
 			);
 
 			console.log(result);
-			this.SetUserData(result.user);
+			this.setUserData(result.user);
 
 			this.afAuth.authState.subscribe((user) => {
 				if (user) {
@@ -51,16 +52,16 @@ export class AuthService {
 		}
 	}
 
-	async SignUp(displayName: string, email: string, password: string) {
+	async signUp(displayName: string, email: string, password: string) {
 		await this.afAuth
 			.createUserWithEmailAndPassword(email, password)
 			.then((result) => {
 				if (result.user !== null) {
+					this.uid = `${result.user.uid}`;
 					auth.updateProfile(result.user, {
 						displayName: displayName,
 					}).then((data) => {
-						this.SetUserData(result.user);
-						this.router.navigate(['app/projectExplorer']);
+						this.setUserData(result.user);
 					});
 				}
 			})
@@ -75,7 +76,7 @@ export class AuthService {
 			});
 	}
 
-	async SignOut() {
+	async signOut() {
 		await this.afAuth.signOut();
 		localStorage.removeItem('user');
 		this.router.navigate(['/']);
