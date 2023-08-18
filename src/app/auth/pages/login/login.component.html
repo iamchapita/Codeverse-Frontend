@@ -64,18 +64,18 @@
 
 								<div class="row">
 									<div class="col-sm-12 col-md-12 col-lg-6">
-										<button type="button" class="btn btn-principal" [disabled]="!loginForm.valid"
-											(click)="handleSubmit()">Inicia
+										<button type="button" class="btn btn-principal" [disabled]="!loginForm.valid || authService.performingLogin === true"
+											(click)="handleSubmit()" >Inicia
 											Sesión</button>
 									</div>
 
 									<div class="col-sm-12 col-md-12 col-lg-6">
-										<button type="button" class="btn btn-facebook">
+										<button type="button" class="btn btn-facebook" [disabled]="authService.performingLogin === true">
 											<fa-icon [icon]="faFacebook"></fa-icon>Inicia Sesión
 										</button>
 									</div>
 
-									<div style="color:#dc3545" *ngIf="authService.registerFailed.length > 0">
+									<div style="color:#dc3545" *ngIf="authService.loginFailed.length > 0">
 
 										{{ authService.loginFailed }}
 

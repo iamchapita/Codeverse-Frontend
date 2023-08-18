@@ -9,7 +9,10 @@ import * as auth from 'firebase/auth';
 export class AuthService {
 	userData: any;
 	registerFailed: string = '';
+	performingRegister: boolean = false;
 	loginFailed: string = '';
+	performingLogin: boolean = false;
+	performingLogout: boolean = false;
 	uid: string = '';
 
 	constructor(public afAuth: AngularFireAuth, public router: Router) {
@@ -34,6 +37,7 @@ export class AuthService {
 	}
 
 	async signIn(email: string, password: string) {
+		this.performingLogin = true;
 		await this.afAuth
 			.signInWithEmailAndPassword(email, password)
 			.then((result) => {
@@ -41,15 +45,23 @@ export class AuthService {
 				this.afAuth.authState.subscribe((user) => {
 					if (user) {
 						this.router.navigate(['app/projectExplorer']);
+						this.performingLogin = false;
 					}
 				});
 			})
 			.catch((error) => {
-				console.log(error);
+				if (
+					error.message ===
+					'Firebase: The password is invalid or the user does not have a password. (auth/wrong-password).'
+				) {
+					this.performingLogin = false;
+					this.loginFailed = 'Credenciales Incorrectas';
+				}
 			});
 	}
 
 	async signUp(displayName: string, email: string, password: string) {
+		this.performingRegister = true;
 		await this.afAuth
 			.createUserWithEmailAndPassword(email, password)
 			.then((result) => {
@@ -59,6 +71,7 @@ export class AuthService {
 						displayName: displayName,
 					}).then((data) => {
 						this.setUserData(result.user);
+						this.performingRegister = false;
 					});
 				}
 			})
@@ -67,6 +80,7 @@ export class AuthService {
 					error.message ===
 					'Firebase: The email address is already in use by another account. (auth/email-already-in-use).'
 				) {
+					this.performingRegister = false;
 					this.registerFailed =
 						'El correo electrónico ya está en uso.';
 				}
