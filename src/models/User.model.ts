@@ -1,12 +1,9 @@
 export type Plan = 'FREE' | 'X' | 'Y';
 
 export interface User {
-	_id?: string;
-	uid?: string;
-	name: string;
+	uid: string;
 	email: string;
-	password?: string;
-	plan: Plan;
-	createdAt: string;
-	modifiedAt: string;
+	displayName: string;
+	photoURL: string;
+	emailVerified: boolean;
 }
