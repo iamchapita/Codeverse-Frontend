@@ -28,6 +28,10 @@ export class LoginComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
+		if (this.authService.isLoggedIn == true) {
+			this.router.navigate(['app/projectExplorer']);
+		}
+
 		this.loginForm = this.fb.group({
 			emailInput: new FormControl('', [
 				Validators.required,
