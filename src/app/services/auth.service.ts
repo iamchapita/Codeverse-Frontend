@@ -9,6 +9,7 @@ import * as auth from 'firebase/auth';
 export class AuthService {
 	userData: any;
 	registerFailed: string = '';
+	loginFailed: string = '';
 	uid: string = '';
 
 	constructor(public afAuth: AngularFireAuth, public router: Router) {
@@ -33,23 +34,19 @@ export class AuthService {
 	}
 
 	async signIn(email: string, password: string) {
-		try {
-			const result = await this.afAuth.signInWithEmailAndPassword(
-				email,
-				password
-			);
-
-			console.log(result);
-			this.setUserData(result.user);
-
-			this.afAuth.authState.subscribe((user) => {
-				if (user) {
-					this.router.navigate(['projectExplorer']);
-				}
+		await this.afAuth
+			.signInWithEmailAndPassword(email, password)
+			.then((result) => {
+				this.setUserData(result.user);
+				this.afAuth.authState.subscribe((user) => {
+					if (user) {
+						this.router.navigate(['app/projectExplorer']);
+					}
+				});
+			})
+			.catch((error) => {
+				console.log(error);
 			});
-		} catch (error: any) {
-			window.alert(error.message);
-		}
 	}
 
 	async signUp(displayName: string, email: string, password: string) {

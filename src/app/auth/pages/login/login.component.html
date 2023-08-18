@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 
-<div class="scrollspy rounded-2 vh-100" data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px 0px 0px"
-	data-bs-smooth-scroll="true" tabindex="0">
+<div class="scrollspy rounded-2 vh-100" data-bs-spy="scroll" data-bs-target="#navbar"
+	data-bs-root-margin="0px 0px 0px 0px" data-bs-smooth-scroll="true" tabindex="0">
 
 	<div class="main">
 
@@ -21,47 +21,74 @@
 
 					<div class="col-sm-12 col-md-12 col-lg-6">
 
-						<div class="customCard">
-							<div class="body">
-								<form>
-									<div class="mb-4">
-										<label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
-										<input type="email" class="form-control" id="exampleInputEmail1"
-											aria-describedby="emailHelp" placeholder="correo@servicio.com">
-										<!-- <div id="emailHelp" class="form-text">
-										</div> -->
+						<div [formGroup]="loginForm" (ngSubmit)="handleSubmit()" novalidate>
+
+							<div class="customCard">
+								<div class="body">
+
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="emailInput" class="form-label">Correo Electrónico</label>
+											<input type="email" class="form-control" id="emailInput"
+												aria-describedby="nameHelp" placeholder="correo@proveedor.com"
+												formControlName="emailInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="loginForm.get('emailInput')?.touched && loginForm.get('emailInput')?.invalid">
+											Correo Electrónico no válido
+										</div>
 									</div>
-									<div class="mb-4">
-										<label for="exampleInputPassword1" class="form-label">Contraseña</label>
-										<input type="password" class="form-control" id="exampleInputPassword1"
-											placeholder="Min 4, Max 35 carácteres">
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="passwordInput" class="form-label">Contraseña</label>
+											<input type="password" class="form-control" id="passwordInput"
+												aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
+												formControlName="passwordInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="loginForm.get('passwordInput')?.touched && loginForm.get('passwordInput')?.invalid">
+											La conrtaseña debe contener al menos una letra minúscula, una letra
+											mayúscula,
+											un número y un carácter especial. Debe tener entre 8 y 64 caracteres en
+											total. Puede contener letras, números y caracteres especiales. No debe
+											contener espacios en blanco ni emojis.
+										</div>
 									</div>
-									<!-- <div class="mb-3 form-check">
-										<input type="checkbox" class="form-check-input" id="exampleCheck1">
-										<label class="form-check-label" for="exampleCheck1">Check me out</label>
-									</div> -->
-									<!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-								</form>
-							</div>
 
-							<div class="row">
-								<div class="col-sm-12 col-md-12 col-lg-6">
-									<button type="button" class="btn btn-principal" routerLink="/app/home">Inicia Sesión</button>
 								</div>
 
-								<div class="col-sm-12 col-md-12 col-lg-6">
-									<button type="button" class="btn btn-facebook" routerLink="/auth/login">
-										<fa-icon [icon]="faFacebook"></fa-icon>Inicia Sesión
-									</button>
-								</div>
 
-								<div class="col-sm-12 col-md-12 col-lg-12">
-									<hr>
-									<p class="fw-light">¿No tienes cuenta?</p>
-									<button type="button" class="btn btn-principal"
-										routerLink="/auth/register">Registrate</button>
-								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-6">
+										<button type="button" class="btn btn-principal" [disabled]="!loginForm.valid"
+											(click)="handleSubmit()">Inicia
+											Sesión</button>
+									</div>
 
+									<div class="col-sm-12 col-md-12 col-lg-6">
+										<button type="button" class="btn btn-facebook">
+											<fa-icon [icon]="faFacebook"></fa-icon>Inicia Sesión
+										</button>
+									</div>
+
+									<div style="color:#dc3545" *ngIf="authService.registerFailed.length > 0">
+
+										{{ authService.loginFailed }}
+
+									</div>
+
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<hr>
+										<p class="fw-light">¿No tienes cuenta?</p>
+										<button type="button" class="btn btn-principal"
+											routerLink="/auth/register">Registrate</button>
+									</div>
+
+								</div>
 							</div>
 
 						</div>
