@@ -4,7 +4,8 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
-
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
@@ -13,6 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 		CommonModule,
 		AuthRoutingModule,
 		NavbarComponent,
+		FormsModule,
+		ReactiveFormsModule,
 		FontAwesomeModule,
 	],
 })

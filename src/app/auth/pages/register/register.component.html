@@ -21,68 +21,105 @@
 
 					<div class="col-sm-12 col-md-12 col-lg-6">
 
-						<div class="customCard">
-							<div class="body">
+						<div [formGroup]="registerForm" (ngSubmit)="handleSubmit()" novalidate>
 
-								<div class="mb-4">
-									<label for="firtsNameInput" class="form-label">Nombres</label>
-									<input type="text" class="form-control" id="firtsNameInput"
-										aria-describedby="nameHelp" placeholder="Juan Antonio">
-									<!-- <div id="emailHelp" class="form-text">
-										</div> -->
+							<div class="customCard">
+								<div class="body">
+
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="firtsNameInput" class="form-label">Nombres</label>
+											<input type="text" class="form-control" id="firtsNameInput"
+												aria-describedby="nameHelp" placeholder="Juan Antonio"
+												formControlName="firtsNameInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="registerForm.get('firtsNameInput')?.touched && registerForm.get('firtsNameInput')?.invalid">
+											Nombres no válidos
+										</div>
+									</div>
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="lastNameInput" class="form-label">Apellidos</label>
+											<input type="text" class="form-control" id="lastNameInput"
+												aria-describedby="nameHelp" placeholder="Pérez Marcía"
+												formControlName="lastNameInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="registerForm.get('lastNameInput')?.touched && registerForm.get('lastNameInput')?.invalid">
+											Apellidos no válidos
+										</div>
+									</div>
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="emailInput" class="form-label">Correo Electrónico</label>
+											<input type="text" class="form-control" id="emailInput"
+												aria-describedby="nameHelp" placeholder="correo@proveedor.com"
+												formControlName="emailInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="registerForm.get('emailInput')?.touched && registerForm.get('emailInput')?.invalid">
+											Correo Electrónico no válido
+										</div>
+									</div>
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="passwordInput" class="form-label">Contraseña</label>
+											<input type="text" class="form-control" id="passwordInput"
+												aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
+												formControlName="passwordInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="registerForm.get('passwordInput')?.touched && registerForm.get('passwordInput')?.invalid">
+											La contraseña debe tener de 4 a 35 caracteres, puede contener letras,
+											números.
+											No debe contener espacios en blanco, emojis y símbolos.
+										</div>
+									</div>
+
+									<div class="mb-4 has-validation">
+										<div class="is-invalid">
+											<label for="passwordConfirmInput" class="form-label">Confirme su
+												Contraseña</label>
+											<input type="text" class="form-control" id="passwordConfirmInput"
+												aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
+												formControlName="passwordConfirmInput">
+
+										</div>
+										<div class="invalid-feedback"
+											*ngIf="registerForm.get('passwordConfirmInput')?.touched && registerForm.get('passwordConfirmInput')?.invalid">
+											La Confirmación de Contraseña no coindice
+										</div>
+									</div>
+
+
 								</div>
 
-								<div class="mb-4">
-									<label for="lastNameInput" class="form-label">Apellidos</label>
-									<input type="text" class="form-control" id="lastNameInput"
-										aria-describedby="lastNameHelp" placeholder="Martínez Muñoz">
-								</div>
+								<div class="row">
+									<div class="col-sm-12 col-md-12 col-lg-6">
+										<button type="button" class="btn btn-principal" [disabled]="!registerForm.valid"
+											(click)="handleSubmit()">Registrarme</button>
+									</div>
 
-								<!-- <div class="mb-4">
-									<label for="exampleInputPassword1" class="form-label">Fecha de
-										Nacimiento</label>
+									<div class="col-sm-12 col-md-12 col-lg-6">
+										<button type="button" class="btn btn-facebook">
+											<fa-icon [icon]="faFacebook"></fa-icon>Registrarme</button>
+									</div>
 
-									<ngb-datepicker #dp [(ngModel)]="model"
-										(navigate)="date = $event.next"></ngb-datepicker>
-								</div> -->
-
-								<div class="mb-4">
-									<label for="emailInput" class="form-label">Correo Electrónico</label>
-									<input type="email" class="form-control" id="emailInput"
-										placeholder="correo@proveedor.com">
-								</div>
-
-								<div class="mb-4">
-									<label for="passwordInput" class="form-label">Contraseña</label>
-									<input type="password" class="form-control" id="passwordInput"
-										placeholder="Min 4, Max 35 carácteres">
-								</div>
-
-								<div class="mb-4">
-									<label for="passwordConfirmInput" class="form-label">Confirme su
-										Contraseña</label>
-									<input type="password" class="form-control" id="passwordConfirmInput"
-										placeholder="Min 4, Max 35 carácteres">
-								</div>
-
-							</div>
-
-							<div class="row">
-								<div class="col-sm-12 col-md-12 col-lg-6">
-									<button type="button" class="btn btn-principal"
-										routerLink="/app/home">Registrarme</button>
-								</div>
-
-								<div class="col-sm-12 col-md-12 col-lg-6">
-									<button type="button" class="btn btn-facebook" routerLink="/auth/login">
-										<fa-icon [icon]="faFacebook"></fa-icon>Registrarme</button>
-								</div>
-
-								<div class="col-sm-12 col-md-12 col-lg-12">
-									<hr>
-									<p class="fw-light">¿Ya tienes cuenta?</p>
-									<button type="button" class="btn btn-principal" routerLink="/auth/login">Inicia
-										Sesión</button>
+									<div class="col-sm-12 col-md-12 col-lg-12">
+										<hr>
+										<p class="fw-light">¿Ya tienes cuenta?</p>
+										<button type="button" class="btn btn-principal" routerLink="/auth/login">Inicia
+											Sesión</button>
+									</div>
 								</div>
 
 							</div>
