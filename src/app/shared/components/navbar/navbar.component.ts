@@ -11,21 +11,21 @@ import { AuthService } from 'src/app/services/auth.service';
 	templateUrl: './navbar.component.html',
 	styleUrls: ['./navbar.component.css'],
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
 	public isCollapsed: boolean = true;
-	public userName: string = '';
+	@Input() isWorkspace: boolean = false;
+	@Input() isLanding: boolean = false;
+	@Input() isExplorer: boolean = false;
+	@Input() isLoggin: boolean = false;
 
 	constructor(public authService: AuthService) {}
-
-	ngOnInit(): void {
-		this.userName = JSON.parse(localStorage.getItem('user')!).displayName;
-	}
 
 	toggleCollapsed() {
 		this.isCollapsed = !this.isCollapsed;
 	}
 
-	@Input() isWorkspace: boolean = false;
-	@Input() isLanding: boolean = false;
-	@Input() isExplorer: boolean = false;
+	singOut(){
+		this.toggleCollapsed();
+		this.authService.signOut();
+	}
 }

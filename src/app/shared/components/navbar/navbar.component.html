@@ -4,7 +4,7 @@
 			<img src="assets/Marca White.png">
 		</a>
 
-		<button class="navbar-toggler" type="button" (click)="toggleCollapsed()">
+		<button class="navbar-toggler" type="button" (click)="toggleCollapsed()" *ngIf="isLanding === true || isExplorer === true || isWorkspace === true">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -24,10 +24,11 @@
 			<ul class="navbar-nav nav-pills" *ngIf="isLanding === true">
 
 				<li class="nav-item">
-					<a class="nav-link" href="#secondSection" (click)="isCollapsed = true">Planes</a>
+					<a class="nav-link" href="#firstSection" (click)="toggleCollapsed()">Acerca de nosotros</a>
 				</li>
+
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Acerca de nosotros</a>
+					<a class="nav-link" href="#secondSection" (click)="toggleCollapsed()">Planes</a>
 				</li>
 
 			</ul>
@@ -35,10 +36,10 @@
 			<ul class="navbar-nav nav-pills" *ngIf="isExplorer === true">
 
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Proyecto Nuevo</a>
+					<a class="nav-link" [routerLink]="'.'" (click)="toggleCollapsed()">Proyecto Nuevo</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Prueba</a>
+					<a class="nav-link" [routerLink]="'.'" (click)="toggleCollapsed()">Prueba</a>
 				</li>
 
 			</ul>
@@ -48,10 +49,10 @@
 				<ul class="navbar-nav nav-pills" *ngIf="authService.isLoggedIn">
 
 					<li class="nav-item">
-						<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">{{ userName }}</a>
+						<a class="nav-link" [routerLink]="'.'" (click)="toggleCollapsed()">Mi Perfil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" [routerLink]="'.'" (click)="isCollapsed = true">Cerrar Sesión</a>
+						<a class="nav-link" [routerLink]="'.'" (click)="singOut()">Cerrar Sesión</a>
 					</li>
 				</ul>
 
