@@ -18,8 +18,6 @@ export class AuthService {
 	constructor(public afAuth: AngularFireAuth, public router: Router) {
 		this.afAuth.authState.subscribe((user) => {
 			if (user) {
-				// this.userData = user;
-				// localStorage.setItem('user', JSON.stringify(this.userData));
 			} else {
 				localStorage.setItem('user', 'null');
 			}
@@ -40,12 +38,13 @@ export class AuthService {
 		this.performingLogin = true;
 		await this.afAuth
 			.signInWithEmailAndPassword(email, password)
-			.then((result) => {
-				this.setUserData(result.user);
+			.then(async ({ user }) => {
+				this.setUserData(user);
+
 				this.afAuth.authState.subscribe((user) => {
 					if (user) {
-						this.router.navigate(['app/projectExplorer']);
 						this.performingLogin = false;
+						this.router.navigate(['app/projectExplorer']);
 					}
 				});
 			})
@@ -64,15 +63,19 @@ export class AuthService {
 		this.performingRegister = true;
 		await this.afAuth
 			.createUserWithEmailAndPassword(email, password)
-			.then((result) => {
-				if (result.user !== null) {
-					this.uid = `${result.user.uid}`;
-					auth.updateProfile(result.user, {
-						displayName: displayName,
-					}).then((data) => {
-						this.setUserData(result.user);
-						this.performingRegister = false;
-					});
+			.then(async ({ user }) => {
+				if (user !== null) {
+					this.uid = `${user.uid}`;
+
+					await auth
+						.updateProfile(user, {
+							displayName: displayName,
+						})
+						.then((data) => {
+							this.setUserData(user);
+							this.performingRegister = false;
+							this.router.navigate(['app/projectExplorer']);
+						});
 				}
 			})
 			.catch((error) => {
