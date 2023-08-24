@@ -41,8 +41,9 @@ export class AuthService {
 			.then(async ({ user }) => {
 				this.setUserData(user);
 
-				this.afAuth.authState.subscribe((user) => {
+				this.afAuth.authState.subscribe(async (user) => {
 					if (user) {
+						this.uid = `${user.uid}`;
 						this.performingLogin = false;
 						this.router.navigate(['app/projectExplorer']);
 					}
