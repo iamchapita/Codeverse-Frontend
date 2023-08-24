@@ -6,7 +6,7 @@ import { ProjectExplorerComponent } from './pages/project-explorer/project-explo
 import { ProjectWorkspaceComponent } from './pages/project-workspace/project-workspace.component';
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { EditorComponent } from './components/editor/editor.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IframeComponent } from './components/iframe/iframe.component';
 
 @NgModule({
@@ -14,12 +14,13 @@ import { IframeComponent } from './components/iframe/iframe.component';
 		ProjectExplorerComponent,
 		ProjectWorkspaceComponent,
 		EditorComponent,
-  IframeComponent,
+		IframeComponent,
 	],
 	imports: [
 		CommonModule,
 		CodeverseRoutingModule,
 		NavbarComponent,
+		ReactiveFormsModule,
 		FormsModule,
 		FontAwesomeModule,
 	],
