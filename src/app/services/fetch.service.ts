@@ -11,7 +11,7 @@ import { File } from 'src/models/File.model';
 export class FetchService {
 	constructor(private router: Router) {}
 
-	urlBase = 'http://localhost:3000';
+	urlBase = 'http://localhost:3000/';
 
 	folder: Folder = {
 		_id: '1',
@@ -89,6 +89,38 @@ export class FetchService {
 		modifiedAt: '2023-07-30',
 	};
 
+	makeRequest = async (
+		url: string,
+		method: string = 'GET',
+		body: Record<string, string> | null
+	): Promise<any> => {
+		const requestOptions: RequestInit = {
+			method,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: body ? JSON.stringify(body) : undefined,
+		};
+
+		try {
+			const response = await fetch(
+				`${this.urlBase}${url}`,
+				requestOptions
+			);
+
+			if (!response.ok) {
+				throw new Error('Request failed');
+			}
+
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			// console.error(error);
+			throw error;
+		}
+	};
+
+	//  ========================================USUARIO========================================
 	createUser = (uid: string, name: string, email: string): void => {
 		fetch(`${this.urlBase}/users/`, {
 			method: 'POST',
