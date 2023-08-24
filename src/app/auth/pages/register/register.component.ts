@@ -106,9 +106,10 @@ export class RegisterComponent implements OnInit {
 						description: 'This is RootFolder',
 						user: `${response._id}`,
 					});
+				})
+				.catch((error) => {
+					console.error(error);
 				});
-
-			this.router.navigate(['app/projectExplorer']);
 		} else {
 			return;
 		}
