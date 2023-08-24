@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, TitleStrategy } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import * as auth from 'firebase/auth';
+import { FetchService } from './fetch.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -13,9 +14,12 @@ export class AuthService {
 	loginFailed: string = '';
 	performingLogin: boolean = false;
 	performingLogout: boolean = false;
-	uid: string = '';
 
-	constructor(public afAuth: AngularFireAuth, public router: Router) {
+	constructor(
+		public afAuth: AngularFireAuth,
+		public router: Router,
+		private fetchService: FetchService
+	) {
 		this.afAuth.authState.subscribe((user) => {
 			if (user) {
 			} else {
@@ -26,9 +30,11 @@ export class AuthService {
 
 	setUserData(user: any) {
 		this.userData = {
+			id: user.id,
 			uid: user.uid,
 			email: user.email,
 			displayName: user.displayName,
+			photoURL: user.photoURL,
 		};
 
 		localStorage.setItem('user', JSON.stringify(this.userData));
@@ -39,13 +45,21 @@ export class AuthService {
 		await this.afAuth
 			.signInWithEmailAndPassword(email, password)
 			.then(async ({ user }) => {
-				this.setUserData(user);
-
-				this.afAuth.authState.subscribe(async (user) => {
-					if (user) {
-						this.uid = `${user.uid}`;
-						this.performingLogin = false;
-						this.router.navigate(['app/projectExplorer']);
+				this.afAuth.authState.subscribe(async (innerUser) => {
+					if (innerUser) {
+						await this.getUserIdByUid(innerUser.uid).then(
+							(response) => {
+								this.setUserData({
+									uid: user!.uid,
+									email: user!.email,
+									displayName: user!.displayName,
+									photoURL: user!.photoURL,
+									id: response._id,
+								});
+								this.performingLogin = false;
+								this.router.navigate(['app/projectExplorer']);
+							}
+						);
 					}
 				});
 			})
@@ -66,8 +80,6 @@ export class AuthService {
 			.createUserWithEmailAndPassword(email, password)
 			.then(async ({ user }) => {
 				if (user !== null) {
-					this.uid = `${user.uid}`;
-
 					await auth
 						.updateProfile(user, {
 							displayName: displayName,
@@ -100,5 +112,13 @@ export class AuthService {
 	get isLoggedIn(): boolean {
 		const user = JSON.parse(localStorage.getItem('user')!);
 		return user !== null ? true : false;
+	}
+
+	async getUserIdByUid(uid: string): Promise<any> {
+		return await this.fetchService.makeRequest(
+			`users/uid/${uid}`,
+			'GET',
+			null
+		);
 	}
 }
