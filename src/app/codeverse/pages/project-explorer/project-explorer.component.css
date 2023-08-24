@@ -58,18 +58,17 @@ hr {
 .search {
 	display: flex;
 	align-items: center;
-	width: 25rem;
+	width: 25em;
 }
 
 .search>button {
-	font-size: 0.8rem;
+	font-size: 1rem;
 	width: 30%;
-	text-align: center;
 }
 
 .search>input {
 	text-align: center;
-	font-size: 0.8rem;
+	font-size: 1rem;
 	margin-right: 1rem;
 }
 

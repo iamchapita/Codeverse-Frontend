@@ -101,8 +101,8 @@ export class AuthService {
 										'folders',
 										'POST',
 										{
-											name: 'rooFolder',
-											description: 'This is RootFolder',
+											name: 'Raíz',
+											description: 'Este es el folde Raíz',
 											user: this.userData.id,
 										}
 									);

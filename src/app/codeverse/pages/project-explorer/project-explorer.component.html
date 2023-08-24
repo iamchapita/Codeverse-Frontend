@@ -8,23 +8,32 @@
 
 			<div class="options">
 
-				<button class="btn" [disabled]="isUpDisabled">
+				<button class="btn" [disabled]="isUpDisabled === true || isLoading === true">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
-				<button class="btn">
+				<button class="btn" [disabled]="isLoading === true">
 					<fa-icon [icon]="faFolderPlus"></fa-icon>Nueva Carpeta
 				</button>
-				<button class="btn">
+				<button class="btn" [disabled]="isLoading === true">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button [ngClass]="{'btn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders">
+				<button class="btn" [disabled]="isLoading === true">
+					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
+				</button>
+				<button [ngClass]="{'btn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders"
+					[disabled]="isLoading === true">
 					<fa-icon [icon]="faFolderTree"></fa-icon>Solo Carpetas
 				</button>
-				<button [ngClass]="{'btn': true, 'marked':onlyProjects}" (click)="onlyProjects = !onlyProjects">
+				<button [ngClass]="{'btn': true, 'marked':onlyProjects}" (click)="onlyProjects = !onlyProjects"
+					[disabled]="isLoading === true">
 					<fa-icon [icon]="faCode"></fa-icon>Solo Proyectos
 				</button>
+				<button [ngClass]="{'btn': true, 'marked':onlySnippets}" (click)="onlySnippets = !onlySnippets"
+					[disabled]="isLoading === true">
+					<fa-icon [icon]="faBarsStaggered"></fa-icon>Solo Snippets
+				</button>
 				<button [ngClass]="{'btn': true, 'marked':onlySharedProject}"
-					(click)="onlySharedProject = !onlySharedProject">
+					(click)="onlySharedProject = !onlySharedProject" [disabled]="isLoading === true">
 					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
 				</button>
 			</div>
@@ -45,11 +54,16 @@
 			</div>
 			<hr>
 
-			<div class="table-responsive">
+			<div class="d-flex justify-content-center" *ngIf="isLoading === true">
+				<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+					<span class="visually-hidden">Cargando...</span>
+				</div>
+			</div>
+
+			<div class="table-responsive" *ngIf="isLoading === false">
 				<table class="table table-bordered table-light table-hover table-stripped align-middle">
 					<thead>
 						<tr>
-							<th></th>
 							<th>Nombre</th>
 							<th>Descripción</th>
 							<th>Creado</th>
@@ -60,7 +74,6 @@
 
 						<tr *ngFor="let folder of rootFolder.folders">
 
-							<td class="text-center"> <input type="checkbox"> </td>
 							<td routerLink="/">{{ folder.name }}</td>
 							<td>{{ folder.description }}</td>
 							<td>{{ folder.createdAt }}</td>
@@ -70,7 +83,6 @@
 
 						<tr *ngFor="let project of rootFolder.projects">
 
-							<td class="text-center"> <input type="checkbox"></td>
 							<td routerLink="/">{{ project.name }}</td>
 							<td>{{ project.description }}</td>
 							<td>{{ project.createdAt }}</td>
