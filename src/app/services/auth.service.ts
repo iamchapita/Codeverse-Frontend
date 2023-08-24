@@ -84,10 +84,34 @@ export class AuthService {
 						.updateProfile(user, {
 							displayName: displayName,
 						})
-						.then((data) => {
-							this.setUserData(user);
-							this.performingRegister = false;
-							this.router.navigate(['app/projectExplorer']);
+						.then(async (data) => {
+							await this.fetchService
+								.createUser(user!.uid, displayName, email)
+								.then((response) => {
+									this.setUserData({
+										uid: user!.uid,
+										email: user!.email,
+										displayName: user!.displayName,
+										photoURL: user!.photoURL,
+										id: response._id,
+									});
+								})
+								.then(async (response) => {
+									await this.fetchService.makeRequest(
+										'folders',
+										'POST',
+										{
+											name: 'rooFolder',
+											description: 'This is RootFolder',
+											user: this.userData.id,
+										}
+									);
+
+									this.performingRegister = false;
+									this.router.navigate([
+										'app/projectExplorer',
+									]);
+								});
 						});
 				}
 			})

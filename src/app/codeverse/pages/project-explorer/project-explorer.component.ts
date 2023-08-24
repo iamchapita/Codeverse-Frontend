@@ -52,7 +52,7 @@ export class ProjectExplorerComponent implements OnInit {
 		const uid = JSON.parse(localStorage.getItem('user')!).uid;
 
 		this.fetchService
-			.makeRequest(`users/uid/${uid}`, 'GET', null)
+			.makeRequest(`folders/user/${uid}`, 'GET', null)
 			.then((response) => {
 				return response.json();
 			})
