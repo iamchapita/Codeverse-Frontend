@@ -5,10 +5,11 @@ export interface Folder {
 	_id?: string;
 	name: string;
 	description: string;
-	createdAt: string;
-	modifiedAt: string;
 	parentFolder?: string;
+	user: string;
 	folders?: Array<Folder>;
 	projects?: Array<Project>;
 	snippets?: Array<Snippet>;
+	createdAt: string;
+	modifiedAt: string;
 }
