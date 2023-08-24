@@ -4,6 +4,7 @@ import { Folder } from 'src/models/Folder.model';
 import { Project } from 'src/models/Project.model';
 import { Snippet } from 'src/models/Snippet.model';
 import { File } from 'src/models/File.model';
+import { User } from 'firebase/auth';
 
 @Injectable({
 	providedIn: 'root',
@@ -121,19 +122,21 @@ export class FetchService {
 	};
 
 	//  ========================================USUARIO========================================
-	createUser = (uid: string, name: string, email: string): void => {
-		fetch(`${this.urlBase}/users/`, {
+	createUser = async (uid: string, name: string, email: string): Promise<any> => {
+		const config = {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({ uid: uid, name: name, email: email }),
-		})
-			.then((response) => {
-				console.log(response);
-			})
-			.catch((error) => {
-				console.error(error);
-			});
+		};
+
+		const response = await fetch(`${this.urlBase}users/`, config);
+
+		if (!response.ok) {
+			throw new Error('Request failed');
+		}
+		const data = await response.json();
+		return data;
 	};
 }

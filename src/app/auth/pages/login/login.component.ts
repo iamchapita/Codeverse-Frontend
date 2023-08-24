@@ -9,7 +9,6 @@ import {
 import { AuthService } from 'src/app/services/auth.service';
 import { FetchService } from 'src/app/services/fetch.service';
 import { Router } from '@angular/router';
-import { RequestOptions } from 'src/app/services/requestOption.interface';
 
 @Component({
 	selector: 'app-login',

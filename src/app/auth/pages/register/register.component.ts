@@ -94,11 +94,19 @@ export class RegisterComponent implements OnInit {
 				this.registerForm.get('passwordInput')?.value
 			);
 
-			this.fetchService.createUser(
-				this.authService.uid,
-				displayName,
-				this.registerForm.get('emailInput')?.value
-			);
+			await this.fetchService
+				.createUser(
+					this.authService.uid,
+					displayName,
+					this.registerForm.get('emailInput')?.value
+				)
+				.then(async (response) => {
+					await this.fetchService.makeRequest('folders', 'POST', {
+						name: 'rooFolder',
+						description: 'This is RootFolder',
+						user: `${response._id}`,
+					});
+				});
 
 			this.router.navigate(['app/projectExplorer']);
 		} else {
