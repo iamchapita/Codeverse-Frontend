@@ -63,9 +63,7 @@ export class ProjectExplorerComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
-		this.changeLoadingValue();
 		this.getRootFolder();
-		this.changeLoadingValue();
 	}
 
 	changeLoadingValue(): void {
@@ -95,6 +93,7 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	async getRootFolder() {
+		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 
 		this.fetchService
@@ -133,6 +132,7 @@ export class ProjectExplorerComponent implements OnInit {
 			.catch((error) => {
 				console.log(error);
 			});
+		this.changeLoadingValue();
 	}
 
 	action(value: string, origin: string) {
@@ -146,7 +146,6 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	async addFolder(name: string) {
-		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 
 		this.fetchService
@@ -155,17 +154,15 @@ export class ProjectExplorerComponent implements OnInit {
 				user: id,
 				parentFolder: `${this.rootFolder._id}`,
 			})
-			.then((childFolder) => {
-				this.getRootFolder();
+			.then(async (childFolder) => {
+				await this.getRootFolder();
 			})
 			.catch((error) => {
 				console.log(error);
 			});
-		this.changeLoadingValue();
 	}
 
 	async addProject(name: string) {
-		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 		const types = ['HTML', 'CSS', 'JS'];
 
@@ -189,7 +186,9 @@ export class ProjectExplorerComponent implements OnInit {
 									'PUT',
 									null
 								)
-								.then((response) => {})
+								.then(async (response) => {
+									await this.getRootFolder();
+								})
 								.catch((error) => {
 									console.log(error);
 								});
@@ -202,7 +201,21 @@ export class ProjectExplorerComponent implements OnInit {
 			.catch((error) => {
 				console.log(error);
 			});
-		this.getRootFolder();
-		this.changeLoadingValue();
+	}
+
+	async deleteProject(id: string) {
+		this.fetchService
+			.makeRequest(
+				`projects/${id}`,
+				'DELETE',
+				null
+			)
+			.then(async (response) => {
+				this.changeTriggerDeleteActionValue();
+				await this.getRootFolder();
+			})
+			.catch((error) => {
+				console.log(error);
+			});
 	}
 }
