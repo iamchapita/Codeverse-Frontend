@@ -7,6 +7,8 @@ import { ProjectWorkspaceComponent } from './pages/project-workspace/project-wor
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { IframeComponent } from './components/iframe/iframe.component';
+import { CreateNewActionModalComponent } from './components/create-new-action-modal/create-new-action-modal.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [
@@ -19,6 +21,8 @@ import { IframeComponent } from './components/iframe/iframe.component';
 		CommonModule,
 		CodeverseRoutingModule,
 		NavbarComponent,
+		CreateNewActionModalComponent,
+		FormsModule,
 		FontAwesomeModule,
 	],
 })

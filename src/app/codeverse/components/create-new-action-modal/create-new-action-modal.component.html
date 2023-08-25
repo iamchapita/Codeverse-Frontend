@@ -1,0 +1,13 @@
+<div class="modal-header">
+	<h4 class="modal-title">Modal con Input</h4>
+	<button type="button" class="close" aria-label="Close" (click)="dismiss('Cerrar')">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<div class="modal-body">
+	<input type="text" #inputValue class="form-control" placeholder="Ingrese un valor">
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" (click)="dismiss('Cerrar')">Cerrar</button>
+	<button type="button" class="btn btn-primary" (click)="close(inputValue.value)">Guardar</button>
+</div>

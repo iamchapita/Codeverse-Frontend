@@ -10,9 +10,11 @@ import {
 	faBarsStaggered,
 } from '@fortawesome/free-solid-svg-icons';
 
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Folder } from 'src/models/Folder.model';
 import { FetchService } from 'src/app/services/fetch.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { CreateNewActionModalComponent } from '../../components/create-new-action-modal/create-new-action-modal.component';
 
 @Component({
 	selector: 'app-project-explorer',
@@ -51,12 +53,31 @@ export class ProjectExplorerComponent implements OnInit {
 
 	constructor(
 		private fetchService: FetchService,
-		private authService: AuthService
+		private authService: AuthService,
+		private modalService: NgbModal
 	) {}
 
 	ngOnInit(): void {
 		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
 		this.getRootFolder();
+	}
+
+	openModal() {
+		const modalRef = this.modalService.open(CreateNewActionModalComponent);
+
+		modalRef.result.then(
+			(result) => {
+				if (result !== 'Cerrar') {
+					console.log(
+						'Valor del input:',
+						modalRef.componentInstance.inputValue
+					);
+				}
+			},
+			(reason) => {
+				// Manejar el cierre del modal (si es necesario)
+			}
+		);
 	}
 
 	changeLoadingValue(): void {

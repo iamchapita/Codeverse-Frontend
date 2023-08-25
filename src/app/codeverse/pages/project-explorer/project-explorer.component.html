@@ -11,7 +11,7 @@
 				<button class="btn" [disabled]="isUpDisabled === true || isLoading === true">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
-				<button class="btn" [disabled]="isLoading === true">
+				<button class="btn" [disabled]="isLoading === true" (click)="openModal()">
 					<fa-icon [icon]="faFolderPlus"></fa-icon>Nueva Carpeta
 				</button>
 				<button class="btn" [disabled]="isLoading === true">
