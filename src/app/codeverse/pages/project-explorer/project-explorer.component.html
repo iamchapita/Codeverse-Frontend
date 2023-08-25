@@ -11,13 +11,13 @@
 				<button class="btn" [disabled]="isUpDisabled === true || isLoading === true">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
-				<button class="btn" [disabled]="isLoading === true" (click)="openModal()">
+				<button class="btn" [disabled]="isLoading === true" (click)="openModal('folder')">
 					<fa-icon [icon]="faFolderPlus"></fa-icon>Nueva Carpeta
 				</button>
-				<button class="btn" [disabled]="isLoading === true">
+				<button class="btn" [disabled]="isLoading === true" (click)="openModal('project')">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn" [disabled]="isLoading === true">
+				<button class="btn" [disabled]="isLoading === true" (click)="openModal('snippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
 				<button [ngClass]="{'btn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders"

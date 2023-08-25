@@ -62,16 +62,16 @@ export class ProjectExplorerComponent implements OnInit {
 		this.getRootFolder();
 	}
 
-	openModal() {
-		const modalRef = this.modalService.open(CreateNewActionModalComponent);
+	openModal(origin: string) {
+		const modalRef = this.modalService.open(CreateNewActionModalComponent, {
+			size: 'lg',
+			centered: true,
+		});
 
 		modalRef.result.then(
 			(result) => {
 				if (result !== 'Cerrar') {
-					console.log(
-						'Valor del input:',
-						modalRef.componentInstance.inputValue
-					);
+					this.action(origin);
 				}
 			},
 			(reason) => {
@@ -98,5 +98,9 @@ export class ProjectExplorerComponent implements OnInit {
 			.catch((error) => {
 				console.log(error);
 			});
+	}
+
+	action(origin: string) {
+		console.log(`action: ${origin}`);
 	}
 }

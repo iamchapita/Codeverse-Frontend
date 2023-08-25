@@ -16,8 +16,8 @@ export class CreateNewActionModalComponent {
 		this.activeModal.dismiss(reason);
 	}
 
-	close(reason: string) {
-		this.inputValue = reason;
-		this.activeModal.close(reason);
+	close(value: string) {
+		this.inputValue = value;
+		this.activeModal.close(value);
 	}
 }
