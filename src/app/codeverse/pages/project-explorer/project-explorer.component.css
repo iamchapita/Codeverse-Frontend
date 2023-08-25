@@ -88,3 +88,9 @@ hr {
 tr {
 	cursor: pointer;
 }
+
+.deleteActions {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}

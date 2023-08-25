@@ -13,6 +13,8 @@ import {
 	faFileCode,
 	faArrowUp,
 	faBarsStaggered,
+	faCheck,
+	faXmark,
 } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -29,6 +31,8 @@ export class ProjectExplorerComponent implements OnInit {
 	faFileCode = faFileCode;
 	faArrowUp = faArrowUp;
 	faBarsStaggered = faBarsStaggered;
+	faCheck = faCheck;
+	faXmark = faXmark;
 
 	isExplorer: boolean = true;
 	onlyFolders: boolean = false;
@@ -37,6 +41,7 @@ export class ProjectExplorerComponent implements OnInit {
 	onlySharedProject: boolean = false;
 	isUpDisabled: boolean;
 	isLoading: boolean = false;
+	triggerDeleteAction: boolean = false;
 
 	rootFolder: Folder = {
 		_id: '',
@@ -63,6 +68,14 @@ export class ProjectExplorerComponent implements OnInit {
 		this.changeLoadingValue();
 	}
 
+	changeLoadingValue(): void {
+		this.isLoading = !this.isLoading;
+	}
+
+	changeTriggerDeleteActionValue(): void {
+		this.triggerDeleteAction = !this.triggerDeleteAction;
+	}
+
 	openModal(origin: string) {
 		const modalRef = this.modalService.open(CreateNewActionModalComponent, {
 			size: 'lg',
@@ -79,10 +92,6 @@ export class ProjectExplorerComponent implements OnInit {
 				// Manejar el cierre del modal (si es necesario)
 			}
 		);
-	}
-
-	changeLoadingValue(): void {
-		this.isLoading = !this.isLoading;
 	}
 
 	async getRootFolder() {
