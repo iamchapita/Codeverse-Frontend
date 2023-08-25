@@ -8,31 +8,31 @@
 
 			<div class="options">
 
-				<button class="btn" [disabled]="isUpDisabled === true || isLoading === true">
+				<button class="btn customBtn" [disabled]="isUpDisabled === true || isLoading === true">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
-				<button class="btn" [disabled]="isLoading === true" (click)="openModal('folder')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('folder')">
 					<fa-icon [icon]="faFolderPlus"></fa-icon>Nueva Carpeta
 				</button>
-				<button class="btn" [disabled]="isLoading === true" (click)="openModal('project')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('project')">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn" [disabled]="isLoading === true" (click)="openModal('snippet')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('snippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
-				<button [ngClass]="{'btn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders"
+				<button [ngClass]="{'btn customBtn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders"
 					[disabled]="isLoading === true">
 					<fa-icon [icon]="faFolderTree"></fa-icon>Solo Carpetas
 				</button>
-				<button [ngClass]="{'btn': true, 'marked':onlyProjects}" (click)="onlyProjects = !onlyProjects"
+				<button [ngClass]="{'btn customBtn': true, 'marked':onlyProjects}" (click)="onlyProjects = !onlyProjects"
 					[disabled]="isLoading === true">
 					<fa-icon [icon]="faCode"></fa-icon>Solo Proyectos
 				</button>
-				<button [ngClass]="{'btn': true, 'marked':onlySnippets}" (click)="onlySnippets = !onlySnippets"
+				<button [ngClass]="{'btn customBtn': true, 'marked':onlySnippets}" (click)="onlySnippets = !onlySnippets"
 					[disabled]="isLoading === true">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Solo Snippets
 				</button>
-				<button [ngClass]="{'btn': true, 'marked':onlySharedProject}"
+				<button [ngClass]="{'btn customBtn': true, 'marked':onlySharedProject}"
 					(click)="onlySharedProject = !onlySharedProject" [disabled]="isLoading === true">
 					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
 				</button>
@@ -47,8 +47,8 @@
 				<h1>{{ rootFolder.name }}</h1>
 
 				<div class="search">
-					<input class="btn" type="search" placeholder="Search" aria-label="Search">
-					<button class="btn">Buscar</button>
+					<input class="btn customBtn" type="search" placeholder="Search" aria-label="Search">
+					<button class="btn customBtn">Buscar</button>
 				</div>
 
 			</div>
@@ -68,6 +68,7 @@
 							<th>Tipo</th>
 							<th>Creado</th>
 							<th>Modificado</th>
+							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody  class="table-group-divider">
@@ -78,6 +79,7 @@
 							<td>Carpeta</td>
 							<td>{{ folder.createdAt }}</td>
 							<td>{{ folder.modifiedAt ? folder.modifiedAt : 'ND' }}</td>
+							<td><button class="btn customDeleteBtn">Borrar</button></td>
 
 						</tr>
 
@@ -87,6 +89,7 @@
 							<td>Proyecto</td>
 							<td>{{ project.createdAt }}</td>
 							<td>{{ project.modifiedAt ? project.modifiedAt : 'ND' }}</td>
+							<td><button class="btn customDeleteBtn">Borrar</button></td>
 
 						</tr>
 
