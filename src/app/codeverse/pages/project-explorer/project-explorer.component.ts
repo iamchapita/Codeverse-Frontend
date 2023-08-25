@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Folder } from 'src/models/Folder.model';
+import { FetchService } from 'src/app/services/fetch.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { CreateNewActionModalComponent } from '../../components/create-new-action-modal/create-new-action-modal.component';
 import {
 	faFolderPlus,
 	faFolderTree,
@@ -9,12 +14,6 @@ import {
 	faArrowUp,
 	faBarsStaggered,
 } from '@fortawesome/free-solid-svg-icons';
-
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Folder } from 'src/models/Folder.model';
-import { FetchService } from 'src/app/services/fetch.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { CreateNewActionModalComponent } from '../../components/create-new-action-modal/create-new-action-modal.component';
 
 @Component({
 	selector: 'app-project-explorer',
@@ -71,7 +70,7 @@ export class ProjectExplorerComponent implements OnInit {
 		modalRef.result.then(
 			(result) => {
 				if (result !== 'Cerrar') {
-					this.action(origin);
+					this.action(result, origin);
 				}
 			},
 			(reason) => {
@@ -92,7 +91,18 @@ export class ProjectExplorerComponent implements OnInit {
 			.makeRequest(`folders/user/${id}`, 'GET', null)
 			.then((response) => {
 				this.rootFolder = { ...response };
-				console.log(response);
+
+				this.rootFolder.folders?.map((folderId, index) => {
+					this.fetchService
+						.makeRequest(`folders/${folderId}`, 'GET', null)
+						.then((response) => {
+							this.rootFolder.folders?.splice(index, 1, response);
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+				});
+
 				this.changeLoadingValue();
 			})
 			.catch((error) => {
@@ -100,7 +110,43 @@ export class ProjectExplorerComponent implements OnInit {
 			});
 	}
 
-	action(origin: string) {
-		console.log(`action: ${origin}`);
+	action(value: string, origin: string) {
+		if (origin === 'folder') {
+			this.addFolder(value);
+		}
 	}
+
+	async addFolder(name: string) {
+		const id = JSON.parse(localStorage.getItem('user')!).id;
+
+		this.fetchService
+			.makeRequest('folders', 'POST', {
+				name: name,
+				user: id,
+				parentFolder: `${this.rootFolder._id}`,
+			})
+			.then((childFolder) => {
+				this.getRootFolder();
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	// async addProject(name: string) {
+	// 	const id = JSON.parse(localStorage.getItem('user')!).id;
+
+	// 	this.fetchService
+	// 		.makeRequest('folders', 'POST', {
+	// 			name: name,
+	// 			user: id,
+	// 			parentFolder: `${this.rootFolder._id}`,
+	// 		})
+	// 		.then((childFolder) => {
+	// 			this.getRootFolder();
+	// 		})
+	// 		.catch((error) => {
+	// 			console.log(error);
+	// 		});
+	// }
 }

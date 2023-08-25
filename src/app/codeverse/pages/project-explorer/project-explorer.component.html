@@ -61,32 +61,32 @@
 			</div>
 
 			<div class="table-responsive" *ngIf="isLoading === false">
-				<table class="table table-bordered table-light table-hover table-stripped align-middle">
+				<table class="table table-light table-hover table-stripped align-middle">
 					<thead>
 						<tr>
 							<th>Nombre</th>
-							<th>Descripción</th>
+							<th>Tipo</th>
 							<th>Creado</th>
 							<th>Modificado</th>
 						</tr>
 					</thead>
-					<tbody>
+					<tbody  class="table-group-divider">
 
 						<tr *ngFor="let folder of rootFolder.folders">
 
 							<td routerLink="/">{{ folder.name }}</td>
-							<td>{{ folder.description }}</td>
+							<td>Carpeta</td>
 							<td>{{ folder.createdAt }}</td>
-							<td>{{ folder.modifiedAt }}</td>
+							<td>{{ folder.modifiedAt ? folder.modifiedAt : 'ND' }}</td>
 
 						</tr>
 
 						<tr *ngFor="let project of rootFolder.projects">
 
 							<td routerLink="/">{{ project.name }}</td>
-							<td>{{ project.description }}</td>
+							<td>Proyecto</td>
 							<td>{{ project.createdAt }}</td>
-							<td>{{ project.modifiedAt }}</td>
+							<td>{{ project.modifiedAt ? project.modifiedAt : 'ND' }}</td>
 
 						</tr>
 

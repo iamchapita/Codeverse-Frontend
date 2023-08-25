@@ -1,12 +1,17 @@
-<div class="modal-header">
-	<h4 class="modal-title">Crear Nuevo</h4>
-	<button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cerrar')">
-	</button>
-</div>
-<div class="modal-body">
-	<input type="text" #inputValue class="form-control" placeholder="Ingrese un valor">
-</div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-secondary close" (click)="dismiss('Cerrar')">Cerrar</button>
-	<button type="button" class="btn btn-primary save" (click)="close(inputValue.value)">Guardar</button>
-</div>
+	<div class="modal-header">
+		<h4 class="modal-title">Crear Nuevo</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cerrar')">
+		</button>
+	</div>
+	<div class="modal-body">
+		<input type="text" #inputValue class="form-control" placeholder="Ingrese un valor">
+
+		<div class="feedback" *ngIf="isValid === false">
+			Valor no válido
+		</div>
+
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary close" (click)="dismiss('Cerrar')">Cerrar</button>
+		<button type="button" class="btn btn-primary save" (click)="close(inputValue.value)">Guardar</button>
+	</div>
