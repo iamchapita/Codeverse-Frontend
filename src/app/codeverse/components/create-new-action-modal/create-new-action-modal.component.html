@@ -7,6 +7,6 @@
 	<input type="text" #inputValue class="form-control" placeholder="Ingrese un valor">
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-secondary" (click)="dismiss('Cerrar')">Cerrar</button>
-	<button type="button" class="btn btn-primary" (click)="close(inputValue.value)">Guardar</button>
+	<button type="button" class="btn btn-secondary close" (click)="dismiss('Cerrar')">Cerrar</button>
+	<button type="button" class="btn btn-primary save" (click)="close(inputValue.value)">Guardar</button>
 </div>
