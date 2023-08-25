@@ -58,7 +58,9 @@ export class ProjectExplorerComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
+		this.changeLoadingValue();
 		this.getRootFolder();
+		this.changeLoadingValue();
 	}
 
 	openModal(origin: string) {
@@ -84,7 +86,6 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	async getRootFolder() {
-		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 
 		this.fetchService
@@ -119,8 +120,6 @@ export class ProjectExplorerComponent implements OnInit {
 							console.log(error);
 						});
 				});
-
-				this.changeLoadingValue();
 			})
 			.catch((error) => {
 				console.log(error);
@@ -138,6 +137,7 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	async addFolder(name: string) {
+		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 
 		this.fetchService
@@ -152,10 +152,13 @@ export class ProjectExplorerComponent implements OnInit {
 			.catch((error) => {
 				console.log(error);
 			});
+		this.changeLoadingValue();
 	}
 
 	async addProject(name: string) {
+		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
+		const types = ['HTML', 'CSS', 'JS'];
 
 		this.fetchService
 			.makeRequest('projects', 'POST', {
@@ -164,11 +167,33 @@ export class ProjectExplorerComponent implements OnInit {
 				user: id,
 			})
 			.then((project) => {
-				console.log(project);
-				this.getRootFolder();
+				types.map((type) => {
+					this.fetchService
+						.makeRequest('files', 'POST', {
+							type: type,
+							content: '',
+						})
+						.then((file) => {
+							this.fetchService
+								.makeRequest(
+									`projects/${project._id}/add-file/${file._id}`,
+									'PUT',
+									null
+								)
+								.then((response) => {})
+								.catch((error) => {
+									console.log(error);
+								});
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+				});
 			})
 			.catch((error) => {
 				console.log(error);
 			});
+		this.getRootFolder();
+		this.changeLoadingValue();
 	}
 }
