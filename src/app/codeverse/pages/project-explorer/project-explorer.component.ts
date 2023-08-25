@@ -92,11 +92,28 @@ export class ProjectExplorerComponent implements OnInit {
 			.then((response) => {
 				this.rootFolder = { ...response };
 
+				// Cargando folders al objeto rootFolder
 				this.rootFolder.folders?.map((folderId, index) => {
 					this.fetchService
 						.makeRequest(`folders/${folderId}`, 'GET', null)
 						.then((response) => {
 							this.rootFolder.folders?.splice(index, 1, response);
+						})
+						.catch((error) => {
+							console.log(error);
+						});
+				});
+
+				// Cargando projects al objeto rootFolder
+				this.rootFolder.projects?.map((projectId, index) => {
+					this.fetchService
+						.makeRequest(`projects/${projectId}`, 'GET', null)
+						.then((response) => {
+							this.rootFolder.projects?.splice(
+								index,
+								1,
+								response
+							);
 						})
 						.catch((error) => {
 							console.log(error);
@@ -113,6 +130,10 @@ export class ProjectExplorerComponent implements OnInit {
 	action(value: string, origin: string) {
 		if (origin === 'folder') {
 			this.addFolder(value);
+		}
+
+		if (origin === 'project') {
+			this.addProject(value);
 		}
 	}
 
@@ -133,20 +154,21 @@ export class ProjectExplorerComponent implements OnInit {
 			});
 	}
 
-	// async addProject(name: string) {
-	// 	const id = JSON.parse(localStorage.getItem('user')!).id;
+	async addProject(name: string) {
+		const id = JSON.parse(localStorage.getItem('user')!).id;
 
-	// 	this.fetchService
-	// 		.makeRequest('folders', 'POST', {
-	// 			name: name,
-	// 			user: id,
-	// 			parentFolder: `${this.rootFolder._id}`,
-	// 		})
-	// 		.then((childFolder) => {
-	// 			this.getRootFolder();
-	// 		})
-	// 		.catch((error) => {
-	// 			console.log(error);
-	// 		});
-	// }
+		this.fetchService
+			.makeRequest('projects', 'POST', {
+				name: name,
+				parentFolder: `${this.rootFolder._id}`,
+				user: id,
+			})
+			.then((project) => {
+				console.log(project);
+				this.getRootFolder();
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
 }
