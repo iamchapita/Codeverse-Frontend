@@ -21,20 +21,20 @@
 				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('snippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
-				<button [ngClass]="{'btn customBtn': true, 'marked':onlyFolders}" (click)="onlyFolders = !onlyFolders"
+				<button [ngClass]="{'btn customBtn': true, 'marked':!showFolders}" (click)="showFolders = !showFolders"
 					[disabled]="isLoading === true">
-					<fa-icon [icon]="faFolderTree"></fa-icon>Solo Carpetas
+					<fa-icon [icon]="faFolderTree"></fa-icon>Carpetas
 				</button>
-				<button [ngClass]="{'btn customBtn': true, 'marked':onlyProjects}"
-					(click)="onlyProjects = !onlyProjects" [disabled]="isLoading === true">
-					<fa-icon [icon]="faCode"></fa-icon>Solo Proyectos
+				<button [ngClass]="{'btn customBtn': true, 'marked':!showProjects}"
+					(click)="showProjects = !showProjects" [disabled]="isLoading === true">
+					<fa-icon [icon]="faCode"></fa-icon>Proyectos
 				</button>
-				<button [ngClass]="{'btn customBtn': true, 'marked':onlySnippets}"
-					(click)="onlySnippets = !onlySnippets" [disabled]="isLoading === true">
-					<fa-icon [icon]="faBarsStaggered"></fa-icon>Solo Snippets
+				<button [ngClass]="{'btn customBtn': true, 'marked':!showSnippets}"
+					(click)="showSnippets = !showSnippets" [disabled]="isLoading === true">
+					<fa-icon [icon]="faBarsStaggered"></fa-icon>Snippets
 				</button>
-				<button [ngClass]="{'btn customBtn': true, 'marked':onlySharedProject}"
-					(click)="onlySharedProject = !onlySharedProject" [disabled]="isLoading === true">
+				<button [ngClass]="{'btn customBtn': true, 'marked':!showSharedProject}"
+					(click)="showSharedProject = !showSharedProject" [disabled]="isLoading === true">
 					<fa-icon [icon]="faShareNodes"></fa-icon>Proyectos Compartidos
 				</button>
 			</div>
@@ -48,7 +48,7 @@
 				<h1>{{ rootFolder.name }}</h1>
 
 				<div class="search">
-					<input class="btn customBtn" type="search" placeholder="Search" aria-label="Search">
+					<input class="btn customBtn" type="search" placeholder="Buscar" aria-label="Search">
 					<button class="btn customBtn">Buscar</button>
 				</div>
 
@@ -74,50 +74,60 @@
 					</thead>
 					<tbody class="table-group-divider">
 
-						<tr *ngFor="let folder of rootFolder.folders">
+						<ng-container *ngIf="showFolders === true">
+							<tr *ngFor="let folder of rootFolder.folders">
 
-							<td (click)="getRootFolder(folder._id!)">{{ folder.name }}</td>
-							<td (click)="getRootFolder(folder._id!)">Carpeta</td>
-							<td (click)="getRootFolder(folder._id!)">{{ folder.createdAt }}</td>
-							<td (click)="getRootFolder(folder._id!)">{{ folder.modifiedAt ? folder.modifiedAt : 'ND' }}
-							</td>
-							<td class="text-center">
+								<td (click)="getRootFolder(folder._id!)">{{ folder.name }}</td>
+								<td (click)="getRootFolder(folder._id!)">Carpeta</td>
+								<td (click)="getRootFolder(folder._id!)">{{ folder.createdAt }}</td>
+								<td (click)="getRootFolder(folder._id!)">{{ folder.modifiedAt ? folder.modifiedAt : 'ND'
+									}}
+								</td>
+								<td class="text-center">
 
-								<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
-									(click)="changeTriggerDeleteActionValue()">Borrar</button>
+									<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
+										(click)="changeTriggerDeleteActionValue()">Borrar</button>
 
-								<div class="deleteActions" *ngIf="triggerDeleteAction === true">
-									<button class="btn btn-success" (click)="deleteFolder(folder._id!)"><fa-icon [icon]="
-										faCheck"></fa-icon></button>
-									<button class="btn btn-danger" (click)="changeTriggerDeleteActionValue()"><fa-icon
-											[icon]="faXmark"></fa-icon></button>
-								</div>
+									<div class="deleteActions" *ngIf="triggerDeleteAction === true">
+										<button class="btn btn-success" (click)="deleteFolder(folder._id!)"><fa-icon
+												[icon]="
+											faCheck"></fa-icon></button>
+										<button class="btn btn-danger"
+											(click)="changeTriggerDeleteActionValue()"><fa-icon
+												[icon]="faXmark"></fa-icon></button>
+									</div>
 
-							</td>
+								</td>
 
-						</tr>
+							</tr>
+						</ng-container>
 
-						<tr *ngFor="let project of rootFolder.projects">
+						<ng-container *ngIf="showProjects === true">
+							<tr *ngFor="let project of rootFolder.projects">
 
-							<td>{{ project.name }}</td>
-							<td>Proyecto</td>
-							<td>{{ project.createdAt }}</td>
-							<td>{{ project.modifiedAt ? project.modifiedAt : 'ND' }}</td>
-							<td class="text-center">
+								<td [routerLink]="['/app/projectWorkspace']">{{ project.name }}</td>
+								<td [routerLink]="['/app/projectWorkspace']">Proyecto</td>
+								<td [routerLink]="['/app/projectWorkspace']">{{ project.createdAt }}</td>
+								<td [routerLink]="['/app/projectWorkspace']">{{ project.modifiedAt ? project.modifiedAt
+									:
+									'ND' }}</td>
+								<td class="text-center">
 
-								<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
-									(click)="changeTriggerDeleteActionValue()">Borrar</button>
+									<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
+										(click)="changeTriggerDeleteActionValue()">Borrar</button>
 
-								<div class="deleteActions" *ngIf="triggerDeleteAction === true">
-									<button class="btn btn-success" (click)="deleteProject(project._id!)"><fa-icon
-											[icon]="faCheck"></fa-icon></button>
-									<button class="btn btn-danger" (click)="changeTriggerDeleteActionValue()"><fa-icon
-											[icon]="faXmark"></fa-icon></button>
-								</div>
+									<div class="deleteActions" *ngIf="triggerDeleteAction === true">
+										<button class="btn btn-success" (click)="deleteProject(project._id!)"><fa-icon
+												[icon]="faCheck"></fa-icon></button>
+										<button class="btn btn-danger"
+											(click)="changeTriggerDeleteActionValue()"><fa-icon
+												[icon]="faXmark"></fa-icon></button>
+									</div>
 
-							</td>
+								</td>
 
-						</tr>
+							</tr>
+						</ng-container>
 
 					</tbody>
 				</table>

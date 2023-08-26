@@ -35,6 +35,7 @@ export class AuthService {
 			email: user.email,
 			displayName: user.displayName,
 			photoURL: user.photoURL,
+			plan: user.plan,
 		};
 
 		localStorage.setItem('user', JSON.stringify(this.userData));
@@ -55,6 +56,7 @@ export class AuthService {
 									displayName: user!.displayName,
 									photoURL: user!.photoURL,
 									id: response._id,
+									plan: response.plan,
 								});
 								this.performingLogin = false;
 								this.router.navigate(['app/projectExplorer']);
@@ -94,6 +96,7 @@ export class AuthService {
 										displayName: user!.displayName,
 										photoURL: user!.photoURL,
 										id: response._id,
+										plan: response.plan,
 									});
 								})
 								.then(async (response) => {
