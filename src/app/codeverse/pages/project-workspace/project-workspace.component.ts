@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
-import { EditorComponent } from '../../components/editor/editor.component';
-import { IframeComponent } from '../../components/iframe/iframe.component';
 import { Project } from 'src/models/Project.model';
 import { ActivatedRoute } from '@angular/router';
 import { FetchService } from 'src/app/services/fetch.service';
 import { AuthService } from 'src/app/services/auth.service';
-import { Folder } from 'src/models/Folder.model';
+import { FileSaverService } from 'ngx-filesaver';
 
 @Component({
 	selector: 'app-project-workspace',
@@ -50,7 +48,8 @@ export class ProjectWorkspaceComponent implements OnInit {
 	constructor(
 		private route: ActivatedRoute,
 		private fetchService: FetchService,
-		private authService: AuthService
+		private authService: AuthService,
+		private fileService: FileSaverService
 	) {}
 
 	ngOnInit(): void {
@@ -218,16 +217,16 @@ export class ProjectWorkspaceComponent implements OnInit {
 	}
 
 	saveEditor(type: string) {
-		let editoContent: string = '';
+		let editorContent: string = '';
 
 		if (type === 'HTML') {
-			editoContent = this.htmlCode;
+			editorContent = this.htmlCode;
 		}
 		if (type === 'CSS') {
-			editoContent = this.cssCode;
+			editorContent = this.cssCode;
 		}
 		if (type === 'JS') {
-			editoContent = this.jsCode;
+			editorContent = this.jsCode;
 		}
 
 		const file = this.projectDetail.files?.filter(
@@ -236,7 +235,7 @@ export class ProjectWorkspaceComponent implements OnInit {
 
 		this.fetchService
 			.makeRequest(`files/${file![0]._id}`, 'PUT', {
-				content: editoContent,
+				content: editorContent,
 			})
 			.then((response) => {
 				// console.log(response);
@@ -247,8 +246,34 @@ export class ProjectWorkspaceComponent implements OnInit {
 	}
 
 	downloadFile(type: string) {
-		this.changeLoadingValue();
-		console.log(type);
-		this.changeLoadingValue();
+		let content: string = '';
+
+		if (type === 'HTML') {
+			content = `
+				<html>
+				<head>
+					<title>${type}</title>
+				</head>
+				<body>
+					${this.htmlCode}
+				</body>
+				</html>
+			`;
+		}
+
+		if (type === 'CSS') {
+			content = this.cssCode;
+		}
+
+		if (type === 'JS') {
+			content = this.jsCode;
+		}
+
+		const fileName = `${
+			this.projectDetail.name
+		}.${type.toLocaleLowerCase()}`;
+		const fileType = this.fileService.genType(fileName);
+		const txtBlob = new Blob([content], { type: fileType });
+		this.fileService.save(txtBlob, fileName);
 	}
 }

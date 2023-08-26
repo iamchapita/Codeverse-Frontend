@@ -4,7 +4,8 @@
 			<img src="assets/Marca White.png">
 		</a>
 
-		<button class="navbar-toggler" type="button" (click)="toggleCollapsed()" *ngIf="isLanding === true || isExplorer === true || isWorkspace === true">
+		<button class="navbar-toggler" type="button" (click)="toggleCollapsed()"
+			*ngIf="isLanding === true || isExplorer === true || isWorkspace === true">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
@@ -13,7 +14,8 @@
 			<ul class="navbar-nav nav-pills" *ngIf="isWorkspace === true">
 
 				<li class="nav-item">
-					<a class="nav-link" (click)="isCollapsed = true">Explorador de Archivos</a>
+					<a class="nav-link" [routerLink]="['/app/projectExplorer']" (click)="isCollapsed = true">Explorador
+						de Archivos</a>
 				</li>
 
 				<li class="nav-item">
@@ -50,10 +52,10 @@
 				<ul class="navbar-nav nav-pills" *ngIf="authService.isLoggedIn">
 
 					<li class="nav-item">
-						<a class="nav-link" [routerLink]="'../../app/editProfile'" (click)="toggleCollapsed()">Mi Perfil</a>
+						<a class="nav-link" [routerLink]="['/app/editProfile']" (click)="toggleCollapsed()">Mi Perfil</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" [routerLink]="'.'" (click)="singOut()">Cerrar Sesión</a>
+						<a class="nav-link" [routerLink]="'/'" (click)="singOut()">Cerrar Sesión</a>
 					</li>
 				</ul>
 
