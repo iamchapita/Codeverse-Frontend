@@ -1,3 +1,4 @@
+import { User } from './User.model';
 import { File } from './File.model';
 import { Folder } from './Folder.model';
 import { Snippet } from './Snippet.model';
@@ -8,7 +9,8 @@ export interface Project {
 	description: string;
 	createdAt: string;
 	modifiedAt: string;
-	parentFolder?: string;
+	parentFolder: string;
+	user: string;
 	files?: Array<File>;
-	snippets?: Array<Snippet>;
+	colaborators?: Array<User>;
 }
