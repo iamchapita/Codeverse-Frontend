@@ -99,10 +99,10 @@
 
 						<tr *ngFor="let project of rootFolder.projects">
 
-							<td>{{ project.name }}</td>
-							<td>Proyecto</td>
-							<td>{{ project.createdAt }}</td>
-							<td>{{ project.modifiedAt ? project.modifiedAt : 'ND' }}</td>
+							<td [routerLink]="['/app/projectWorkspace']">{{ project.name }}</td>
+							<td [routerLink]="['/app/projectWorkspace']">Proyecto</td>
+							<td [routerLink]="['/app/projectWorkspace']">{{ project.createdAt }}</td>
+							<td [routerLink]="['/app/projectWorkspace']">{{ project.modifiedAt ? project.modifiedAt : 'ND' }}</td>
 							<td class="text-center">
 
 								<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
