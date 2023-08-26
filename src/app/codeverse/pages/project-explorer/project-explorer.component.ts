@@ -4,6 +4,7 @@ import { Folder } from 'src/models/Folder.model';
 import { FetchService } from 'src/app/services/fetch.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CreateNewActionModalComponent } from '../../components/create-new-action-modal/create-new-action-modal.component';
+import { ActivatedRoute } from '@angular/router';
 import {
 	faFolderPlus,
 	faFolderTree,
@@ -42,6 +43,7 @@ export class ProjectExplorerComponent implements OnInit {
 	isUpDisabled: boolean;
 	isLoading: boolean = false;
 	triggerDeleteAction: boolean = false;
+	folderId: string | null;
 
 	rootFolder: Folder = {
 		_id: '',
@@ -58,12 +60,16 @@ export class ProjectExplorerComponent implements OnInit {
 	constructor(
 		private fetchService: FetchService,
 		private authService: AuthService,
-		private modalService: NgbModal
+		private modalService: NgbModal,
+		private router: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
 		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
-		this.getRootFolder();
+		this.folderId = this.router.snapshot.paramMap.get('id');
+		this.folderId !== null
+			? this.getRootFolder(this.folderId)
+			: this.getRootFolder();
 	}
 
 	changeLoadingValue(): void {

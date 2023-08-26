@@ -14,7 +14,7 @@
 			<ul class="navbar-nav nav-pills" *ngIf="isWorkspace === true">
 
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="['/app/projectExplorer']" (click)="isCollapsed = true">Explorador
+					<a class="nav-link" [routerLink]="['/app/projectExplorer', folderId]" (click)="isCollapsed = true">Explorador
 						de Archivos</a>
 				</li>
 

@@ -17,6 +17,7 @@ export class NavbarComponent {
 	@Input() isLanding: boolean = false;
 	@Input() isExplorer: boolean = false;
 	@Input() isLoggin: boolean = false;
+	@Input() folderId: string | null = null;
 
 	constructor(public authService: AuthService) {}
 
@@ -24,7 +25,7 @@ export class NavbarComponent {
 		this.isCollapsed = !this.isCollapsed;
 	}
 
-	singOut(){
+	singOut() {
 		this.toggleCollapsed();
 		this.authService.signOut();
 	}
