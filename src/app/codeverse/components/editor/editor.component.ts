@@ -1,4 +1,3 @@
-
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
 

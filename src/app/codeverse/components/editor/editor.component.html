@@ -9,11 +9,10 @@
 	</div>
 
 	<div class="editor">
-		<pre>
-			<code [highlight]="code" [languages]="['javascript', 'css', 'xml']">
-				<textarea [(ngModel)]="code" (ngModelChange)="textareaValueChange()"></textarea>
-			</code>
-		</pre>
+
+		<textarea class="code" [(ngModel)]="code" [highlight]="code" [languages]="['xml', 'css', 'js']"
+			(ngModelChange)="textareaValueChange()"></textarea>
+
 	</div>
 
 </div>
