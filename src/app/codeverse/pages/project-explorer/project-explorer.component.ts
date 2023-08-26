@@ -43,7 +43,6 @@ export class ProjectExplorerComponent implements OnInit {
 	isUpDisabled: boolean;
 	isLoading: boolean = false;
 	triggerDeleteAction: boolean = false;
-	folderId: string | null;
 
 	rootFolder: Folder = {
 		_id: '',
@@ -66,10 +65,7 @@ export class ProjectExplorerComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.isUpDisabled = !this.rootFolder.hasOwnProperty('parentFolder');
-		this.folderId = this.router.snapshot.paramMap.get('id');
-		this.folderId !== null
-			? this.getRootFolder(this.folderId)
-			: this.getRootFolder();
+		this.getRootFolder();
 	}
 
 	changeLoadingValue(): void {
@@ -232,6 +228,7 @@ export class ProjectExplorerComponent implements OnInit {
 		this.fetchService
 			.makeRequest(`folders/${id}`, 'DELETE', null)
 			.then(async (response) => {
+				console.log(response);
 				this.changeTriggerDeleteActionValue();
 				await this.getRootFolder(this.rootFolder._id!);
 			})

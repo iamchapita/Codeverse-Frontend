@@ -13,10 +13,6 @@ const routes: Routes = [
 				component: ProjectExplorerComponent,
 			},
 			{
-				path: 'projectExplorer/:id',
-				component: ProjectExplorerComponent,
-			},
-			{
 				path: 'projectWorkspace/:id',
 				component: ProjectWorkspaceComponent,
 			},
