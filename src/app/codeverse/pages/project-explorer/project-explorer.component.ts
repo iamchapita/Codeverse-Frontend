@@ -92,46 +92,51 @@ export class ProjectExplorerComponent implements OnInit {
 		);
 	}
 
-	async getRootFolder() {
+	async getRootFolder(childId?: string) {
 		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 
-		this.fetchService
-			.makeRequest(`folders/user/${id}`, 'GET', null)
-			.then((response) => {
-				this.rootFolder = { ...response };
-
-				// Cargando folders al objeto rootFolder
-				this.rootFolder.folders?.map((folderId, index) => {
-					this.fetchService
-						.makeRequest(`folders/${folderId}`, 'GET', null)
-						.then((response) => {
-							this.rootFolder.folders?.splice(index, 1, response);
-						})
-						.catch((error) => {
-							console.log(error);
-						});
+		if (!childId) {
+			await this.fetchService
+				.makeRequest(`folders/user/${id}`, 'GET', null)
+				.then((response) => {
+					this.rootFolder = { ...response };
 				});
-
-				// Cargando projects al objeto rootFolder
-				this.rootFolder.projects?.map((projectId, index) => {
-					this.fetchService
-						.makeRequest(`projects/${projectId}`, 'GET', null)
-						.then((response) => {
-							this.rootFolder.projects?.splice(
-								index,
-								1,
-								response
-							);
-						})
-						.catch((error) => {
-							console.log(error);
-						});
+		} else {
+			await this.fetchService
+				.makeRequest(`folders/${childId}`, 'GET', null)
+				.then((response) => {
+					this.rootFolder = { ...response };
+					this.rootFolder.parentFolder !== undefined
+						? (this.isUpDisabled = false)
+						: (this.isUpDisabled = true);
 				});
-			})
-			.catch((error) => {
-				console.log(error);
-			});
+		}
+
+		// Cargando folders al objeto rootFolder
+		this.rootFolder.folders?.map((folderId, index) => {
+			this.fetchService
+				.makeRequest(`folders/${folderId}`, 'GET', null)
+				.then((response) => {
+					this.rootFolder.folders?.splice(index, 1, response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		});
+
+		// Cargando projects al objeto rootFolder
+		this.rootFolder.projects?.map((projectId, index) => {
+			this.fetchService
+				.makeRequest(`projects/${projectId}`, 'GET', null)
+				.then((response) => {
+					this.rootFolder.projects?.splice(index, 1, response);
+				})
+				.catch((error) => {
+					console.log(error);
+				});
+		});
+
 		this.changeLoadingValue();
 	}
 
@@ -155,7 +160,7 @@ export class ProjectExplorerComponent implements OnInit {
 				parentFolder: `${this.rootFolder._id}`,
 			})
 			.then(async (childFolder) => {
-				await this.getRootFolder();
+				await this.getRootFolder(this.rootFolder._id!);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -187,7 +192,9 @@ export class ProjectExplorerComponent implements OnInit {
 									null
 								)
 								.then(async (response) => {
-									await this.getRootFolder();
+									await this.getRootFolder(
+										this.rootFolder._id!
+									);
 								})
 								.catch((error) => {
 									console.log(error);
@@ -208,7 +215,7 @@ export class ProjectExplorerComponent implements OnInit {
 			.makeRequest(`projects/${id}`, 'DELETE', null)
 			.then(async (response) => {
 				this.changeTriggerDeleteActionValue();
-				await this.getRootFolder();
+				await this.getRootFolder(this.rootFolder._id!);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -220,7 +227,7 @@ export class ProjectExplorerComponent implements OnInit {
 			.makeRequest(`folders/${id}`, 'DELETE', null)
 			.then(async (response) => {
 				this.changeTriggerDeleteActionValue();
-				await this.getRootFolder();
+				await this.getRootFolder(this.rootFolder._id!);
 			})
 			.catch((error) => {
 				console.log(error);

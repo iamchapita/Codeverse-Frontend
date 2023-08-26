@@ -8,7 +8,8 @@
 
 			<div class="options">
 
-				<button class="btn customBtn" [disabled]="isUpDisabled === true || isLoading === true">
+				<button class="btn customBtn" [disabled]="isUpDisabled === true || isLoading === true"
+					(click)="getRootFolder(rootFolder.parentFolder)">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
 				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('folder')">
@@ -75,10 +76,11 @@
 
 						<tr *ngFor="let folder of rootFolder.folders">
 
-							<td routerLink="/">{{ folder.name }}</td>
-							<td>Carpeta</td>
-							<td>{{ folder.createdAt }}</td>
-							<td>{{ folder.modifiedAt ? folder.modifiedAt : 'ND' }}</td>
+							<td (click)="getRootFolder(folder._id!)">{{ folder.name }}</td>
+							<td (click)="getRootFolder(folder._id!)">Carpeta</td>
+							<td (click)="getRootFolder(folder._id!)">{{ folder.createdAt }}</td>
+							<td (click)="getRootFolder(folder._id!)">{{ folder.modifiedAt ? folder.modifiedAt : 'ND' }}
+							</td>
 							<td class="text-center">
 
 								<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
@@ -97,7 +99,7 @@
 
 						<tr *ngFor="let project of rootFolder.projects">
 
-							<td routerLink="/">{{ project.name }}</td>
+							<td>{{ project.name }}</td>
 							<td>Proyecto</td>
 							<td>{{ project.createdAt }}</td>
 							<td>{{ project.modifiedAt ? project.modifiedAt : 'ND' }}</td>
