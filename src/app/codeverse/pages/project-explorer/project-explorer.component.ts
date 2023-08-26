@@ -35,10 +35,10 @@ export class ProjectExplorerComponent implements OnInit {
 	faXmark = faXmark;
 
 	isExplorer: boolean = true;
-	onlyFolders: boolean = false;
-	onlyProjects: boolean = false;
-	onlySnippets: boolean = false;
-	onlySharedProject: boolean = false;
+	showFolders: boolean = true;
+	showProjects: boolean = true;
+	showSnippets: boolean = true;
+	showSharedProject: boolean = true;
 	isUpDisabled: boolean;
 	isLoading: boolean = false;
 	triggerDeleteAction: boolean = false;
