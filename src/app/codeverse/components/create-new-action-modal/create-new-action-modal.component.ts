@@ -10,7 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 	imports: [CommonModule],
 })
 export class CreateNewActionModalComponent {
-	inputValue: any = "";
+	inputValue: any = '';
 	isValid: boolean = true;
 
 	constructor(public activeModal: NgbActiveModal) {}
@@ -21,9 +21,10 @@ export class CreateNewActionModalComponent {
 	}
 
 	close(value: string) {
-		const regex = /^(?!\d+$)[a-zA-ZñÑáéíóúÁÉÍÓÚ\s_-]{1,50}$/;
+		const regex =
+			/^([a-zA-ZñÑáéíóúÁÉÍÓÚ\d\s_-]+\.?){1,50}[a-zA-ZñÑáéíóúÁÉÍÓÚ\d\s_-]+$/;
 
-		if(regex.test(value) === false){
+		if (regex.test(value) === false) {
 			this.isValid = false;
 		} else {
 			this.inputValue = value;
