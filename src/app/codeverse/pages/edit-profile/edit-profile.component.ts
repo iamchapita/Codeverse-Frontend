@@ -18,28 +18,25 @@ export class EditProfileComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
-    this.user = JSON.parse( localStorage.getItem('user')! )
-    console.log(this.user);
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       lastname: ['', Validators.required],
-      plan: ['']
+      plan: ['', Validators.required]
     });
-    
+    this.user = JSON.parse( localStorage.getItem('user')! )
   }
 
   onSubmit(){
     let newUser = {
       name: [this.form.controls['name'].value, this.form.controls['lastname'].value].join(' '),
-      email: this.form.controls['email'].value
+      email: this.form.controls['email'].value,
+      plan: this.form.controls['plan'].value
     }
     this.updateUser(newUser)
-    console.log(this.user);
   }
-
+  
   async updateUser(newUserData: any){
-    
     await this.fetchService
       .makeRequest(`users/${this.user.id}`, 'PUT', newUserData)  
       .then((response) => {

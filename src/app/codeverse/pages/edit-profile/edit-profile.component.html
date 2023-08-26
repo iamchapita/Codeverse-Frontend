@@ -35,26 +35,28 @@
                         </div>
                     </div>
                     <div class="mb-4 row">
-                        <label for="email" class="col-sm-2 col-form-label">Correo electrónico: </label>
-                        <div class="col-sm-10">
-                            <input class="form-control" id="email" type="text" formControlName="email">
+                        <label for="email" class="col-sm-3 col-form-label">Correo electrónico: </label>
+                        <div class="col-sm-9">
+                            <input class="form-control mt-2" id="email" type="text" formControlName="email">
                         </div>
                     </div>
 
                     <div class="mb-4 row">
+                        <div id="emailHelp" class="form-text">Actualmente posees el plan <strong>{{ user.plan }}</strong>. Si deseas puedes actualizarlo a continuacion.</div>
                         <label for="plan" class="col-sm-2 col-form-label">Plan: </label>
                         <div class="col-sm-10">
-                            <select class="form-control" id="plan">
-                                <option value="" disabled selected hidden>Elije un plan</option>
+                            <select class="form-select" id="plan">
+                                <option value="free" disabled selected hidden>Elije un plan</option>
                                 <option value="free">Free Plan</option>
                                 <option value="x">Plus Plan</option>
                                 <option value="y">Premium Plan</option>
                             </select>
                         </div>
                     </div>
+                    
 
                     <div class="mb-4 row">
-                        <button routerLink="/app/projectExplorer" class="btn btn-lg btn-secondary">Cancelar</button>
+                        <button routerLink="/app/projectExplorer" class="btn btn-lg btn-secondary mb-3">Cancelar</button>
                         <button class="btn btn-lg btn-custom" type="submit" [disabled]="!form.valid">Confirmar</button>
                     </div>
                 </form>
