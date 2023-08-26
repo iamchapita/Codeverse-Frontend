@@ -6,6 +6,7 @@ import { Project } from 'src/models/Project.model';
 import { ActivatedRoute } from '@angular/router';
 import { FetchService } from 'src/app/services/fetch.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { Folder } from 'src/models/Folder.model';
 
 @Component({
 	selector: 'app-project-workspace',
@@ -27,7 +28,6 @@ export class ProjectWorkspaceComponent implements OnInit {
 		parentFolder: '',
 	};
 
-	projectTitle: string = '';
 	htmlCode: string = '';
 	cssCode: string = '';
 	jsCode: string = '';
@@ -44,6 +44,9 @@ export class ProjectWorkspaceComponent implements OnInit {
 	// Controla si las ventanas están plegadas y desplegadas
 	areEditorsHidden: boolean = false;
 
+	// Controla el spinnet de carga
+	isLoading: boolean = true;
+
 	constructor(
 		private route: ActivatedRoute,
 		private fetchService: FetchService,
@@ -51,7 +54,6 @@ export class ProjectWorkspaceComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.setCodeValues();
 		this.projectId = this.route.snapshot.paramMap.get('id');
 		this.getProject(this.projectId!);
 	}
@@ -64,7 +66,10 @@ export class ProjectWorkspaceComponent implements OnInit {
 			.then((response) => {
 				this.projectDetail = { ...response };
 
-				if (this.projectDetail.user !== userId) {
+				if (
+					this.projectDetail.user !== userId &&
+					this.projectDetail.colaborators?.indexOf(userId) === -1
+				) {
 					console.log('No tienes Acceso a este Proyecto');
 				}
 
@@ -77,14 +82,14 @@ export class ProjectWorkspaceComponent implements OnInit {
 								1,
 								response
 							);
+							this.setCodeValues(response.content, response.type);
 						})
 						.catch((error) => {
 							console.log(error);
 						});
 				});
 
-				this.setCodeValues();
-
+				this.changeLoadingValue();
 			})
 			.catch((error) => {
 				console.log('No tienes Acceso a este Proyecto');
@@ -92,20 +97,20 @@ export class ProjectWorkspaceComponent implements OnInit {
 			});
 	}
 
-	setCodeValues(): void {
-		this.projectTitle = this.projectDetail.name;
+	changeLoadingValue(): void {
+		this.isLoading = !this.isLoading;
+	}
 
-		this.projectDetail.files?.map((file) => {
-			if (file.type === 'HTML') {
-				this.htmlCode = file.content;
-			}
-			if (file.type === 'CSS') {
-				this.cssCode = file.content;
-			}
-			if (file.type === 'JS') {
-				this.jsCode = file.content;
-			}
-		});
+	setCodeValues(content: string, type: string): void {
+		if (type === 'HTML') {
+			this.htmlCode = content;
+		}
+		if (type === 'CSS') {
+			this.cssCode = content;
+		}
+		if (type === 'JS') {
+			this.jsCode = content;
+		}
 
 		this.iframeCode = `
 		<html>
@@ -210,5 +215,40 @@ export class ProjectWorkspaceComponent implements OnInit {
 			this.cssHidden === true
 				? true
 				: false;
+	}
+
+	saveEditor(type: string) {
+		let editoContent: string = '';
+
+		if (type === 'HTML') {
+			editoContent = this.htmlCode;
+		}
+		if (type === 'CSS') {
+			editoContent = this.cssCode;
+		}
+		if (type === 'JS') {
+			editoContent = this.jsCode;
+		}
+
+		const file = this.projectDetail.files?.filter(
+			(file) => file.type === type
+		);
+
+		this.fetchService
+			.makeRequest(`files/${file![0]._id}`, 'PUT', {
+				content: editoContent,
+			})
+			.then((response) => {
+				// console.log(response);
+			})
+			.catch((error) => {
+				console.error(error);
+			});
+	}
+
+	downloadFile(type: string) {
+		this.changeLoadingValue();
+		console.log(type);
+		this.changeLoadingValue();
 	}
 }

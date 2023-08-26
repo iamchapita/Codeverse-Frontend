@@ -4,13 +4,16 @@
 		<button class="btn-header file">{{file}}</button>
 
 		<div class="actions">
+			<button class="btn-header" (click)="download.emit()"><fa-icon [icon]=" faDownload"></fa-icon></button>
+			<button class="btn-header" (click)="saveEvent.emit()"><fa-icon [icon]="faFloppyDisk"></fa-icon></button>
 			<button class="btn-header" (click)="foldEvent.emit()"><fa-icon [icon]="faChevronUp"></fa-icon></button>
 		</div>
 	</div>
 
 	<div class="editor">
 
-		<textarea [highlight]="code" class="code" [(ngModel)]="code" (ngModelChange)="textareaValueChange()"></textarea>
+		<textarea [highlight]="code" class="code" [(ngModel)]="code" (ngModelChange)="textareaValueChange()"
+			(keydown)="handleTabKey($event)"></textarea>
 
 	</div>
 

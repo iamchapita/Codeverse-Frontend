@@ -2,58 +2,75 @@
 
 <div class="container-fluid">
 
-	<div [ngClass]="{'row': true, 'row1': areEditorsHidden, 'h-100': !areEditorsHidden}">
-
-		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
-
-			<div class="editors">
-
-				<app-editor [code]="htmlCode" (codeValueChange)="htmlCodeChange($event)" file="HTML"
-					(foldEvent)="foldEditor('HTML')" *ngIf="!htmlHidden">
-				</app-editor>
-				<app-editor [code]="cssCode" (codeValueChange)="cssCodeChange($event)" file="CSS"
-					(foldEvent)="foldEditor('CSS')" *ngIf="!cssHidden">
-				</app-editor>
-				<app-editor [code]="jsCode" (codeValueChange)="jsCodeChange($event)" file="JS"
-					(foldEvent)="foldEditor('JS')" *ngIf="!jsHidden">
-				</app-editor>
-
+	<div class="row h-100" *ngIf="isLoading === true">
+		<div class="d-flex justify-content-center align-items-center bg-custom1">
+			<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+				<span class="visually-hidden">Cargando...</span>
 			</div>
-
-		</div>
-
-		<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
-
-			<app-iframe [title]="projectTitle" [code]="iframeCode"></app-iframe>
-
 		</div>
 
 	</div>
 
-	<div class="row row2 bg-custom1 pb-3" *ngIf="areEditorsHidden === true">
+	<ng-container *ngIf="isLoading === false">
 
-		<div class="window-minimized-container">
+		<div [ngClass]="{'row': true, 'row1': areEditorsHidden, 'h-100': !areEditorsHidden}">
 
-			<div class="html bg-custom" *ngIf="htmlHidden">
+			<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
 
-				<div class="minimazed-header">
-					<button class="btn-header file" (click)="foldEditor('HTML')">HTML</button>
+				<div class="editors">
+
+					<app-editor [code]="htmlCode" (codeValueChange)="htmlCodeChange($event)" file="HTML"
+						(foldEvent)="foldEditor('HTML')" *ngIf="!htmlHidden" (download)="downloadFile('HTML')"
+						(saveEvent)="saveEditor('HTML')">
+					</app-editor>
+					<app-editor [code]="cssCode" (codeValueChange)="cssCodeChange($event)" file="CSS"
+						(foldEvent)="foldEditor('CSS')" *ngIf="!cssHidden" (download)="downloadFile('CSS')"
+						(saveEvent)="saveEditor('CSS')">
+					</app-editor>
+					<app-editor [code]="jsCode" (codeValueChange)="jsCodeChange($event)" file="JS"
+						(foldEvent)="foldEditor('JS')" *ngIf="!jsHidden" (download)="downloadFile('JS')"
+						(saveEvent)="saveEditor('JS')">
+					</app-editor>
+
 				</div>
 
 			</div>
 
-			<div class="css bg-custom" *ngIf="cssHidden">
-				<div class="minimazed-header">
-					<button class="btn-header file" (click)="foldEditor('CSS')">CSS</button>
-				</div>
-			</div>
+			<div class="col-sm-12 col-md-6 col-lg-6 pt-3 pb-3 bg-custom1">
 
-			<div class="js bg-custom" *ngIf="jsHidden">
-				<button class="btn-header file" (click)="foldEditor('JS')">JS</button>
+				<app-iframe [title]="projectDetail.name" [code]="iframeCode"></app-iframe>
+
 			</div>
 
 		</div>
 
-	</div>
+		<div class="row row2 bg-custom1 pb-3" *ngIf="areEditorsHidden === true">
+
+			<div class="window-minimized-container">
+
+				<div class="html bg-custom" *ngIf="htmlHidden">
+
+					<div class="minimazed-header">
+						<button class="btn-header file" (click)="foldEditor('HTML')">HTML</button>
+					</div>
+
+				</div>
+
+				<div class="css bg-custom" *ngIf="cssHidden">
+					<div class="minimazed-header">
+						<button class="btn-header file" (click)="foldEditor('CSS')">CSS</button>
+					</div>
+				</div>
+
+				<div class="js bg-custom" *ngIf="jsHidden">
+					<button class="btn-header file" (click)="foldEditor('JS')">JS</button>
+				</div>
+
+			</div>
+
+		</div>
+
+	</ng-container>
+
 
 </div>
