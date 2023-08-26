@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProjectExplorerComponent } from './pages/project-explorer/project-explorer.component';
 import { ProjectWorkspaceComponent } from './pages/project-workspace/project-workspace.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 const routes: Routes = [
 	{
@@ -14,6 +15,10 @@ const routes: Routes = [
 			{
 				path: 'projectWorkspace/:id',
 				component: ProjectWorkspaceComponent,
+			},
+			{
+				path: 'editProfile',
+				component: EditProfileComponent
 			},
 			{
 				path: '**',

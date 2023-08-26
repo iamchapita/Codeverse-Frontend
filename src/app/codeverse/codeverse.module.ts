@@ -8,12 +8,13 @@ import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 import { EditorComponent } from './components/editor/editor.component';
 import { IframeComponent } from './components/iframe/iframe.component';
 import { CreateNewActionModalComponent } from './components/create-new-action-modal/create-new-action-modal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
 	HIGHLIGHT_OPTIONS,
 	HighlightModule,
 	HighlightOptions,
 } from 'ngx-highlightjs';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +22,7 @@ import {
 		ProjectWorkspaceComponent,
 		EditorComponent,
 		IframeComponent,
+  EditProfileComponent,
 	],
 	imports: [
 		CommonModule,
@@ -28,6 +30,7 @@ import {
 		NavbarComponent,
 		CreateNewActionModalComponent,
 		FormsModule,
+		ReactiveFormsModule,
 		FontAwesomeModule,
 		HighlightModule,
 	],
