@@ -50,7 +50,7 @@
 				<ul class="navbar-nav nav-pills" *ngIf="authService.isLoggedIn">
 
 					<li class="nav-item">
-						<a class="nav-link" [routerLink]="'.'" (click)="toggleCollapsed()">Mi Perfil</a>
+						<a class="nav-link" [routerLink]="'../../app/editProfile'" (click)="toggleCollapsed()">Mi Perfil</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" [routerLink]="'.'" (click)="singOut()">Cerrar Sesión</a>
