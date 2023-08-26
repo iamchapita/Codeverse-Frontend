@@ -85,7 +85,8 @@
 									(click)="changeTriggerDeleteActionValue()">Borrar</button>
 
 								<div class="deleteActions" *ngIf="triggerDeleteAction === true">
-									<button class="btn btn-success"><fa-icon [icon]="faCheck"></fa-icon></button>
+									<button class="btn btn-success" (click)="deleteFolder(folder._id!)"><fa-icon [icon]="
+										faCheck"></fa-icon></button>
 									<button class="btn btn-danger" (click)="changeTriggerDeleteActionValue()"><fa-icon
 											[icon]="faXmark"></fa-icon></button>
 								</div>

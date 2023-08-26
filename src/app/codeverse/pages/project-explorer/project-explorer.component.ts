@@ -205,11 +205,19 @@ export class ProjectExplorerComponent implements OnInit {
 
 	async deleteProject(id: string) {
 		this.fetchService
-			.makeRequest(
-				`projects/${id}`,
-				'DELETE',
-				null
-			)
+			.makeRequest(`projects/${id}`, 'DELETE', null)
+			.then(async (response) => {
+				this.changeTriggerDeleteActionValue();
+				await this.getRootFolder();
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}
+
+	async deleteFolder(id: string) {
+		this.fetchService
+			.makeRequest(`folders/${id}`, 'DELETE', null)
 			.then(async (response) => {
 				this.changeTriggerDeleteActionValue();
 				await this.getRootFolder();
