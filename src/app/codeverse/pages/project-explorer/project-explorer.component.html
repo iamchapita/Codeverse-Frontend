@@ -105,10 +105,11 @@
 						<ng-container *ngIf="showProjects === true">
 							<tr *ngFor="let project of rootFolder.projects">
 
-								<td [routerLink]="['/app/projectWorkspace']">{{ project.name }}</td>
-								<td [routerLink]="['/app/projectWorkspace']">Proyecto</td>
-								<td [routerLink]="['/app/projectWorkspace']">{{ project.createdAt }}</td>
-								<td [routerLink]="['/app/projectWorkspace']">{{ project.modifiedAt ? project.modifiedAt
+								<td [routerLink]="['/app/projectWorkspace/',project._id]">{{ project.name }}</td>
+								<td [routerLink]="['/app/projectWorkspace/', project._id]">Proyecto</td>
+								<td [routerLink]="['/app/projectWorkspace/', project._id]">{{ project.createdAt }}</td>
+								<td [routerLink]="['/app/projectWorkspace/', project._id]">{{ project.modifiedAt ?
+									project.modifiedAt
 									:
 									'ND' }}</td>
 								<td class="text-center">

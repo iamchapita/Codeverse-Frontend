@@ -12,13 +12,12 @@ const routes: Routes = [
 				component: ProjectExplorerComponent,
 			},
 			{
-				path: 'projectWorkspace',
+				path: 'projectWorkspace/:id',
 				component: ProjectWorkspaceComponent,
 			},
 			{
 				path: '**',
 				redirectTo: 'projectExplorer',
-				// pathMatch: 'full'
 			},
 		],
 	},
