@@ -34,15 +34,8 @@ import {
 	providers: [
 		{
 			provide: HIGHLIGHT_OPTIONS,
-			useValue: <HighlightOptions>{
-				lineNumbers: true,
-				coreLibraryLoader: () => import('highlight.js/lib/core'),
-				lineNumbersLoader: () => import('ngx-highlightjs/line-numbers'),
-				languages: {
-					js: () => import('highlight.js/lib/languages/javascript'),
-					css: () => import('highlight.js/lib/languages/css'),
-					xml: () => import('highlight.js/lib/languages/xml'),
-				},
+			useValue: {
+				fullLibraryLoader: () => import('highlight.js'),
 			},
 		},
 	],
