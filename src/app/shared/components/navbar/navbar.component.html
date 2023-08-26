@@ -13,10 +13,11 @@
 			<ul class="navbar-nav nav-pills" *ngIf="isWorkspace === true">
 
 				<li class="nav-item">
-					<a class="nav-link" (click)="isCollapsed = true">Compartir</a>
+					<a class="nav-link" (click)="isCollapsed = true">Explorador de Archivos</a>
 				</li>
+
 				<li class="nav-item">
-					<a class="nav-link" (click)="isCollapsed = true">Snippets</a>
+					<a class="nav-link" (click)="isCollapsed = true">Compartir Proyecto</a>
 				</li>
 
 			</ul>
@@ -35,12 +36,12 @@
 
 			<ul class="navbar-nav nav-pills" *ngIf="isExplorer === true">
 
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link" [routerLink]="'.'" (click)="toggleCollapsed()">Proyecto Nuevo</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" [routerLink]="'.'" (click)="toggleCollapsed()">Prueba</a>
-				</li>
+				</li> -->
 
 			</ul>
 
