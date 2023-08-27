@@ -95,44 +95,22 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	openSnippetModal(origin: string) {
-		if (origin === 'snippet') {
-			const modalRef = this.modalService.open(SnippetComponent, {
-				size: 'lg',
-				centered: true,
-				backdrop: 'static',
-			});
+		const modalRef = this.modalService.open(SnippetComponent, {
+			size: 'lg',
+			centered: true,
+			backdrop: 'static',
+		});
 
-			modalRef.result.then(
-				(result) => {
-					if (result !== 'Cerrar') {
-						this.action(result, origin);
-					}
-				},
-				(reason) => {
-					// Manejar el cierre del modal (si es necesario)
+		modalRef.result.then(
+			(result) => {
+				if (result !== 'Cerrar') {
+					this.action(result, origin);
 				}
-			);
-		} else {
-			const modalRef = this.modalService.open(SnippetComponent, {
-				size: 'lg',
-				centered: true,
-				backdrop: 'static',
-				scrollable: true,
-			});
-
-			modalRef.componentInstance.snippetId = origin;
-
-			modalRef.result.then(
-				(result) => {
-					if (result !== 'Cerrar') {
-						this.action(result, origin);
-					}
-				},
-				(reason) => {
-					// Manejar el cierre del modal (si es necesario)
-				}
-			);
-		}
+			},
+			(reason) => {
+				// Manejar el cierre del modal (si es necesario)
+			}
+		);
 	}
 
 	async getRootFolder(childId?: string) {
@@ -181,6 +159,7 @@ export class ProjectExplorerComponent implements OnInit {
 				});
 		});
 
+		// Cargando projects al objeto rootFolder
 		this.rootFolder.snippets?.map((snippetId, index) => {
 			this.fetchService
 				.makeRequest(`snippets/${snippetId}`, 'GET', null)
@@ -191,17 +170,20 @@ export class ProjectExplorerComponent implements OnInit {
 					console.log(error);
 				});
 		});
-
 		this.changeLoadingValue();
 	}
 
-	action(value: string, origin: string) {
+	action(value: any, origin: string) {
 		if (origin === 'folder') {
 			this.addFolder(value);
 		}
 
 		if (origin === 'project') {
 			this.addProject(value);
+		}
+
+		if (origin === 'snippet') {
+			this.addSnippet(value);
 		}
 	}
 
@@ -289,7 +271,6 @@ export class ProjectExplorerComponent implements OnInit {
 				null
 			)
 			.then(async (response) => {
-				console.log(response);
 				this.changeTriggerDeleteActionValue();
 				await this.getRootFolder(this.rootFolder._id!);
 			})

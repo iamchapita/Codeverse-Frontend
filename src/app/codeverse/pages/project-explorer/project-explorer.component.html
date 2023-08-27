@@ -18,7 +18,7 @@
 				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openCreateNewAction('project')">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openSnippetModal('newSnippet')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openSnippetModal('snippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
 				<button [ngClass]="{'btn customBtn': true, 'marked':!showFolders}" (click)="showFolders = !showFolders"
@@ -135,10 +135,10 @@
 							<ng-container *ngIf="showSnippets === true">
 								<tr *ngFor="let snippet of rootFolder.snippets">
 
-									<td (click)="openSnippetModal(snippet._id!)">{{ snippet.name }}</td>
-									<td (click)="openSnippetModal(snippet._id!)">Snippet</td>
-									<td (click)="openSnippetModal(snippet._id!)">{{ snippet.createdAt }}</td>
-									<td (click)="openSnippetModal(snippet._id!)">{{ snippet.modifiedAt ?
+									<td>{{ snippet.name }}</td>
+									<td>Snippet</td>
+									<td>{{ snippet.createdAt }}</td>
+									<td>{{ snippet.modifiedAt ?
 										snippet.modifiedAt
 										:
 										'ND' }}</td>

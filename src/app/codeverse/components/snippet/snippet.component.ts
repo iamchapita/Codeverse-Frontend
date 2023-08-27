@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FetchService } from 'src/app/services/fetch.service';
-import { Snippet } from 'src/models/Snippet.model';
 
 @Component({
 	selector: 'app-snippet',
@@ -11,31 +9,13 @@ import { Snippet } from 'src/models/Snippet.model';
 	standalone: true,
 	imports: [CommonModule],
 })
-export class SnippetComponent implements OnInit {
+export class SnippetComponent {
 	nameValue: any = '';
 	snippetValue: any = '';
 	isNameValid: boolean = false;
 	isSnippetValid: boolean = false;
 
-	@Input() snippetId: string = '';
-
-	snippet: Snippet = {
-		code: '',
-		createdAt: '',
-		modifiedAt: '',
-		name: '',
-		type: '',
-		_id: '',
-	};
-
-	constructor(
-		public snippetModal: NgbActiveModal,
-		private fetchService: FetchService
-	) {}
-
-	ngOnInit(): void {
-		this.loadSnippet();
-	}
+	constructor(public snippetModal: NgbActiveModal) {}
 
 	handleTabKey(event: KeyboardEvent): void {
 		if (event.key === 'Tab') {
@@ -82,16 +62,5 @@ export class SnippetComponent implements OnInit {
 			this.snippetValue = value;
 			this.snippetModal.close({ name: name, value: value });
 		}
-	}
-
-	async loadSnippet() {
-		await this.fetchService
-			.makeRequest(`snippets/${this.snippetId}`, 'GET', null)
-			.then((response) => {
-				this.snippet = { ...response };
-			})
-			.catch((error) => {
-				console.log(error);
-			});
 	}
 }
