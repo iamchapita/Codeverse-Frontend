@@ -1,50 +1,130 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import {
+	FormBuilder,
+	FormControl,
+	FormGroup,
+	Validators,
+	AbstractControl,
+} from '@angular/forms';
+import { Router } from '@angular/router';
+import { User } from 'src/models/User.model';
+import { AuthService } from 'src/app/services/auth.service';
 import { FetchService } from 'src/app/services/fetch.service';
 
 @Component({
-  selector: 'app-edit-profile',
-  templateUrl: './edit-profile.component.html',
-  styleUrls: ['./edit-profile.component.css']
+	selector: 'app-edit-profile',
+	templateUrl: './edit-profile.component.html',
+	styleUrls: ['./edit-profile.component.css'],
 })
-export class EditProfileComponent implements OnInit{
-  form: FormGroup;
-  user: any;
+export class EditProfileComponent implements OnInit {
+	updateProfileForm: FormGroup;
+	isLoading: boolean = true;
 
-  constructor(
-    private fetchService: FetchService,
-    private formBuilder: FormBuilder
-  ){}
+	userDetails: any = {
+		firstNameInput: '',
+		lastNameInput: '',
+		emailInput: '',
+		passwordInput: '',
+		passwordConfirmInput: '',
+		planInput: '',
+	};
 
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      lastname: ['', Validators.required],
-      plan: ['', Validators.required]
-    });
-    this.user = JSON.parse( localStorage.getItem('user')! )
-  }
+	constructor(
+		private fb: FormBuilder,
+		public authService: AuthService,
+		private fetchService: FetchService,
+		private router: Router
+	) {}
 
-  onSubmit(){
-    let newUser = {
-      name: [this.form.controls['name'].value, this.form.controls['lastname'].value].join(' '),
-      email: this.form.controls['email'].value,
-      plan: this.form.controls['plan'].value
-    }
-    this.updateUser(newUser)
-  }
-  
-  async updateUser(newUserData: any){
-    await this.fetchService
-      .makeRequest(`users/${this.user.id}`, 'PUT', newUserData)  
-      .then((response) => {
-        this.user = { ...response };
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+	ngOnInit(): void {
+		this.getUser();
 
+		this.updateProfileForm = this.fb.group(
+			{
+				firstNameInput: new FormControl('', [
+					Validators.required,
+					Validators.pattern(
+						/^(?:[a-zA-Z]{2,15} [a-zA-Z]{2,15}|[a-zA-Z]{2,15})$/
+					),
+				]),
+				lastNameInput: new FormControl('', [
+					Validators.required,
+					Validators.pattern(
+						/^(?:[a-zA-Z]{2,15} [a-zA-Z]{2,15}|[a-zA-Z]{2,15})$/
+					),
+				]),
+				emailInput: new FormControl('', [
+					Validators.required,
+					Validators.email,
+				]),
+				passwordInput: new FormControl('', [
+					Validators.required,
+					Validators.pattern(
+						/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/
+					),
+				]),
+				passwordConfirmInput: new FormControl('', [
+					Validators.required,
+					Validators.pattern(
+						/((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W]).{8,64})/
+					),
+				]),
+				planInput: new FormControl('', [Validators.required]),
+			},
+			{
+				validators: this.passwordsMatchValidator,
+			}
+		);
+	}
+
+	async getUser() {
+		const id = JSON.parse(localStorage.getItem('user')!).id;
+
+		await this.fetchService
+			.makeRequest(`users/${id}`, 'GET', null)
+			.then(async (response) => {
+				// this.updateProfileForm.setValue()
+
+				this.userDetails = {
+					firstNameInput: response.name.split(' ')[0],
+					lastNameInput: response.name.split(' ')[1],
+					emailInput: response.email,
+					passwordInput: '',
+					passwordConfirmInput: '',
+					planInput: response.plan,
+				};
+
+				this.updateProfileForm.setValue(this.userDetails);
+			})
+			.catch((error) => {});
+
+		this.isLoading = false;
+	}
+
+	passwordsMatchValidator(
+		control: AbstractControl
+	): { [key: string]: any } | null {
+		const passwordInput = control.get('passwordInput');
+		const passwordConfirmInput = control.get('passwordConfirmInput');
+
+		if (
+			passwordInput &&
+			passwordConfirmInput &&
+			passwordInput.value !== passwordConfirmInput.value
+		) {
+			return { passwordsMismatch: true };
+		}
+
+		return null;
+	}
+
+	async handleSubmit() {
+		if (this.updateProfileForm.valid) {
+
+			this.authService.updateUser(this.updateProfileForm.value);
+
+		} else {
+			return;
+		}
+	}
 }

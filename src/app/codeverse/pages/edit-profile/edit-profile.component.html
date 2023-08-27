@@ -1,67 +1,196 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid row">
+<div class="main ps-3 pe-3 pt-5 pb-5">
 
-    <div class="container-fluid col-sm-12 col-md-6 col-lg-6 pt-3 pb-3">
-        <div class="box">
-            <div class="container">
-                <div class="text-center">
-                  <img src="../../../../assets/account.svg" class="rounded-circle circle-border" alt="Profile Photo" width="150" height="150">
-                  <h3 class="mt-3">{{user.name}}</h3>
-                  <h2 class="mb-3">Acerca de mi</h2>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sit cum perspiciatis nisi in optio sapiente iusto quia fugiat doloribus quod minima est, accusamus voluptate dolorem iure? Numquam vitae assumenda magni.
-                  Eum id amet illo esse, repellat consequatur aliquid dicta eligendi labore nam! Labore ipsum id eligendi exercitationem ut distinctio, natus dignissimos, praesentium corporis, mollitia tempora officiis autem perferendis ducimus quis.</p>
-                </div>
-              </div>
-        </div>
-    </div>
-    <div class="container-fluid col-sm-12 col-md-6 col-lg-6 pt-3 pb-3">
-        <div class="box">
-            <h2>Detalles Personales</h2>
+	<div class="d-flex justify-content-center align-items-center h-100" *ngIf="isLoading === true">
+		<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
+			<span class="visually-hidden">Cargando...</span>
+		</div>
+	</div>
 
-            <div class="container">
+	<div class="row align-items-center" *ngIf="isLoading === false">
 
-                <form [formGroup]="form" class="" (ngSubmit)="onSubmit()">
-                    <div class="mb-4 row">
-                        <label for="name" class="col-sm-2 col-form-label">Nombre: </label>
-                        <div class="col-sm-10">
-                            <input class="form-control" id="name" type="text" formControlName="name">
-                        </div>
-                    </div>
-                    <div class="mb-4 row">
-                        <label for="lastname" class="col-sm-2 col-form-label">Apellido: </label>
-                        <div class="col-sm-10">
-                            <input class="form-control" id="lastname" type="text" formControlName="lastname">
-                        </div>
-                    </div>
-                    <div class="mb-4 row">
-                        <label for="email" class="col-sm-3 col-form-label">Correo electrónico: </label>
-                        <div class="col-sm-9">
-                            <input class="form-control mt-2" id="email" type="text" formControlName="email">
-                        </div>
-                    </div>
+		<div class="col-sm-12 col-md-12 col-lg-6 ps-5 pe-5">
 
-                    <div class="mb-4 row">
-                        <div id="emailHelp" class="form-text">Actualmente posees el plan <strong>{{ user.plan }}</strong>. Si deseas puedes actualizarlo a continuacion.</div>
-                        <label for="plan" class="col-sm-2 col-form-label">Plan: </label>
-                        <div class="col-sm-10">
-                            <select class="form-select" id="plan">
-                                <option value="free" disabled selected hidden>Elije un plan</option>
-                                <option value="free">Free Plan</option>
-                                <option value="x">Plus Plan</option>
-                                <option value="y">Premium Plan</option>
-                            </select>
-                        </div>
-                    </div>
-                    
+			<div [formGroup]="updateProfileForm" (ngSubmit)="handleSubmit()" novalidate>
 
-                    <div class="mb-4 row">
-                        <button routerLink="/app/projectExplorer" class="btn btn-lg btn-secondary mb-3">Cancelar</button>
-                        <button class="btn btn-lg btn-custom" type="submit" [disabled]="!form.valid">Confirmar</button>
-                    </div>
-                </form>
+				<div class="customCard">
 
-        </div>
-    </div>
+					<p class="bigText text-center">Actualizar Perfil</p>
+
+					<div class="body">
+
+						<div class="mb-4 has-validation">
+							<div class="is-invalid">
+								<label for="firstNameInput" class="form-label">Nombres</label>
+								<input type="text" class="form-control" id="firstNameInput" aria-describedby="nameHelp"
+									placeholder="Juan Antonio" formControlName="firstNameInput">
+
+							</div>
+							<div class="invalid-feedback"
+								*ngIf="updateProfileForm.get('firstNameInput')?.touched && updateProfileForm.get('firstNameInput')?.invalid">
+								Nombres no válidos
+							</div>
+						</div>
+
+						<div class="mb-4 has-validation">
+							<div class="is-invalid">
+								<label for="lastNameInput" class="form-label">Apellidos</label>
+								<input type="text" class="form-control" id="lastNameInput" aria-describedby="nameHelp"
+									placeholder="Pérez Marcía" formControlName="lastNameInput">
+
+							</div>
+							<div class="invalid-feedback"
+								*ngIf="updateProfileForm.get('lastNameInput')?.touched && updateProfileForm.get('lastNameInput')?.invalid">
+								Apellidos no válidos
+							</div>
+						</div>
+
+						<div class="mb-4 has-validation">
+							<div class="is-invalid">
+								<label for="emailInput" class="form-label">Correo Electrónico</label>
+								<input type="email" class="form-control" id="emailInput" aria-describedby="nameHelp"
+									placeholder="correo@proveedor.com" formControlName="emailInput">
+
+							</div>
+							<div class="invalid-feedback"
+								*ngIf="updateProfileForm.get('emailInput')?.touched && updateProfileForm.get('emailInput')?.invalid">
+								Correo Electrónico no válido
+							</div>
+						</div>
+
+						<div class="mb-4 has-validation">
+							<div class="is-invalid">
+								<label for="passwordInput" class="form-label">Contraseña</label>
+								<input type="password" class="form-control" id="passwordInput"
+									aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
+									formControlName="passwordInput">
+
+							</div>
+							<div class="invalid-feedback"
+								*ngIf="updateProfileForm.get('passwordInput')?.touched && updateProfileForm.get('passwordInput')?.invalid">
+								Este campo debe contener al menos una letra minúscula, una letra mayúscula,
+								un número y un carácter especial. Debe tener entre 8 y 64 caracteres en
+								total. Puede contener letras, números y caracteres especiales. No debe
+								contener espacios en blanco ni emojis.
+							</div>
+						</div>
+
+						<div class="mb-4 has-validation">
+							<div class="is-invalid">
+								<label for="passwordConfirmInput" class="form-label">Confirme su
+									Contraseña</label>
+								<input type="password" class="form-control" id="passwordConfirmInput"
+									aria-describedby="nameHelp" placeholder="Min 4, Max 35 carácteres"
+									formControlName="passwordConfirmInput">
+
+							</div>
+							<div class="invalid-feedback"
+								*ngIf="updateProfileForm.get('passwordConfirmInput')?.touched && updateProfileForm.get('passwordConfirmInput')?.invalid">
+								La Confirmación de Contraseña no coindice
+							</div>
+						</div>
+
+						<div class="mb-4 has-validation">
+							<div class="is-invalid">
+								<label for="planInput" class="form-label">Plan</label>
+
+								<select class="form-select" formControlName="planInput">
+									<option value="free">Free</option>
+									<option value="plus">Plus</option>
+									<option value="premium">Premium</option>
+								</select>
+
+							</div>
+
+						</div>
+
+
+					</div>
+
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-6">
+							<button type="button" class="btn btn-principal"
+								[disabled]="!updateProfileForm.valid || authService.performingRegister === true"
+								(click)="handleSubmit()">Actualizar Perfil</button>
+						</div>
+
+						<div style="color:#dc3545" *ngIf="authService.updateProfile.length > 0">
+
+							{{ authService.updateProfile }}
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+		<div class="col-sm-12 col-md-12 col-lg-6  ps-5 pe-5">
+
+			<div class="row align-items-center" id="secondSection">
+
+				<div class="col-sm-12 col-md-12 col-lg-12 pb-5">
+					<p class="bigText text-center">Descubre Codeverse</p>
+					<p class="pt-5">La capa gratuita está muy bien pero revisa nuestros planes y disfruta de toda la
+						experiencia que te brinda Coderverse.</p>
+				</div>
+
+				<div class="col-sm-12 col-md-4 col-lg-4 pb-3">
+					<div class="planCustomCard">
+						<div class="tittle">
+							Free Plan
+						</div>
+						<div class="text">
+							<ul>
+								<li>Almacena hasta 5 proyectos.</li>
+								<li>Organiza con libertad tus proyectos.</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-md-4 col-lg-4 pb-3">
+					<div class="planCustomCard">
+						<div class="tittle">
+							Plus Plan
+						</div>
+						<div class="text">
+							<ul>
+								<li>Puedes crear hasta 15 proyectos.</li>
+								<li>Sigue trabajando mientras no tienes conexión.</li>
+								<li>Descarga tus archivos.</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="col-sm-12 col-md-4 col-lg-4 pb-3">
+					<div class="planCustomCard">
+						<div class="tittle">
+							Premium Plan
+						</div>
+						<div class="text">
+							<ul>
+								<li>Crea todos los proyectos que quieras.</li>
+								<li>Crea tus propios fragmentos de código.</li>
+								<li>Comparte el código con tus amigos, trabaja de forma colaborativa.</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
 
 </div>

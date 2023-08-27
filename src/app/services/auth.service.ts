@@ -14,6 +14,8 @@ export class AuthService {
 	loginFailed: string = '';
 	performingLogin: boolean = false;
 	performingLogout: boolean = false;
+	performingUpdate: boolean = false;
+	updateProfile: string = '';
 
 	constructor(
 		public afAuth: AngularFireAuth,
@@ -105,7 +107,8 @@ export class AuthService {
 										'POST',
 										{
 											name: 'Raíz',
-											description: 'Este es el folde Raíz',
+											description:
+												'Este es el folde Raíz',
 											user: this.userData.id,
 										}
 									);
@@ -147,5 +150,40 @@ export class AuthService {
 			'GET',
 			null
 		);
+	}
+
+	async updateUser(user: any) {
+		this.performingUpdate = true;
+
+		const currentUser = await this.afAuth.currentUser;
+		const userId = JSON.parse(localStorage.getItem('user')!).id;
+
+		await currentUser
+			?.updateProfile({
+				displayName: `${user.firstNameInput} ${user.lastNameInput}`,
+				photoURL: null,
+			})
+			.then(async (response) => {
+				await currentUser?.updateEmail(user.emailInput);
+				await currentUser?.updatePassword(user.passwordInput);
+				await this.fetchService.makeRequest(`users/${userId}`, 'PUT', {
+					name: `${user.firstNameInput} ${user.lastNameInput}`,
+					email: user.emailInput,
+					plan: user.planInput,
+
+				});
+			})
+			.catch((error) => {
+				if (
+					error.message ===
+					'Firebase: This operation is sensitive and requires recent authentication. Log in again before retrying this request. (auth/requires-recent-login).'
+				) {
+					this.updateProfile =
+						'Cierre sesión e inicie sesión de nuevo para actualizar estos campos';
+				}
+			});
+
+		this.performingUpdate = false;
+		this.router.navigate(['editProfile']);
 	}
 }
