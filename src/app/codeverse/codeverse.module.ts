@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 import { SnippetComponent } from './components/snippet/snippet.component';
 import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
+import { SnippetDetailModalComponent } from './components/snippet-detail-modal/snippet-detail-modal.component';
 
 @NgModule({
 	declarations: [
@@ -31,6 +32,7 @@ import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 		FontAwesomeModule,
 		HighlightModule,
 		SnippetComponent,
+		SnippetDetailModalComponent,
 	],
 	providers: [
 		{

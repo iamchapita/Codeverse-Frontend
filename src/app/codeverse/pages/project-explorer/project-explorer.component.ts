@@ -4,6 +4,7 @@ import { Folder } from 'src/models/Folder.model';
 import { FetchService } from 'src/app/services/fetch.service';
 import { CreateNewActionModalComponent } from '../../components/create-new-action-modal/create-new-action-modal.component';
 import { SnippetComponent } from '../../components/snippet/snippet.component';
+import { SnippetDetailModalComponent } from '../../components/snippet-detail-modal/snippet-detail-modal.component';
 import {
 	faFolderPlus,
 	faFolderTree,
@@ -107,6 +108,21 @@ export class ProjectExplorerComponent implements OnInit {
 					this.action(result, origin);
 				}
 			},
+			(reason) => {
+				// Manejar el cierre del modal (si es necesario)
+			}
+		);
+	}
+
+	openSnippetDetailModal(origin: string) {
+		const modalRef = this.modalService.open(SnippetDetailModalComponent, {
+			size: 'lg',
+			centered: true,
+			backdrop: 'static',
+		});
+
+		modalRef.result.then(
+			(result) => {},
 			(reason) => {
 				// Manejar el cierre del modal (si es necesario)
 			}

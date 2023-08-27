@@ -135,10 +135,10 @@
 							<ng-container *ngIf="showSnippets === true">
 								<tr *ngFor="let snippet of rootFolder.snippets">
 
-									<td>{{ snippet.name }}</td>
-									<td>Snippet</td>
-									<td>{{ snippet.createdAt }}</td>
-									<td>{{ snippet.modifiedAt ?
+									<td (click)="openSnippetDetailModal(snippet._id!)">{{ snippet.name }}</td>
+									<td (click)="openSnippetDetailModal(snippet._id!)">Snippet</td>
+									<td (click)="openSnippetDetailModal(snippet._id!)">{{ snippet.createdAt }}</td>
+									<td (click)="openSnippetDetailModal(snippet._id!)">{{ snippet.modifiedAt ?
 										snippet.modifiedAt
 										:
 										'ND' }}</td>
