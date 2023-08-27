@@ -95,6 +95,7 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	async getRootFolder(childId?: string) {
+		this.triggerDeleteAction = false;
 		this.changeLoadingValue();
 		const id = JSON.parse(localStorage.getItem('user')!).id;
 
@@ -214,8 +215,13 @@ export class ProjectExplorerComponent implements OnInit {
 
 	async deleteProject(id: string) {
 		this.fetchService
-			.makeRequest(`projects/${id}`, 'DELETE', null)
+			.makeRequest(
+				`folders/${this.rootFolder._id}/remove-project/${id}`,
+				'PUT',
+				null
+			)
 			.then(async (response) => {
+				console.log(response);
 				this.changeTriggerDeleteActionValue();
 				await this.getRootFolder(this.rootFolder._id!);
 			})
@@ -225,15 +231,14 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	async deleteFolder(id: string) {
-		this.fetchService
+		await this.fetchService
 			.makeRequest(`folders/${id}`, 'DELETE', null)
 			.then(async (response) => {
-				console.log(response);
 				this.changeTriggerDeleteActionValue();
 				await this.getRootFolder(this.rootFolder._id!);
 			})
 			.catch((error) => {
-				console.log(error);
+				// console.log(error);
 			});
 	}
 }
