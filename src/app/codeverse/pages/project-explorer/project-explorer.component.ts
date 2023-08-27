@@ -76,10 +76,12 @@ export class ProjectExplorerComponent implements OnInit {
 		this.triggerDeleteAction = !this.triggerDeleteAction;
 	}
 
-	openModal(origin: string) {
+	openCreateNewAction(origin: string) {
 		const modalRef = this.modalService.open(CreateNewActionModalComponent, {
 			size: 'lg',
 			centered: true,
+			backdrop: 'static',
+
 		});
 
 		modalRef.result.then(

@@ -9,12 +9,9 @@ import { EditorComponent } from './components/editor/editor.component';
 import { IframeComponent } from './components/iframe/iframe.component';
 import { CreateNewActionModalComponent } from './components/create-new-action-modal/create-new-action-modal.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {
-	HIGHLIGHT_OPTIONS,
-	HighlightModule,
-	HighlightOptions,
-} from 'ngx-highlightjs';
 import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
+import { SnippetComponent } from './components/snippet/snippet.component';
+import { HIGHLIGHT_OPTIONS, HighlightModule } from 'ngx-highlightjs';
 
 @NgModule({
 	declarations: [
@@ -22,7 +19,7 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 		ProjectWorkspaceComponent,
 		EditorComponent,
 		IframeComponent,
-  EditProfileComponent,
+		EditProfileComponent,
 	],
 	imports: [
 		CommonModule,
@@ -33,6 +30,7 @@ import { EditProfileComponent } from './pages/edit-profile/edit-profile.componen
 		ReactiveFormsModule,
 		FontAwesomeModule,
 		HighlightModule,
+		SnippetComponent,
 	],
 	providers: [
 		{

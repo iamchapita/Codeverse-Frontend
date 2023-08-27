@@ -3,21 +3,22 @@ import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
+	selector: 'app-snippet',
+	templateUrl: './snippet.component.html',
+	styleUrls: ['./snippet.component.css'],
 	standalone: true,
-	selector: 'app-create-new-action-modal',
-	templateUrl: './create-new-action-modal.component.html',
-	styleUrls: ['./create-new-action-modal.component.css'],
 	imports: [CommonModule],
 })
-export class CreateNewActionModalComponent {
-	inputValue: any = '';
+export class SnippetComponent {
+	nameValue: any = '';
+	snippetValue: any = '';
 	isValid: boolean = true;
 
-	constructor(public createNewModal: NgbActiveModal) {}
+	constructor(public snippetModal: NgbActiveModal) {}
 
 	dismiss(reason: string) {
 		this.isValid = true;
-		this.createNewModal.dismiss(reason);
+		this.snippetModal.dismiss(reason);
 	}
 
 	close(value: string) {
@@ -27,8 +28,8 @@ export class CreateNewActionModalComponent {
 		if (regex.test(value) === false) {
 			this.isValid = false;
 		} else {
-			this.inputValue = value;
-			this.createNewModal.close(value);
+			this.nameValue = value;
+			this.snippetModal.close(value);
 		}
 	}
 }

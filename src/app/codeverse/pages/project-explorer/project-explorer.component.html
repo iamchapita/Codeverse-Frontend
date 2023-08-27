@@ -12,13 +12,13 @@
 					(click)="getRootFolder(rootFolder.parentFolder)">
 					<fa-icon [icon]="faArrowUp"></fa-icon>Ir Arriba
 				</button>
-				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('folder')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openCreateNewAction('folder')">
 					<fa-icon [icon]="faFolderPlus"></fa-icon>Nueva Carpeta
 				</button>
-				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('project')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openCreateNewAction('project')">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openModal('snippet')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openCreateNewAction('snippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
 				<button [ngClass]="{'btn customBtn': true, 'marked':!showFolders}" (click)="showFolders = !showFolders"
