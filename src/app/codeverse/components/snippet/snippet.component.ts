@@ -12,8 +12,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class SnippetComponent {
 	nameValue: any = '';
 	snippetValue: any = '';
-	isNameValid: boolean = true;
-	isSnippetValid: boolean = true;
+	isNameValid: boolean = false;
+	isSnippetValid: boolean = false;
 
 	constructor(public snippetModal: NgbActiveModal) {}
 

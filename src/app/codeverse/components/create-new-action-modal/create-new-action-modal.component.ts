@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CreateNewActionModalComponent {
 	inputValue: any = '';
-	isValid: boolean = true;
+	isValid: boolean = false;
 
 	constructor(public createNewModal: NgbActiveModal) {}
 

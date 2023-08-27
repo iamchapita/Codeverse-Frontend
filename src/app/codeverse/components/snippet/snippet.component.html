@@ -19,6 +19,6 @@
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-secondary close" (click)="dismiss('Cerrar')">Cerrar</button>
-	<button type="button" class="btn btn-primary save"
+	<button type="button" class="btn btn-primary save" [disabled]="isNameValid === false && isSnippetValid === false"
 		(click)="close(nameValue.value, snippetValue.value)">Guardar</button>
 </div>
