@@ -18,7 +18,7 @@
 				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openCreateNewAction('project')">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openSnippetModal('newSnippet')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openSnippetModal('snippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
 				<button [ngClass]="{'btn customBtn': true, 'marked':!showFolders}" (click)="showFolders = !showFolders"
@@ -121,6 +121,35 @@
 										<div class="deleteActions" *ngIf="triggerDeleteAction === true">
 											<button class="btn btn-success"
 												(click)="deleteProject(project._id!)"><fa-icon
+													[icon]="faCheck"></fa-icon></button>
+											<button class="btn btn-danger"
+												(click)="changeTriggerDeleteActionValue()"><fa-icon
+													[icon]="faXmark"></fa-icon></button>
+										</div>
+
+									</td>
+
+								</tr>
+							</ng-container>
+
+							<ng-container *ngIf="showSnippets === true">
+								<tr *ngFor="let snippet of rootFolder.snippets">
+
+									<td>{{ snippet.name }}</td>
+									<td>Snippet</td>
+									<td>{{ snippet.createdAt }}</td>
+									<td>{{ snippet.modifiedAt ?
+										snippet.modifiedAt
+										:
+										'ND' }}</td>
+									<td class="text-center">
+
+										<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
+											(click)="changeTriggerDeleteActionValue()">Borrar</button>
+
+										<div class="deleteActions" *ngIf="triggerDeleteAction === true">
+											<button class="btn btn-success"
+												(click)="deleteSnippet(snippet._id!)"><fa-icon
 													[icon]="faCheck"></fa-icon></button>
 											<button class="btn btn-danger"
 												(click)="changeTriggerDeleteActionValue()"><fa-icon
