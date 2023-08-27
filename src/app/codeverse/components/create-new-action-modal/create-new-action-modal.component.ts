@@ -15,6 +15,10 @@ export class CreateNewActionModalComponent {
 
 	constructor(public createNewModal: NgbActiveModal) {}
 
+	handleInputChange() {
+		this.isValid = true;
+	}
+
 	dismiss(reason: string) {
 		this.isValid = true;
 		this.createNewModal.dismiss(reason);
