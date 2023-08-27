@@ -132,14 +132,13 @@
 								</tr>
 							</ng-container>
 
-<<<<<<< HEAD
 							<ng-container *ngIf="showSnippets === true">
 								<tr *ngFor="let snippet of rootFolder.snippets">
 
-									<td (click)="openSnippetModal(snippet._id!)" >{{ snippet.name }}</td>
-									<td (click)="openSnippetModal(snippet._id!)" >Snippet</td>
-									<td (click)="openSnippetModal(snippet._id!)" >{{ snippet.createdAt }}</td>
-									<td (click)="openSnippetModal(snippet._id!)" >{{ snippet.modifiedAt ?
+									<td (click)="openSnippetModal(snippet._id!)">{{ snippet.name }}</td>
+									<td (click)="openSnippetModal(snippet._id!)">Snippet</td>
+									<td (click)="openSnippetModal(snippet._id!)">{{ snippet.createdAt }}</td>
+									<td (click)="openSnippetModal(snippet._id!)">{{ snippet.modifiedAt ?
 										snippet.modifiedAt
 										:
 										'ND' }}</td>
@@ -162,8 +161,6 @@
 								</tr>
 							</ng-container>
 
-=======
->>>>>>> parent of d771285 (Agregación y borrado de snippet)
 						</tbody>
 					</table>
 
