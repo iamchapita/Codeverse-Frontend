@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Folder } from 'src/models/Folder.model';
 import { FetchService } from 'src/app/services/fetch.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { CreateNewActionModalComponent } from '../../components/create-new-action-modal/create-new-action-modal.component';
-import { ActivatedRoute } from '@angular/router';
+import { SnippetComponent } from '../../components/snippet/snippet.component';
 import {
 	faFolderPlus,
 	faFolderTree,
@@ -58,9 +57,7 @@ export class ProjectExplorerComponent implements OnInit {
 
 	constructor(
 		private fetchService: FetchService,
-		private authService: AuthService,
-		private modalService: NgbModal,
-		private router: ActivatedRoute
+		private modalService: NgbModal
 	) {}
 
 	ngOnInit(): void {
@@ -81,13 +78,31 @@ export class ProjectExplorerComponent implements OnInit {
 			size: 'lg',
 			centered: true,
 			backdrop: 'static',
-
 		});
 
 		modalRef.result.then(
 			(result) => {
 				if (result !== 'Cerrar') {
 					this.action(result, origin);
+				}
+			},
+			(reason) => {
+				// Manejar el cierre del modal (si es necesario)
+			}
+		);
+	}
+
+	openSnippetModal(origin: string) {
+		const modalRef = this.modalService.open(SnippetComponent, {
+			size: 'lg',
+			centered: true,
+			backdrop: 'static',
+		});
+
+		modalRef.result.then(
+			(result) => {
+				if (result !== 'Cerrar') {
+					// this.action(result, origin);
 				}
 			},
 			(reason) => {

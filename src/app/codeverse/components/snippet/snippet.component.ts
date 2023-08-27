@@ -12,12 +12,14 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class SnippetComponent {
 	nameValue: any = '';
 	snippetValue: any = '';
-	isValid: boolean = true;
+	isNameValid: boolean = true;
+	isSnippetValid: boolean = true;
 
 	constructor(public snippetModal: NgbActiveModal) {}
 
 	dismiss(reason: string) {
-		this.isValid = true;
+		this.isNameValid = true;
+		this.isSnippetValid = true;
 		this.snippetModal.dismiss(reason);
 	}
 
@@ -26,8 +28,12 @@ export class SnippetComponent {
 			/^([a-zA-ZñÑáéíóúÁÉÍÓÚ\d\s_-]+\.?){1,50}[a-zA-ZñÑáéíóúÁÉÍÓÚ\d\s_-]+$/;
 
 		if (regex.test(value) === false) {
-			this.isValid = false;
-		} else {
+			this.isNameValid = false;
+		}
+		if (this.snippetValue === '') {
+			this.isSnippetValid = false;
+		}
+		if (this.isSnippetValid === true && this.isNameValid === true) {
 			this.nameValue = value;
 			this.snippetModal.close(value);
 		}
