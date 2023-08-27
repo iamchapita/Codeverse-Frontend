@@ -119,7 +119,10 @@ export class ProjectExplorerComponent implements OnInit {
 			size: 'lg',
 			centered: true,
 			backdrop: 'static',
+			scrollable: true,
 		});
+
+		modalRef.componentInstance.snippetId = origin;
 
 		modalRef.result.then(
 			(result) => {},
