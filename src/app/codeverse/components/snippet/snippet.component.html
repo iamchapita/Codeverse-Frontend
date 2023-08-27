@@ -1,24 +1,56 @@
 <div class="modal-header">
-	<h4 class="modal-title">Crear un Nuevo Snippet</h4>
+
+	<ng-container *ngIf="snippetId === ''">
+		<h4 class="modal-title">Crear un Nuevo Snippet</h4>
+	</ng-container>
+
+	<ng-container *ngIf="snippetId !== ''">
+		<h4 class="modal-title">Detalle de Snippet</h4>
+	</ng-container>
+
 	<button type="button" class="btn-close" aria-label="Close" (click)="dismiss('Cerrar')">
 	</button>
+
 </div>
 <div class="modal-body">
-	<input type="text" #nameValue class="form-control mb-2" placeholder="Nombre de Snippet" (input)="handleInputChange()">
 
-	<div class="feedback mb-3" *ngIf="isNameValid === false">
-		Valor no válido
-	</div>
+	<ng-container *ngIf="snippetId === ''">
+		<input type="text" #nameValue class="form-control mb-2" placeholder="Nombre de Snippet"
+			(input)="handleInputChange()">
 
-	<textarea class="form-control mb-2" rows="10" #snippetValue (keydown)="handleTabKey($event)" (input)="handleInputChange()"></textarea>
+		<div class="feedback mb-3" *ngIf="isNameValid === false">
+			Valor no válido
+		</div>
 
-	<div class="feedback mb-3" *ngIf="isSnippetValid === false">
-		Valor no válido
-	</div>
+		<textarea class="form-control mb-2" rows="10" #snippetValue (keydown)="handleTabKey($event)"
+			(input)="handleInputChange()"></textarea>
+
+		<div class="feedback mb-3" *ngIf="isSnippetValid === false">
+			Valor no válido
+		</div>
+	</ng-container>
+
+	<ng-container *ngIf="snippetId !== ''">
+
+		<h5>{{ snippet.name }}</h5>
+
+		<pre style="background-color: black; color: white;">
+			<code>
+{{ snippet.code }}
+			</code>
+		</pre>
+	</ng-container>
 
 </div>
+
 <div class="modal-footer">
+
 	<button type="button" class="btn btn-secondary close" (click)="dismiss('Cerrar')">Cerrar</button>
-	<button type="button" class="btn btn-primary save" [disabled]="isNameValid === false && isSnippetValid === false"
-		(click)="close(nameValue.value, snippetValue.value)">Guardar</button>
+
+	<ng-container *ngIf="snippetId === ''">
+		<button type="button" class="btn btn-primary save"
+			[disabled]="isNameValid === false && isSnippetValid === false"
+			(click)="close(nameValue.value, snippetValue.value)">Guardar</button>
+	</ng-container>
+
 </div>

@@ -80,6 +80,8 @@ export class ProjectExplorerComponent implements OnInit {
 			backdrop: 'static',
 		});
 
+		// modalRef.componentInstance.
+
 		modalRef.result.then(
 			(result) => {
 				if (result !== 'Cerrar') {
@@ -93,24 +95,44 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	openSnippetModal(origin: string) {
-		console.log(origin);
+		if (origin === 'snippet') {
+			const modalRef = this.modalService.open(SnippetComponent, {
+				size: 'lg',
+				centered: true,
+				backdrop: 'static',
+			});
 
-		const modalRef = this.modalService.open(SnippetComponent, {
-			size: 'lg',
-			centered: true,
-			backdrop: 'static',
-		});
-
-		modalRef.result.then(
-			(result) => {
-				if (result !== 'Cerrar') {
-					this.action(result, origin);
+			modalRef.result.then(
+				(result) => {
+					if (result !== 'Cerrar') {
+						this.action(result, origin);
+					}
+				},
+				(reason) => {
+					// Manejar el cierre del modal (si es necesario)
 				}
-			},
-			(reason) => {
-				// Manejar el cierre del modal (si es necesario)
-			}
-		);
+			);
+		} else {
+			const modalRef = this.modalService.open(SnippetComponent, {
+				size: 'lg',
+				centered: true,
+				backdrop: 'static',
+				scrollable: true,
+			});
+
+			modalRef.componentInstance.snippetId = origin;
+
+			modalRef.result.then(
+				(result) => {
+					if (result !== 'Cerrar') {
+						this.action(result, origin);
+					}
+				},
+				(reason) => {
+					// Manejar el cierre del modal (si es necesario)
+				}
+			);
+		}
 	}
 
 	async getRootFolder(childId?: string) {
