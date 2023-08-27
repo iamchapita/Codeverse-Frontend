@@ -93,6 +93,9 @@ export class ProjectExplorerComponent implements OnInit {
 	}
 
 	openSnippetModal(origin: string) {
+
+		console.log(origin)
+
 		const modalRef = this.modalService.open(SnippetComponent, {
 			size: 'lg',
 			centered: true,
@@ -102,6 +105,7 @@ export class ProjectExplorerComponent implements OnInit {
 		modalRef.result.then(
 			(result) => {
 				if (result !== 'Cerrar') {
+					console.log(result);
 					// this.action(result, origin);
 				}
 			},
