@@ -181,7 +181,6 @@ export class ProjectExplorerComponent implements OnInit {
 				});
 		});
 
-		// Cargando projects al objeto rootFolder
 		this.rootFolder.snippets?.map((snippetId, index) => {
 			this.fetchService
 				.makeRequest(`snippets/${snippetId}`, 'GET', null)
@@ -192,20 +191,17 @@ export class ProjectExplorerComponent implements OnInit {
 					console.log(error);
 				});
 		});
+
 		this.changeLoadingValue();
 	}
 
-	action(value: any, origin: string) {
+	action(value: string, origin: string) {
 		if (origin === 'folder') {
 			this.addFolder(value);
 		}
 
 		if (origin === 'project') {
 			this.addProject(value);
-		}
-
-		if (origin === 'snippet') {
-			this.addSnippet(value);
 		}
 	}
 
@@ -293,6 +289,7 @@ export class ProjectExplorerComponent implements OnInit {
 				null
 			)
 			.then(async (response) => {
+				console.log(response);
 				this.changeTriggerDeleteActionValue();
 				await this.getRootFolder(this.rootFolder._id!);
 			})

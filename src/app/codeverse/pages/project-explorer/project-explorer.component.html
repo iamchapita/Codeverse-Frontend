@@ -18,7 +18,7 @@
 				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openCreateNewAction('project')">
 					<fa-icon [icon]="faFileCode"></fa-icon>Nuevo Proyecto
 				</button>
-				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openSnippetModal('snippet')">
+				<button class="btn customBtn" [disabled]="isLoading === true" (click)="openSnippetModal('newSnippet')">
 					<fa-icon [icon]="faBarsStaggered"></fa-icon>Nuevo Snippet
 				</button>
 				<button [ngClass]="{'btn customBtn': true, 'marked':!showFolders}" (click)="showFolders = !showFolders"
@@ -132,6 +132,7 @@
 								</tr>
 							</ng-container>
 
+<<<<<<< HEAD
 							<ng-container *ngIf="showSnippets === true">
 								<tr *ngFor="let snippet of rootFolder.snippets">
 
@@ -161,6 +162,8 @@
 								</tr>
 							</ng-container>
 
+=======
+>>>>>>> parent of d771285 (Agregación y borrado de snippet)
 						</tbody>
 					</table>
 
