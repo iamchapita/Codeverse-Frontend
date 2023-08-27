@@ -41,97 +41,101 @@
 
 		</div>
 
-		<div class="col-sm-12 col-md-8 col-lg-10 p-4 bg-custom1">
+		<div class="scroll col-sm-12 col-md-8 col-lg-10 p-4 bg-custom1">
 
-			<div class="header" role="search">
-
-				<h1>{{ rootFolder.name }}</h1>
-
-				<div class="search">
-					<input class="btn customBtn" type="search" placeholder="Buscar" aria-label="Search">
-					<button class="btn customBtn">Buscar</button>
-				</div>
-
-			</div>
-			<hr>
-
-			<div class="d-flex justify-content-center" *ngIf="isLoading === true">
+			<div class="d-flex justify-content-center align-items-center h-100" *ngIf="isLoading === true">
 				<div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
 					<span class="visually-hidden">Cargando...</span>
 				</div>
 			</div>
 
-			<div class="table-responsive" *ngIf="isLoading === false">
-				<table class="table table-light table-hover table-stripped align-middle">
-					<thead>
-						<tr>
-							<th>Nombre</th>
-							<th>Tipo</th>
-							<th>Creado</th>
-							<th>Modificado</th>
-							<th class="text-center">Acciones</th>
-						</tr>
-					</thead>
-					<tbody class="table-group-divider">
 
-						<ng-container *ngIf="showFolders === true">
-							<tr *ngFor="let folder of rootFolder.folders">
+			<div class="content" *ngIf="isLoading === false">
 
-								<td (click)="getRootFolder(folder._id!)">{{ folder.name }}</td>
-								<td (click)="getRootFolder(folder._id!)">Carpeta</td>
-								<td (click)="getRootFolder(folder._id!)">{{ folder.createdAt }}</td>
-								<td (click)="getRootFolder(folder._id!)">{{ folder.modifiedAt ? folder.modifiedAt : 'ND'
-									}}
-								</td>
-								<td class="text-center">
+				<div class="header" role="search">
 
-									<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
-										(click)="changeTriggerDeleteActionValue()">Borrar</button>
+					<h1>{{ rootFolder.name }}</h1>
 
-									<div class="deleteActions" *ngIf="triggerDeleteAction === true">
-										<button class="btn btn-success" (click)="deleteFolder(folder._id!)"><fa-icon
-												[icon]="
+				</div>
+				<hr>
+
+				<div class="table-responsive">
+
+					<table class="table table-light table-hover table-stripped align-middle">
+						<thead>
+							<tr>
+								<th>Nombre</th>
+								<th>Tipo</th>
+								<th>Creado</th>
+								<th>Modificado</th>
+								<th class="text-center">Acciones</th>
+							</tr>
+						</thead>
+						<tbody class="table-group-divider">
+
+							<ng-container *ngIf="showFolders === true">
+								<tr *ngFor="let folder of rootFolder.folders">
+
+									<td (click)="getRootFolder(folder._id!)">{{ folder.name }}</td>
+									<td (click)="getRootFolder(folder._id!)">Carpeta</td>
+									<td (click)="getRootFolder(folder._id!)">{{ folder.createdAt }}</td>
+									<td (click)="getRootFolder(folder._id!)">{{ folder.modifiedAt ? folder.modifiedAt :
+										'ND'
+										}}
+									</td>
+									<td class="text-center">
+
+										<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
+											(click)="changeTriggerDeleteActionValue()">Borrar</button>
+
+										<div class="deleteActions" *ngIf="triggerDeleteAction === true">
+											<button class="btn btn-success" (click)="deleteFolder(folder._id!)"><fa-icon
+													[icon]="
 											faCheck"></fa-icon></button>
-										<button class="btn btn-danger"
-											(click)="changeTriggerDeleteActionValue()"><fa-icon
-												[icon]="faXmark"></fa-icon></button>
-									</div>
+											<button class="btn btn-danger"
+												(click)="changeTriggerDeleteActionValue()"><fa-icon
+													[icon]="faXmark"></fa-icon></button>
+										</div>
 
-								</td>
+									</td>
 
-							</tr>
-						</ng-container>
+								</tr>
+							</ng-container>
 
-						<ng-container *ngIf="showProjects === true">
-							<tr *ngFor="let project of rootFolder.projects">
+							<ng-container *ngIf="showProjects === true">
+								<tr *ngFor="let project of rootFolder.projects">
 
-								<td [routerLink]="['/app/projectWorkspace/',project._id]">{{ project.name }}</td>
-								<td [routerLink]="['/app/projectWorkspace/', project._id]">Proyecto</td>
-								<td [routerLink]="['/app/projectWorkspace/', project._id]">{{ project.createdAt }}</td>
-								<td [routerLink]="['/app/projectWorkspace/', project._id]">{{ project.modifiedAt ?
-									project.modifiedAt
-									:
-									'ND' }}</td>
-								<td class="text-center">
+									<td [routerLink]="['/app/projectWorkspace/',project._id]">{{ project.name }}</td>
+									<td [routerLink]="['/app/projectWorkspace/', project._id]">Proyecto</td>
+									<td [routerLink]="['/app/projectWorkspace/', project._id]">{{ project.createdAt }}
+									</td>
+									<td [routerLink]="['/app/projectWorkspace/', project._id]">{{ project.modifiedAt ?
+										project.modifiedAt
+										:
+										'ND' }}</td>
+									<td class="text-center">
 
-									<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
-										(click)="changeTriggerDeleteActionValue()">Borrar</button>
+										<button class="btn customDeleteBtn" *ngIf="triggerDeleteAction === false"
+											(click)="changeTriggerDeleteActionValue()">Borrar</button>
 
-									<div class="deleteActions" *ngIf="triggerDeleteAction === true">
-										<button class="btn btn-success" (click)="deleteProject(project._id!)"><fa-icon
-												[icon]="faCheck"></fa-icon></button>
-										<button class="btn btn-danger"
-											(click)="changeTriggerDeleteActionValue()"><fa-icon
-												[icon]="faXmark"></fa-icon></button>
-									</div>
+										<div class="deleteActions" *ngIf="triggerDeleteAction === true">
+											<button class="btn btn-success"
+												(click)="deleteProject(project._id!)"><fa-icon
+													[icon]="faCheck"></fa-icon></button>
+											<button class="btn btn-danger"
+												(click)="changeTriggerDeleteActionValue()"><fa-icon
+													[icon]="faXmark"></fa-icon></button>
+										</div>
 
-								</td>
+									</td>
 
-							</tr>
-						</ng-container>
+								</tr>
+							</ng-container>
 
-					</tbody>
-				</table>
+						</tbody>
+					</table>
+
+				</div>
 			</div>
 		</div>
 

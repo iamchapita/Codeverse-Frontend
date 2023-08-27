@@ -1,5 +1,5 @@
 .container-fluid {
-	height: 94.2vh;
+	height: 93.9vh;
 }
 
 h1 {
@@ -93,4 +93,15 @@ tr {
 	display: flex;
 	justify-content: space-evenly;
 	align-items: center;
+}
+
+.fixed {
+	height: 94.2vh;
+	position: fixed;
+}
+
+.scroll {
+	flex: 1;
+    height: 100%;
+    overflow-y: scroll;
 }
